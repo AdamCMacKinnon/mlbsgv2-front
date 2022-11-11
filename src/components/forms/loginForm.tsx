@@ -6,15 +6,18 @@ import TextField from "@mui/material/TextField";
 import styled from 'styled-components';
 import axios from "axios";
 
-export default function LoginForm(props: any) {
+export default function LoginForm() {
 const [username, setUsername] = useState('')
 const [password, setPassword] = useState('')
 const [errorMessage, setErrorMessage] = useState('');
+const [token, setToken] = useState('')
 const navigate = useNavigate();
 
-// const { setToken } = props;
+console.log(`Token: ${token}`)
 
-const handleSubmit = async () => {  
+
+const handleSubmit = async (e: any) => {  
+  e.preventDefault();
   try {
     const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/login`, {
       username,
@@ -24,22 +27,20 @@ const handleSubmit = async () => {
       setUsername('')
       setPassword('')
       setErrorMessage('')
-      // setToken(response.data)
+      console.log(response.data.accessToken)
+      setToken(response.data.accessToken);
       navigate('/')
+      
     }
-  } catch (e) {
-    console.log(e)
-    console.log(username)
-    console.log(password)
-    if(e) {
+  } catch (e: any) {
       setErrorMessage('Invalid login');
-    }
   }
 }
   return (
     <Form
       noValidate
       autoComplete="off"
+      onSubmit={handleSubmit}
     >
       
         <TextField
@@ -58,7 +59,7 @@ const handleSubmit = async () => {
           onChange={e => setPassword(e.target.value)}
         />
       
-      <Button variant="contained" onClick={handleSubmit}>Submit</Button>
+      <Button variant="contained" type="submit">Submit</Button>
       <ErrorMessage>{errorMessage ? errorMessage : ' '}</ErrorMessage>
     </Form>
   );
