@@ -1,13 +1,14 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import styled from 'styled-components';
 
+import GamePage from './components/GamePage';
 import LandingPage from './components/LandingPage'
 import Login from './components/Login'
 import Register from './components/Register'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 
 
-const App = () => {
+export default function App(){
   return (
     <AppContainer>
     <Router>
@@ -15,18 +16,21 @@ const App = () => {
         <Route path='/' element={<LandingPage />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/gamepage' element={<GamePage />} />
       </Routes>
     </Router>
     </AppContainer>
   )
 }
 
-const AppContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
 
-export default App;
+
+const AppContainer = styled.div`
+  display: flex;
+  position: relative;
+
+  @media (max-width: 768px) {
+    width: 100vw;
+    height: 100vh;
+  }
+`;
