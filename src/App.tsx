@@ -4,13 +4,16 @@ import styled from 'styled-components';
 import GamePage from './components/GamePage';
 import LandingPage from './components/LandingPage'
 import Login from './components/Login'
+import NavBar from './components/NavBar';
 import Register from './components/Register'
 
 
 
 export default function App(){
-  return (
-    <AppContainer>
+  return (<>
+  <NavBar />
+      <AppContainer>
+      
     <Router>
       <Routes>
         <Route path='/' element={<LandingPage />} />
@@ -20,12 +23,15 @@ export default function App(){
       </Routes>
     </Router>
     </AppContainer>
+  </>
+
   )
 }
 
 
 
 const AppContainer = styled.div`
+  margin-top: 50px;
   display: flex;
   position: relative;
 
