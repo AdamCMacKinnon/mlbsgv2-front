@@ -14,12 +14,16 @@ import MenuItem from '@mui/material/MenuItem';
 
 import styled from 'styled-components';
 
-const pages = ['Full Schedule and Standings'];
-const settings = ['Profile', 'Account', 'Logout'];
+import Logout from './Logout';
 
-export default function ResponsiveAppBar() {
+const pages = ['Full Schedule and Standings'];
+const settings = ['Profile', 'Account'];
+
+export default function NavBar(props: any) {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
+
+  const { user, setToken } = props;
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -127,7 +131,8 @@ export default function ResponsiveAppBar() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Chris" src="/static/images/avatar/2.jpg" />
+                {user ? (<Avatar alt={user?.username.toUpperCase()} src="/static/images/avatar/2.jpg" />) : ''}
+                
               </IconButton>
             </Tooltip>
             <Menu
@@ -151,6 +156,9 @@ export default function ResponsiveAppBar() {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
+              <MenuItem key='logout' onClick={handleCloseUserMenu}>
+                  <Logout setToken={setToken}/>
+                </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
