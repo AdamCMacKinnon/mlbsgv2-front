@@ -9,9 +9,9 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 
 
-export default function SelectTeam(props: any) {
+export default function PickTeam(props: any) {
   const [team, setTeam] = useState('')
-  const { selectTeams, setSelectedTeam } = props;
+  const { pickTeams, setSelectedTeam } = props;
 
   const handleChange = (event: SelectChangeEvent) => {
     setTeam(event.target.value as string);
@@ -36,7 +36,7 @@ export default function SelectTeam(props: any) {
             label="Select Team"
             onChange={handleChange}
           >
-          {selectTeams.map((team: any) => <MenuItem value={team} key={team.name}>{team.name}</MenuItem>)}
+          {pickTeams.map((team: any) => <MenuItem value={team} key={team.name}>{team.name}</MenuItem>)}
           </Select>
         </FormControl>
       </SelectTeamContainer>
