@@ -6,15 +6,17 @@ import TextField from "@mui/material/TextField";
 import styled from 'styled-components';
 import axios from "axios";
 
-export default function LoginForm() {
+
+import { fetchUsers, getLoggedInUser } from '../../functions';
+
+export default function LoginForm(props: any) {
 const [username, setUsername] = useState('')
 const [password, setPassword] = useState('')
 const [errorMessage, setErrorMessage] = useState('');
-const [token, setToken] = useState('')
+
+const { setToken, setUsers } = props;
+
 const navigate = useNavigate();
-
-console.log(`Token: ${token}`)
-
 
 const handleSubmit = async (e: any) => {  
   e.preventDefault();
@@ -27,12 +29,24 @@ const handleSubmit = async (e: any) => {
       setUsername('')
       setPassword('')
       setErrorMessage('')
-      console.log(response.data.accessToken)
-      setToken(response.data.accessToken);
-      navigate('/')
-      
+
+      let token = response.data.accessToken;
+      let users = await fetchUsers(token);
+
+      setToken(token)
+      setUsers(users);
+
+      let user = await getLoggedInUser(users, token)
+
+      if (user.admin) {
+        navigate('/admin');
+      }
+      else{
+        navigate('/gamePage');
+      }    
     }
   } catch (e: any) {
+    console.log(e);
       setErrorMessage('Invalid login');
   }
 }

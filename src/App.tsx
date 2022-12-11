@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import styled from 'styled-components';
 
@@ -9,38 +9,51 @@ import LandingPage from './components/LandingPage'
 import Login from './components/Login'
 import NavBar from './components/NavBar';
 import PlayerList from './components/admin/PlayerList';
+import Protected from './components/Protected';
 import Register from './components/Register'
-
-import { picksData } from './data/picks';
-import { usersData } from './data/users';
 import Eliminate from './components/admin/Eliminate';
 import Player from './components/admin/Player';
 
-export default function App(){
-  const [picks, setPicks] = useState<{userId: string, week: number, pick: string, id: string}[]>([]);
-  const [users, setUsers] = useState<{id: string, username: string,  email: string, isactive: boolean, admin: boolean, pastchamp: boolean, diff: number, createdAt: string, updatedAt: string}[]>(usersData);
+import { checkToken, getLoggedInUser } from './functions';
 
-  useEffect(() => {
-    setPicks(picksData);
-    setUsers(usersData);
-  }, [])
+
+
+export default function App(){
+  const [token, setToken] = useState('');
+  const [users, setUsers] = useState<{id: string, username: string,  email: string, isactive: boolean, admin: boolean, pastchamp: boolean, diff: number, createdAt: string, updatedAt: string}[]>([]);
+
+  const loggedInUser = getLoggedInUser(users, token);
+  const validToken = checkToken(token);
   
   return (
   <>
-    <NavBar />
+    <NavBar user={loggedInUser} setToken={setToken}/>
     <AppContainer>
       
       <Router>
         <Routes>
           
           <Route path='/' element={<LandingPage />} />
-          <Route path='login' element={<Login />} />
+          <Route path='login' element={<Login setToken={setToken} setUsers={setUsers}/>} />
           <Route path='register' element={<Register />} />
-          <Route path='gamepage' element={<GamePage />} />
+
+          <Route 
+            path='gamePage' 
+            element={
+              <Protected isAllowed={validToken}>
+                <GamePage />
+              </Protected>
+            } />
           
-          <Route path='admin' element={<Admin />}>
-            <Route index element={<PickList picks={picks} users={users}/>} />
-            <Route path='picks' element={<PickList picks={picks} users={users}/>} />
+          <Route 
+            path='admin' 
+            element={
+              <Protected isAllowed={validToken && loggedInUser?.admin} redirectPath={'/gamePage'}>
+                <Admin />
+              </Protected>
+          }>
+            <Route index element={<PickList users={users}/>} />
+            <Route path='picks' element={<PickList users={users}/>} />
             <Route path='players' element={<PlayerList users={users}/>} />
             <Route path='player/:userId' element={<Player />} />
             <Route path='eliminate' element={<Eliminate />} />            
