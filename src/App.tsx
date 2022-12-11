@@ -41,7 +41,7 @@ export default function App(){
             path='gamePage' 
             element={
               <Protected isAllowed={validToken}>
-                <GamePage />
+                <GamePage user={loggedInUser}/>
               </Protected>
             } />
           

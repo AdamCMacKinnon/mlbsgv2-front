@@ -1,9 +1,8 @@
-import {useState, useEffect} from 'react';
-import axios from 'axios';
+import {useState} from 'react';
 import styled from 'styled-components';
 
 import CurrentActivePlayers from './gamepage/CurrentActivePlayers';
-import SelectTeam from './gamepage/SelectTeam';
+import PickTeam from './gamepage/PickTeam';
 import SelectedTeam from './gamepage/SelectedTeam';
 import UserPicks from './gamepage/UserPicks';
 
@@ -12,25 +11,13 @@ import { teams } from '../data/teams';
 
 
 export default function GamePage(props: any) {
-  const [userPicks, setUserPicks] = useState([]);
-  const [selectTeams, setSelectTeams] = useState(teams)
   const [selectedTeam, setSelectedTeam] = useState({})
 
-  const userId = 'b38b0b59-d6a3-44a5-9766-178148937311'
+  const { user } = props;
 
-  useEffect(() => {
-    async function getUserPicks(){
-      const response = await axios.get(`${process.env.REACT_APP_SERVER}/picks/getpick/${userId}`)
-      setUserPicks(response.data[0].picks);
-      setPickTeams(response.data[0].picks);
-    }
-    getUserPicks()
-
-    async function setPickTeams(pickedTeams: any) {
-      const pickTeams = teams.filter(team => !pickedTeams.includes(team.name))
-      setSelectTeams(pickTeams)
-    }
-  }, [])
+  const userPickList: any = []
+  user.picks.forEach((pick: any) => userPickList.push(pick.pick));
+  const pickTeams = teams.filter(team => !userPickList.includes(team.name))
 
   return (
     <GamePageContainer>
@@ -41,10 +28,10 @@ export default function GamePage(props: any) {
           <SelectedTeam selectedTeam={selectedTeam}/>
         </Section>
         <Section>
-          <SelectTeam selectTeams={selectTeams} setSelectedTeam={setSelectedTeam} />
+          <PickTeam pickTeams={pickTeams} setSelectedTeam={setSelectedTeam} />
         </Section>
         <Section>
-          <UserPicks userPicks={userPicks}/>
+          <UserPicks userPicks={userPickList}/>
         </Section>
         <Section>
           <h2>Total Pick Distribution for Last Week:</h2>
