@@ -26,7 +26,7 @@ export default function PickTeam(props: any) {
   return ( 
     <SelectTeamForm onSubmit={e => handleSubmit(e)}>
       <h3>Team Select</h3>
-      <SelectTeamContainer sx={{ minWidth: 250 }}>
+      <SelectTeamContainer sx={{ minWidth: 200 }}>
         <FormControl fullWidth>
           <InputLabel id="simple-select-label">Select Team</InputLabel>
           <Select

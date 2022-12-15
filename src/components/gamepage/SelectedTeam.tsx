@@ -21,6 +21,7 @@ const SelectedTeamContainer = styled.div`
   flex-direction: column;
   position: relative;
   top: -30px;
+  width: 90%;
 `
 
 const SelectedTeamImage = styled.img`

@@ -1,4 +1,3 @@
-
 import LoginForm from './forms/loginForm'
 import {Link } from 'react-router-dom'
 
@@ -10,18 +9,22 @@ export default function Login(props: any) {
   const { setToken, setUsers } = props
   return (
     <LoginFormContainer>
+          <LoginFormSection>
       <h2>LOGIN PAGE</h2>
       <LoginForm setToken={setToken} setUsers={setUsers}/>
       <BottomLinks>
         <LoginFormLink to="/">Back to Home</LoginFormLink>
         <LoginFormLink to="/register">Register Here!</LoginFormLink>
       </BottomLinks>
-
+    </LoginFormSection>
     </LoginFormContainer>
+
   )
 }
 
-const LoginFormContainer = styled.div`
+
+
+const LoginFormSection = styled.div`
   width: 80%;
   max-width: 500px;
   padding: 20px;
@@ -32,7 +35,17 @@ const LoginFormContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  justify-self: center;
+  max-height: 300px;
+  position: relative;
+`
+
+const LoginFormContainer = styled.div`
+  height: 97vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
 `
 
 const BottomLinks = styled.div`
