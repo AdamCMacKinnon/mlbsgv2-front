@@ -35,7 +35,7 @@ export default function App(){
           
           <Route path='/' element={<LandingPage />} />
           <Route path='login' element={<Login setToken={setToken} setUsers={setUsers}/>} />
-          <Route path='register' element={<Register />} />
+          <Route path='register' element={<Register setToken={setToken} setUsers={setUsers}/>} />
 
           <Route 
             path='gamePage' 

@@ -45,3 +45,11 @@ export async function fetchUsers(token: any) {
     console.log(error)
   }
 }
+
+export async function login(username: String, password: string) {
+  const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/login`, {
+    username,
+    password
+  })  
+  return response;
+}

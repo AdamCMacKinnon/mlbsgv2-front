@@ -1,17 +1,24 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import styled from "styled-components"
 import axios from "axios";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
+import { login, fetchUsers } from '../../functions';
 
 
-export default function FormPropsTextFields() {
-  const [userName, setUserName] = useState('');
+
+export default function FormPropsTextFields(props: any) {
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  const { setToken, setUsers } = props;
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -21,7 +28,7 @@ export default function FormPropsTextFields() {
 
     try{
       const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/register`, {
-        "username": userName,
+        "username": username,
         "password": password,
         "email": email.toLowerCase(),
         "isactive": true,
@@ -32,10 +39,20 @@ export default function FormPropsTextFields() {
         "updatedAt": isoDate        
       })
       if (response.status === 201) {
-        setUserName('')
+        setUsername('')
         setEmail('')
         setPassword('')
-        alert('User successfully created');
+        
+        const loginResponse = await login(username, password);
+
+        if (loginResponse.status === 201) {
+          let token = loginResponse.data.accessToken;
+          let users = await fetchUsers(token);
+
+          setToken(token)
+          setUsers(users);
+          navigate('/gamePage');
+        }
       }
     } catch (e : any) {
       console.log(e.response.data.message)
@@ -48,14 +65,15 @@ export default function FormPropsTextFields() {
     <FormBox
       noValidate
       autoComplete="off"
+      onSubmit={handleSubmit}
     >
       <ErrorMessage>{errorMessage && errorMessage}</ErrorMessage>
         <TextField
           required
           id="outlined-required"
           label="User Name"
-          value={userName}
-          onChange={e => setUserName(e.target.value)}
+          value={username}
+          onChange={e => setUsername(e.target.value)}
         />
         <TextField
           id="outline"
@@ -71,7 +89,7 @@ export default function FormPropsTextFields() {
           value={password}
           onChange={e => setPassword(e.target.value)}
         />
-      <Button variant="contained" onClick={e => handleSubmit(e)}>Submit</Button>
+      <Button variant="contained" type="submit">Submit</Button>
     </FormBox>
   );
 }
