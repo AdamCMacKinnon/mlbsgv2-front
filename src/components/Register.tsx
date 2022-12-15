@@ -5,12 +5,13 @@ import styled from 'styled-components';
 
 
 
-export default function Register() {
+export default function Register(props: any) {
+  const { setToken, setUsers } = props
   return (
     <RegistrationContainer>
       <RegistrationForm>
         <h1>REGISTER</h1>
-        <RegForm />
+        <RegForm setToken={setToken} setUsers={setUsers}/>
         <Link to="/">Back to Home</Link>
       </RegistrationForm>
     </RegistrationContainer>
