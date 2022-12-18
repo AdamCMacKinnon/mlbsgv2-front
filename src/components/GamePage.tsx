@@ -1,4 +1,3 @@
-import {useState} from 'react';
 import styled from 'styled-components';
 
 import CurrentActivePlayers from './gamepage/CurrentActivePlayers';
@@ -11,9 +10,7 @@ import { teams } from '../data/teams';
 
 
 export default function GamePage(props: any) {
-  const [selectedTeam, setSelectedTeam] = useState({})
-
-  const { user } = props;
+  const { user, token, setUsers, users } = props;
 
   const userPickList: any = []
   user.picks.forEach((pick: any) => userPickList.push(pick.pick));
@@ -22,13 +19,13 @@ export default function GamePage(props: any) {
   return (
     <GamePageContainer>
       <h1>ACTIVE</h1>
-      <CurrentActivePlayers />
+      <CurrentActivePlayers users={users}/>
       <GamePageComponents>
         <Section>
-          <SelectedTeam selectedTeam={selectedTeam}/>
+          <SelectedTeam user={user}/>
         </Section>
         <Section>
-          <PickTeam pickTeams={pickTeams} setSelectedTeam={setSelectedTeam} />
+          <PickTeam pickTeams={pickTeams} token={token} user={user} setUsers={setUsers}/>
         </Section>
         <Section>
           <UserPicks userPicks={userPickList}/>

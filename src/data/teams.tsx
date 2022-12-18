@@ -17,7 +17,7 @@ export const teams = [
   },
   {
   name: "Chicago Cubs",
-  image: "boston-red-sox.svg"
+  image: "chicago-cubs.svg"
   },
   {
   name: "Chicago White Sox",
