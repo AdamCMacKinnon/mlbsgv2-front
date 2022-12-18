@@ -2,11 +2,15 @@ import styled from 'styled-components'
 
 
 
-export default function CurrentActivePlayers() {
+export default function CurrentActivePlayers(props: any) {
+  const { users } = props;
+
+  const currentActiveUsers = users.filter((user: any) => user.isactive ).length;
+
   return(
     <CurrentActivePlayersContainer>
       <p className="active-heading">Current Active Players:</p>
-      <p className="active-player-number">35</p>
+      <p className="active-player-number">{currentActiveUsers}</p>
     </CurrentActivePlayersContainer>
   )
 }

@@ -53,3 +53,21 @@ export async function login(username: String, password: string) {
   })  
   return response;
 }
+
+export async function makePick(token: any, week: any, pick: any) {
+
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_SERVER}/picks`, {
+      week: week,
+      pick: pick.name
+    },{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
+}
