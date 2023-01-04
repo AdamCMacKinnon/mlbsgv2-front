@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import styled from 'styled-components';
 
 import Admin from './components/Admin'
-import PickList from './components/admin/PickList';
 import GamePage from './components/GamePage';
 import LandingPage from './components/LandingPage'
 import Login from './components/Login'
@@ -11,7 +10,6 @@ import NavBar from './components/NavBar';
 import PlayerList from './components/admin/PlayerList';
 import Protected from './components/Protected';
 import Register from './components/Register'
-import Eliminate from './components/admin/Eliminate';
 import Player from './components/admin/Player';
 
 import { checkToken, getLoggedInUser } from './functions';
@@ -52,11 +50,9 @@ export default function App(){
                 <Admin />
               </Protected>
           }>
-            <Route index element={<PickList users={users}/>} />
-            <Route path='picks' element={<PickList users={users}/>} />
-            <Route path='players' element={<PlayerList users={users}/>} />
-            <Route path='player/:userId' element={<Player />} />
-            <Route path='eliminate' element={<Eliminate />} />            
+            <Route index element={<PlayerList users={users} token={token} setUsers={setUsers}/>} />
+            <Route path='players' element={<PlayerList users={users} token={token} setUsers={setUsers}/>} />
+            <Route path='player/:userId' element={<Player />} />         
           </Route>
         
         </Routes>

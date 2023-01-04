@@ -46,6 +46,20 @@ export async function fetchUsers(token: any) {
   }
 }
 
+export async function fetchAdminUsers(token: any) {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_SERVER}/admin/users`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export async function login(username: String, password: string) {
   const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/login`, {
     username,
@@ -69,5 +83,21 @@ export async function makePick(token: any, week: any, pick: any) {
     return data;
   } catch (error) {
     console.log(error)
+  }
+}
+
+export async function eliminateUsers(token: any, users: any) {
+  try {
+    const response = await axios.patch(`${process.env.REACT_APP_SERVER}/admin/eliminate`, {
+      username: users
+    },{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.log(error);
   }
 }
