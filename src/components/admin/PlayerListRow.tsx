@@ -1,11 +1,12 @@
 import * as React from 'react';
-import Checkbox from '@mui/material/Checkbox';
 
 import styled from 'styled-components';
 
 export default function PlayerListRow(props: any) {
-  const [checked, setChecked] = React.useState(false);
-  const { user, eliminateUserList, setEliminateUserList } = props;
+
+  const { user, eliminateUserList, setEliminateUserList, allChecked } = props;
+
+  const [checked, setChecked] = React.useState(allChecked);
 
   const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
@@ -22,21 +23,21 @@ export default function PlayerListRow(props: any) {
 
   return (
     <tr key={user.id}>
-    <TableData>{user.isactive ? (user.username) : (<span>{user.username}</span>)}</TableData>
-    <TableData>{user.isactive ? (user.diff): (<span>{user.diff}</span>)}</TableData>
-    <td>{user.isactive}</td>
-    <td>
-      {user.isactive ? (<Checkbox
+    <TableData width="30%">{user.isactive ? (user.username) : (<span>{user.username}</span>)}</TableData>
+    <TableData width="10%">{user.isactive ? (user.diff): (<span>{user.diff}</span>)}</TableData>
+    <TableData width="50%">{user.isactive ? (user.pick): (<span>{user.pick}</span>)}</TableData>
+    <td width="10%">
+      {user.isactive ? (<input type="checkbox"
       checked={checked}
       onChange={handleCheck}
-      size="small"
-      inputProps={{ 'aria-label': 'controlled' }}
-    />) : (<Checkbox
+      // size="small"
+      // inputProps={{ 'aria-label': 'controlled' }}
+    />) : (<input type="checkbox"
       checked={false}
       onChange={handleCheck}
-      inputProps={{ 'aria-label': 'controlled' }}
+      // inputProps={{ 'aria-label': 'controlled' }}
       disabled
-      size="small"
+      // size="small"
     />)}
 
     </td>
@@ -46,7 +47,6 @@ export default function PlayerListRow(props: any) {
 }
 
 const TableData = styled.td`
-  font-weight: bold;
   span {
     color: black;
     font-weight: 100;

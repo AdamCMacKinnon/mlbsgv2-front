@@ -101,3 +101,15 @@ export async function eliminateUsers(token: any, users: any) {
     console.log(error);
   }
 }
+
+export const filteredUsersByWeek = (users: any, week: number) => {
+  return users.map((user: any) => {
+    const userPick = user.picks[week - 1]?.pick;
+    return {
+      username: user.username,
+      pick: userPick ? userPick : "No Pick",
+      diff: user.diff,
+      isactive: user.isactive
+    };
+  });
+};

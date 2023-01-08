@@ -4,10 +4,12 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 import PlayerListRow from './PlayerListRow';
+import WeekSelection from './WeekSelection';
 
-import { eliminateUsers, fetchAdminUsers } from '../../functions';
+import { eliminateUsers, fetchAdminUsers, filteredUsersByWeek } from '../../functions';
 
 export default function PlayerList(props: any) {
+  const [week, setWeek] = useState(1);
   const [eliminateUserList, setEliminateUserList] = useState([]);
 
   const { users, setUsers, token } = props;
@@ -18,11 +20,15 @@ export default function PlayerList(props: any) {
     setUsers(updatedUsers);
   }
 
+  const usersFilteredByWeek = filteredUsersByWeek(users, week);
+
+  const displayUsers = usersFilteredByWeek;
+
   return (
     <>
       <ActionsContainer>
         <div>
-          filter section
+          <WeekSelection setWeek={setWeek}/>
         </div>
         <Button variant="contained" size="small" onClick={handleEliminate}>Eliminate</Button>
       </ActionsContainer>
@@ -33,18 +39,19 @@ export default function PlayerList(props: any) {
             <th>UserName</th>
             <th>Diff</th>
             <th>Week Pick</th>
-            <th>Set Inactive</th>
+            <th>Elim</th>
           </tr>
         </thead>
 
         <tbody>
-          {users.map((user:any) => {
+          {displayUsers.map((user:any) => {
             return(
               <PlayerListRow 
                 user={user} 
                 setEliminateUserList={setEliminateUserList} 
                 eliminateUserList={eliminateUserList} 
                 key={user.id} 
+                allChecked={false}
               />
             )})}
         </tbody>
@@ -58,6 +65,7 @@ const ActionsContainer = styled.div`
   margin: 20px 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 5px;
 
   button {
@@ -73,7 +81,7 @@ const PlayersListContainer = styled.table`
 
   th {
     border-bottom: 1px solid;
-    padding: 0 0 10px 0
+    text-align: center;
   }
   td {
     height: 20px;
