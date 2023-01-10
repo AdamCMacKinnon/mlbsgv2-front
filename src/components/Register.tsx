@@ -6,12 +6,12 @@ import styled from 'styled-components';
 
 
 export default function Register(props: any) {
-  const { setToken, setUsers } = props
+  const { setToken, setUsers, setUser } = props
   return (
     <RegistrationContainer>
       <RegistrationForm>
         <h1>REGISTER</h1>
-        <RegForm setToken={setToken} setUsers={setUsers}/>
+        <RegForm setToken={setToken} setUsers={setUsers} setUser={setUser}/>
         <Link to="/">Back to Home</Link>
       </RegistrationForm>
     </RegistrationContainer>

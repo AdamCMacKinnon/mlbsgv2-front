@@ -7,14 +7,14 @@ import styled from 'styled-components';
 import axios from "axios";
 
 
-import { fetchUsers, getLoggedInUser } from '../../functions';
+import { fetchUsers, fetchAdminUsers, getLoggedInUser } from '../../functions';
 
 export default function LoginForm(props: any) {
 const [username, setUsername] = useState('')
 const [password, setPassword] = useState('')
 const [errorMessage, setErrorMessage] = useState('');
 
-const { setToken, setUsers } = props;
+const { setToken, setUsers, setUser } = props;
 
 const navigate = useNavigate();
 
@@ -31,19 +31,24 @@ const handleSubmit = async (e: any) => {
       setErrorMessage('')
 
       let token = response.data.accessToken;
-      let users = await fetchUsers(token);
+      let users;
 
       setToken(token)
-      setUsers(users);
+      
+      let user = await getLoggedInUser(token)
 
-      let user = await getLoggedInUser(users, token)
+      setUser(user);
 
       if (user.admin) {
         navigate('/admin');
+        users = await fetchAdminUsers(token);
       }
       else{
         navigate('/gamePage');
-      }    
+        users = await fetchUsers(token);
+      }
+      
+      setUsers(users);
     }
   } catch (e: any) {
     console.log(e);

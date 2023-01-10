@@ -12,41 +12,41 @@ import Protected from './components/Protected';
 import Register from './components/Register'
 import Player from './components/admin/Player';
 
-import { checkToken, getLoggedInUser } from './functions';
+import { checkToken } from './functions';
 
 
 
 export default function App(){
   const [token, setToken] = useState('');
+  const [user, setUser] = useState<{id: string, username: string,  email: string, isactive: boolean, admin: boolean, pastchamp: boolean, diff: number, createdAt: string, updatedAt: string}>();
   const [users, setUsers] = useState<{id: string, username: string,  email: string, isactive: boolean, admin: boolean, pastchamp: boolean, diff: number, createdAt: string, updatedAt: string}[]>([]);
 
-  const loggedInUser = getLoggedInUser(users, token);
   const validToken = checkToken(token);
   
   return (
   <>
-    <NavBar user={loggedInUser} setToken={setToken}/>
+    <NavBar user={user} setToken={setToken}/>
     <AppContainer>
       
       <Router>
         <Routes>
           
           <Route path='/' element={<LandingPage />} />
-          <Route path='login' element={<Login setToken={setToken} setUsers={setUsers}/>} />
-          <Route path='register' element={<Register setToken={setToken} setUsers={setUsers}/>} />
+          <Route path='login' element={<Login setToken={setToken} setUsers={setUsers} setUser={setUser}/>} />
+          <Route path='register' element={<Register setToken={setToken} setUsers={setUsers} setUser={setUser}/>} />
 
           <Route 
             path='gamePage' 
             element={
               <Protected isAllowed={validToken}>
-                <GamePage user={loggedInUser} token={token} setUsers={setUsers} users={users}/>
+                <GamePage user={user} token={token} setUsers={setUsers} users={users}/>
               </Protected>
             } />
           
           <Route 
             path='admin' 
             element={
-              <Protected isAllowed={validToken && loggedInUser?.admin} redirectPath={'/gamePage'}>
+              <Protected isAllowed={validToken && user?.admin} redirectPath={'/gamePage'}>
                 <Admin />
               </Protected>
           }>

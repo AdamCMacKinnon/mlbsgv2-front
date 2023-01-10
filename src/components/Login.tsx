@@ -6,12 +6,12 @@ import styled from 'styled-components';
 
 
 export default function Login(props: any) {
-  const { setToken, setUsers } = props
+  const { setToken, setUsers, setUser } = props
   return (
     <LoginFormContainer>
           <LoginFormSection>
       <h2>LOGIN PAGE</h2>
-      <LoginForm setToken={setToken} setUsers={setUsers}/>
+      <LoginForm setToken={setToken} setUsers={setUsers} setUser={setUser}/>
       <BottomLinks>
         <LoginFormLink to="/">Back to Home</LoginFormLink>
         <LoginFormLink to="/register">Register Here!</LoginFormLink>

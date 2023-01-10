@@ -6,7 +6,7 @@ import axios from "axios";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-import { login, fetchUsers } from '../../functions';
+import { login, fetchUsers, getLoggedInUser } from '../../functions';
 
 
 
@@ -16,7 +16,7 @@ export default function FormPropsTextFields(props: any) {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const { setToken, setUsers } = props;
+  const { setToken, setUsers, setUser } = props;
 
   const navigate = useNavigate();
 
@@ -51,6 +51,10 @@ export default function FormPropsTextFields(props: any) {
 
           setToken(token)
           setUsers(users);
+
+          let user = await getLoggedInUser(token)
+
+          setUser(user);
           navigate('/gamePage');
         }
       }
