@@ -23,22 +23,27 @@ export function getUserIdFromToken(token: any){
 
 
 
-export function getLoggedInUser(users: any, token: any){
-
-  if (users && token) {
+export async function getLoggedInUser(token: any){
+  if (token) {
     const userId = getUserIdFromToken(token)
-    return users.filter((user: any) => user.id === userId)[0]
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER}/admin/users/${userId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+    const data = await response.data;
+    return data;
+    } catch (error) {
+      
+    }
   }
 }
 
 
 export async function fetchUsers(token: any) {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_SERVER}/admin/users`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
+    const response = await axios.get(`${process.env.REACT_APP_SERVER}/auth/standings`);
     const data = await response.data;
     return data;
   } catch (error) {
@@ -106,10 +111,8 @@ export const filteredUsersByWeek = (users: any, week: number) => {
   return users.map((user: any) => {
     const userPick = user.picks[week - 1]?.pick;
     return {
-      username: user.username,
+      ...user,
       pick: userPick ? userPick : "No Pick",
-      diff: user.diff,
-      isactive: user.isactive
     };
   });
 };
