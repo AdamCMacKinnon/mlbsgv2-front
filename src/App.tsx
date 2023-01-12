@@ -52,7 +52,7 @@ export default function App(){
           }>
             <Route index element={<PlayerList users={users} token={token} setUsers={setUsers}/>} />
             <Route path='players' element={<PlayerList users={users} token={token} setUsers={setUsers}/>} />
-            <Route path='player/:userId' element={<Player />} />         
+            <Route path='player/:username' element={<Player users={users} token={token} setUsers={setUsers}/>} />         
           </Route>
         
         </Routes>
