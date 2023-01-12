@@ -88,5 +88,14 @@ const PlayersListContainer = styled.table`
   }
   tbody tr:nth-child(odd) {
     background-color: lightgrey;
+
+    :hover {
+      background-color: green;
+      color: white;
+    }
+  }
+  tbody tr:hover {
+    color: white;
+    background-color: green;
   }
 `
