@@ -5,24 +5,9 @@ import styled from 'styled-components';
 
 export default function PlayerListRow(props: any) {
 
-  const { user, eliminateUserList, setEliminateUserList, allChecked } = props;
-
-  const [checked, setChecked] = React.useState(allChecked);
+  const { user, handleClick, isChecked } = props;
 
   const navigate = useNavigate();
-
-  const handleCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setChecked(event.target.checked);
-
-    if (event.target.checked) {
-      setEliminateUserList([...eliminateUserList, user.username])
-    }
-
-    if (!event.target.checked) {
-      const userList = eliminateUserList.filter((eUser: any) => user.username !== eUser);
-      setEliminateUserList(userList);
-    }
-  };
 
   const handleNameClick = (e: any) => {
     navigate(`/admin/player/${user.username}`)
@@ -35,11 +20,11 @@ export default function PlayerListRow(props: any) {
     <TableData width="50%">{user.isactive ? (user.pick): (<span  className="inactive">{user.pick}</span>)}</TableData>
     <td width="10%">
       {user.isactive ? (<input type="checkbox"
-      checked={checked}
-      onChange={handleCheck}
+      id={user.username}
+      onChange={handleClick}
+      checked={isChecked.includes(user.username)}
     />) : (<input type="checkbox"
       checked={false}
-      onChange={handleCheck}
       disabled
     />)}
 

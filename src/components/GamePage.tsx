@@ -13,7 +13,7 @@ export default function GamePage(props: any) {
   const { user, token, setUsers, users } = props;
 
   const userPickList: any = []
-  user.picks.forEach((pick: any) => userPickList.push(pick.pick));
+  user.picks?.forEach((pick: any) => userPickList.push(pick.pick));
   const pickTeams = teams.filter(team => !userPickList.includes(team.name))
 
   return (

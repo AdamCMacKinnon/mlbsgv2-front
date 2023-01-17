@@ -1,13 +1,23 @@
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
+
 export default function WeekSelection(props: any) {
   const { week, setWeek } = props;
 
+  const weeks = Array.from(Array(26).keys())
+
   return (
     <>
-      <select value={week} onChange={(e) => setWeek(e.target.value)}>
-        <option label="Week 1" value={1} />
-        <option label="Week 2" value={2} />
-        <option label="Week 3" value={3} />
-      </select>
+      <Select
+        labelId="select-week-label"
+        id="select-week"
+        value={week}
+        onChange={(e: any) => setWeek(e.target.value)}
+        size="small"
+      >
+        {weeks.map((week: number) => <MenuItem value={week + 1}>Week {week + 1}</MenuItem>)}
+      </Select>
+
     </>
   );
 }
