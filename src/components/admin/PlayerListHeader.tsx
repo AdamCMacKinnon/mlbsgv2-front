@@ -19,6 +19,7 @@ export default function PlayerListHeader(props: any) {
       <tr>
         {headerList.map((item: any) => (
           <PlayerListColumnHeader
+            key={item}
             sort={sort}
             setSort={setSort}
             sortDirection={sortDirection}

@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import styled from "styled-components"
 import axios from "axios";
 
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
+import { FormBox, ErrorMessage } from './RegisterForm.styles'
+
 import { login, fetchUsers, getLoggedInUser } from '../../functions';
 
 
-
-export default function FormPropsTextFields(props: any) {
+const RegisterForm = (props: any) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -98,15 +98,4 @@ export default function FormPropsTextFields(props: any) {
   );
 }
 
-const FormBox = styled.form`
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    max-width: 300px;
-    gap: 10px;   
-`
-
-const ErrorMessage = styled.div`
-  color: red;
-  margin: 0 auto;
-`
+export default RegisterForm;
