@@ -1,57 +1,57 @@
-import { Button } from '@mui/material';
 import { useState } from 'react';
 
 import styled from 'styled-components';
 
 import PlayerListRow from './PlayerListRow';
-import WeekSelection from './WeekSelection';
+import PlayerListHeader from './PlayerListHeader';
 
-import { eliminateUsers, fetchAdminUsers, filteredUsersByWeek } from '../../functions';
 
 export default function PlayerList(props: any) {
-  const [week, setWeek] = useState(1);
-  const [eliminateUserList, setEliminateUserList] = useState([]);
+  const [isCheckAll, setIsCheckAll] = useState(false);
+  const [isCheck, setIsCheck] = useState<{ isChecked: string }[]>([]);
 
-  const { users, setUsers, token } = props;
+  const { users, sort, setSort, sortDirection, setSortDirection, setEliminateUserList  } = props;
 
-  const handleEliminate = async () => {
-    await eliminateUsers(token, eliminateUserList);
-    const updatedUsers = await fetchAdminUsers(token);
-    setUsers(updatedUsers);
-  }
+  const handleSelectAll = () => {
+    setIsCheckAll(!isCheckAll);
+    setIsCheck(users.map((user: any) => user.username));
+    setEliminateUserList(users.map((user: any) => user.username))
+    if (isCheckAll) {
+      setIsCheck([]);
+      setEliminateUserList([])
+    }
+  };
 
-  const usersFilteredByWeek = filteredUsersByWeek(users, week);
-
-  const displayUsers = usersFilteredByWeek;
+  const handleClick = (e: any) => {
+    const { id, checked } = e.target;
+    setIsCheck([...isCheck, id]);
+    setEliminateUserList([...isCheck, id])
+    if (!checked) {
+      setIsCheck(isCheck.filter((user) => user !== id));
+      setEliminateUserList(isCheck.filter((user) => user !== id))
+    }
+  };
 
   return (
     <>
-      <ActionsContainer>
-        <div>
-          <WeekSelection setWeek={setWeek}/>
-        </div>
-        <Button variant="contained" size="small" onClick={handleEliminate}>Eliminate</Button>
-      </ActionsContainer>
-
       <PlayersListContainer>
-        <thead>
-          <tr>
-            <th>UserName</th>
-            <th>Diff</th>
-            <th>Week Pick</th>
-            <th>Elim</th>
-          </tr>
-        </thead>
+        <PlayerListHeader 
+              sort={sort}
+              setSort={setSort}
+              sortDirection={sortDirection}
+              setSortDirection={setSortDirection}
+              handleSelectAll={handleSelectAll}
+              isCheckAll={isCheckAll}
+        />
 
         <tbody>
-          {displayUsers.map((user:any) => {
+          {users.map((user:any) => {
             return(
               <PlayerListRow 
                 user={user} 
-                setEliminateUserList={setEliminateUserList} 
-                eliminateUserList={eliminateUserList} 
+                isChecked={isCheck} 
+                handleClick={handleClick}
                 key={user.id} 
-                allChecked={false}
               />
             )})}
         </tbody>
@@ -59,19 +59,6 @@ export default function PlayerList(props: any) {
     </>
   )
 }
-
-const ActionsContainer = styled.div`
-  background-color: white;
-  margin: 20px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px;
-
-  button {
-    background-color: rgba(6,128,55);
-  }
-`
 
 const PlayersListContainer = styled.table`
   margin: 0 auto;

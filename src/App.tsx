@@ -7,7 +7,7 @@ import GamePage from './components/GamePage';
 import LandingPage from './components/LandingPage'
 import Login from './components/Login'
 import NavBar from './components/NavBar';
-import PlayerList from './components/admin/PlayerList';
+import Players from './components/admin/Players';
 import Protected from './components/Protected';
 import Register from './components/Register'
 import Player from './components/admin/Player';
@@ -18,8 +18,8 @@ import { checkToken } from './functions';
 
 export default function App(){
   const [token, setToken] = useState('');
-  const [user, setUser] = useState<{id: string, username: string,  email: string, isactive: boolean, admin: boolean, pastchamp: boolean, diff: number, createdAt: string, updatedAt: string}>();
-  const [users, setUsers] = useState<{id: string, username: string,  email: string, isactive: boolean, admin: boolean, pastchamp: boolean, diff: number, createdAt: string, updatedAt: string}[]>([]);
+  const [user, setUser] = useState<{id: string, username: string,  email: string, isactive: boolean, role: string, pastchamp: boolean, diff: number, createdAt: string, updatedAt: string}>();
+  const [users, setUsers] = useState<{id: string, username: string,  email: string, isactive: boolean, role: string, pastchamp: boolean, diff: number, createdAt: string, updatedAt: string}[]>([]);
 
   const validToken = checkToken(token);
   
@@ -46,12 +46,12 @@ export default function App(){
           <Route 
             path='admin' 
             element={
-              <Protected isAllowed={validToken && user?.admin} redirectPath={'/gamePage'}>
+              <Protected isAllowed={validToken && user?.role === 'admin'} redirectPath={'/gamePage'}>
                 <Admin />
               </Protected>
           }>
-            <Route index element={<PlayerList users={users} token={token} setUsers={setUsers}/>} />
-            <Route path='players' element={<PlayerList users={users} token={token} setUsers={setUsers}/>} />
+            <Route index element={<Players users={users} token={token} setUsers={setUsers}/>} />
+            <Route path='players' element={<Players users={users} token={token} setUsers={setUsers}/>} />
             <Route path='player/:username' element={<Player users={users} token={token} setUsers={setUsers}/>} />         
           </Route>
         

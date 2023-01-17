@@ -32,7 +32,7 @@ export default function FormPropsTextFields(props: any) {
         "password": password,
         "email": email.toLowerCase(),
         "isactive": true,
-        "admin": false,
+        "role": 'player',
         "pastchamp": false,
         "diff": 0,
         "createdAt": isoDate,

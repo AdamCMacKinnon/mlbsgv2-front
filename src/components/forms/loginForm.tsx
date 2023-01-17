@@ -38,8 +38,7 @@ const handleSubmit = async (e: any) => {
       let user = await getLoggedInUser(token)
 
       setUser(user);
-
-      if (user.admin) {
+      if (user.role === 'admin') {
         navigate('/admin');
         users = await fetchAdminUsers(token);
       }
