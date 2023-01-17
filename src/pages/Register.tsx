@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import RegForm from './forms/regForm'
+import RegForm from '../components/register/RegisterForm'
 
 import styled from 'styled-components';
 

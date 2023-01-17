@@ -27,7 +27,7 @@ export async function getLoggedInUser(token: any){
   if (token) {
     const userId = getUserIdFromToken(token)
     try {
-      const response = await axios.get(`${process.env.REACT_APP_SERVER}/admin/users/${userId}`, {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER}/auth/users/${userId}`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -35,7 +35,7 @@ export async function getLoggedInUser(token: any){
     const data = await response.data;
     return data;
     } catch (error) {
-      
+      console.log(error);
     }
   }
 }

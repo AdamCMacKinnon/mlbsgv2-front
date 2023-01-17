@@ -15,7 +15,7 @@ export default function WeekSelection(props: any) {
         onChange={(e: any) => setWeek(e.target.value)}
         size="small"
       >
-        {weeks.map((week: number) => <MenuItem value={week + 1}>Week {week + 1}</MenuItem>)}
+        {weeks.map((week: number) => <MenuItem key={week} value={week + 1}>Week {week + 1}</MenuItem>)}
       </Select>
 
     </>

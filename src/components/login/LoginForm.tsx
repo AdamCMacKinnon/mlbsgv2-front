@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-import styled from 'styled-components';
 import axios from "axios";
 
+import { Form, ErrorMessage } from './LoginForm.styles';
 
 import { fetchUsers, fetchAdminUsers, getLoggedInUser } from '../../functions';
 
-export default function LoginForm(props: any) {
+const LoginForm = (props: any) => {
 const [username, setUsername] = useState('')
 const [password, setPassword] = useState('')
 const [errorMessage, setErrorMessage] = useState('');
@@ -83,16 +83,4 @@ const handleSubmit = async (e: any) => {
   );
 }
 
-const Form = styled.form`
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    max-width: 300px;
-    gap: 10px;   
-`
-
-const ErrorMessage = styled.p`
-  color: red;
-  margin: 0 auto;
-  height: 10px;
-`
+export default LoginForm;

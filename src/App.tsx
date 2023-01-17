@@ -5,11 +5,11 @@ import styled from 'styled-components';
 import Admin from './components/Admin'
 import GamePage from './components/GamePage';
 import LandingPage from './components/LandingPage'
-import Login from './components/Login'
+import Login from './pages/Login'
 import NavBar from './components/NavBar';
 import Players from './components/admin/Players';
 import Protected from './components/Protected';
-import Register from './components/Register'
+import Register from './pages/Register'
 import Player from './components/admin/Player';
 
 import { checkToken } from './functions';
