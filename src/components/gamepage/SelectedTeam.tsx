@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 
 import { teams } from '../../data/teams';
 
-export default function SelectedTeam(props: any) {
+import { SelectedTeamContainer, SelectedTeamWeek, SelectedTeamImage } from './SelectedTeam.styles';
+
+const SelectedTeam = (props: any) => {
   const [image, setImage] = useState('');
   const { user } = props;
 
@@ -34,19 +35,4 @@ export default function SelectedTeam(props: any) {
   )
 } 
 
-
-
-const SelectedTeamContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  top: -30px;
-  width: 90%;
-`
-const SelectedTeamWeek = styled.p`
-  margin: 0;
-`
-
-const SelectedTeamImage = styled.img`
-  height: 50px;
-`
+export default SelectedTeam;

@@ -10,7 +10,7 @@ import { teams } from '../data/teams';
 
 
 export default function GamePage(props: any) {
-  const { user, token, setUsers, users } = props;
+  const { user, setUser, token, users } = props;
 
   const userPickList: any = []
   user.picks?.forEach((pick: any) => userPickList.push(pick.pick));
@@ -25,10 +25,10 @@ export default function GamePage(props: any) {
           <SelectedTeam user={user}/>
         </Section>
         <Section>
-          <PickTeam pickTeams={pickTeams} token={token} user={user} setUsers={setUsers}/>
+          <PickTeam pickTeams={pickTeams} token={token} user={user} setUser={setUser} />
         </Section>
         <Section>
-          <UserPicks userPicks={userPickList}/>
+          <UserPicks userPicks={user.picks}/>
         </Section>
         <Section>
           <h2>Total Pick Distribution for Last Week:</h2>
