@@ -1,19 +1,21 @@
 import { useEffect, useState } from 'react';
-import styled from 'styled-components'
 
-import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import ConfirmPickModal from './ConfirmPickModal';
 
-import { makePick, fetchUsers } from '../../functions';
+import { SelectTeamContainer, SelectTeamForm } from './PickTeam.styles';
 
-export default function PickTeam(props: any) {
+import { makePick, getLoggedInUser } from '../../functions';
+
+const PickTeam = (props: any) => {
   const [team, setTeam] = useState('');
   const [week, setWeek] = useState('');
   const [selections, setSelections] = useState([]);
-  const { pickTeams, token, user, setUsers } = props;
+  const [modalOpen, setModalOpen] = useState(false)
+  const { pickTeams, token, user, setUser } = props;
 
   const handleWeekChange = (event: SelectChangeEvent) => {
     setWeek(event.target.value as string);
@@ -27,11 +29,9 @@ export default function PickTeam(props: any) {
     e.preventDefault();
     setTeam('')
     await makePick(token, week, team);
-    const updatedUsers = await fetchUsers(token);
-    setUsers(updatedUsers);
+    let user = await getLoggedInUser(token)
+    setUser(user);
   }
-
-
 
   useEffect(() => {
     const weekSelections: any = () => {
@@ -56,7 +56,7 @@ export default function PickTeam(props: any) {
   },[user])
 
   return ( 
-    <SelectTeamForm onSubmit={e => handleSubmit(e)}>
+    <SelectTeamForm>
       <h3>Team Select</h3>
       <SelectTeamContainer sx={{ minWidth: 200 }}>
         <FormControl fullWidth>
@@ -86,30 +86,10 @@ export default function PickTeam(props: any) {
           </Select>
         </FormControl>
       </SelectTeamContainer>
-      {user.isactive ? (<SelectTeamButton>Submit</SelectTeamButton>) : (<p>Inactive</p>)}
+      {user.isactive ? (<ConfirmPickModal modalOpen={modalOpen} setModalOpen={setModalOpen} handleSubmit={handleSubmit} team={team} week={week}/>) : (<p>Inactive</p>)}
+      
       
     </SelectTeamForm>
   )}
 
-
-  
-  const SelectTeamForm = styled.form`
-    position: relative;
-  `
-
-  const SelectTeamContainer = styled(Box)`
-    color: white;
-    margin: 10px;
-  `
-
-  const SelectTeamButton = styled.button`
-    background-color: #ffc107;
-    outline: none;
-    border: 1px solid grey;
-    border-radius: 5px;
-    padding: 10px 20px;
-    margin: 10px;
-    color: white; 
-    font-weight: bold;
-    text-transform: uppercase; 
-  `
+  export default PickTeam;
