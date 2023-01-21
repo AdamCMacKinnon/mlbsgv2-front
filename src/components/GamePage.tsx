@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import CurrentActivePlayers from './gamepage/CurrentActivePlayers';
 import PickTeam from './gamepage/PickTeam';
+import PlayerLeaderBoard from './gamepage/PlayerLeaderBoard';
 import SelectedTeam from './gamepage/SelectedTeam';
 import UserPicks from './gamepage/UserPicks';
 
@@ -31,7 +32,7 @@ export default function GamePage(props: any) {
           <UserPicks userPicks={user.picks}/>
         </Section>
         <Section>
-          <h2>Total Pick Distribution for Last Week:</h2>
+          <PlayerLeaderBoard currentUser={user} users={users}/>
         </Section>
       </GamePageComponents>     
     </GamePageContainer>
