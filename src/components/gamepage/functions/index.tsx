@@ -11,8 +11,8 @@ export const getRankings = (users: any) => {
   let currentDiff = 0;
   let incrementRank = 1;
 
-  const activeUsers = users.filter((user:any) => user.isactive);
-  const sortedUsers = activeUsers.sort((a: any, b: any) => b.diff - a.diff);
+  
+  const sortedUsers = users.sort((a: any, b: any) => b.diff - a.diff);
 
   for (let i = 0; i < sortedUsers.length; i++) {
     if (sortedUsers[i].diff !== currentDiff) {
@@ -31,7 +31,9 @@ export const getRankings = (users: any) => {
 };
 
 export const topRankedUsers = (users: any, currentUser: any) => {
-  const usersByRanking = getRankings(users);
+
+  const activeUsers = users.filter((user:any) => user.isactive);
+  const usersByRanking = getRankings(activeUsers);
 
   const userRankingIndex = usersByRanking.findIndex(
     (user: any) => user.username === currentUser.username);
