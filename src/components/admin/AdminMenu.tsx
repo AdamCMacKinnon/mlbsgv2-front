@@ -4,8 +4,8 @@ import styled from 'styled-components';
 export default function AdminMenu() {
   return(
     <AdminMenuContainer>
-      <Link to="">Picks</Link>
       <Link to="/admin/players">Players</Link>
+      <Link to="runDifferential">Run Diff</Link>
     </AdminMenuContainer>
   )
 }

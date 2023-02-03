@@ -51,19 +51,7 @@ export async function fetchUsers(token: any) {
   }
 }
 
-export async function fetchAdminUsers(token: any) {
-  try {
-    const response = await axios.get(`${process.env.REACT_APP_SERVER}/admin/users`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    const data = await response.data;
-    return data;
-  } catch (error) {
-    console.log(error)
-  }
-}
+
 
 export async function login(username: String, password: string) {
   const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/login`, {
@@ -116,3 +104,18 @@ export const filteredUsersByWeek = (users: any, week: number) => {
     };
   });
 };
+
+
+export async function fetchAdminUsers(token: any) {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_SERVER}/admin/users`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
+}

@@ -9,7 +9,8 @@ import Login from './pages/Login'
 import NavBar from './components/NavBar';
 import Players from './components/admin/Players';
 import Protected from './components/Protected';
-import Register from './pages/Register'
+import Register from './pages/Register';
+import RunDifferential from './components/admin/RunDifferential';
 import Player from './components/admin/Player';
 
 import { checkToken } from './functions';
@@ -52,7 +53,8 @@ export default function App(){
           }>
             <Route index element={<Players users={users} token={token} setUsers={setUsers}/>} />
             <Route path='players' element={<Players users={users} token={token} setUsers={setUsers}/>} />
-            <Route path='player/:username' element={<Player users={users} token={token} setUsers={setUsers}/>} />         
+            <Route path='player/:username' element={<Player users={users} token={token} setUsers={setUsers}/>} />
+            <Route path='runDifferential' element={<RunDifferential token={token} setUsers={setUsers}/>} />      
           </Route>
         
         </Routes>

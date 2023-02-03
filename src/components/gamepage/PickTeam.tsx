@@ -65,7 +65,7 @@ const PickTeam = (props: any) => {
             labelId="simple-select-label"
             id="simple-select"
             value={week}
-            label="Select Team"
+            label="Select Week"
             onChange={handleWeekChange}
           >
           {selections.map((week: any) => <MenuItem value={week} key={week}>Week {week}</MenuItem>)}
