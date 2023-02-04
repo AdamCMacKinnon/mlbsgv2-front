@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import styled from 'styled-components';
 
-import Admin from './components/Admin'
-import GamePage from './components/GamePage';
-import LandingPage from './components/LandingPage'
+import Admin from './pages/Admin'
+import GamePage from './pages/GamePage';
+import LandingPage from './pages/LandingPage'
 import Login from './pages/Login'
 import NavBar from './components/NavBar';
 import Players from './components/admin/Players';

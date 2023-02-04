@@ -1,8 +1,9 @@
-import styled from 'styled-components';
-
+//Components
 import PlayerListColumnHeader from './PlayerListColumnHeader';
 
-export default function PlayerListHeader(props: any) {
+
+
+const PlayerListHeader = (props: any) => {
   const {
     sort,
     setSort,
@@ -41,11 +42,4 @@ export default function PlayerListHeader(props: any) {
   );
 }
 
-export const TableHeaderStyle = styled.p`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-`;
+export default PlayerListHeader;

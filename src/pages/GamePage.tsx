@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-import CurrentActivePlayers from './gamepage/CurrentActivePlayers';
-import PickTeam from './gamepage/PickTeam';
-import PlayerLeaderBoard from './gamepage/PlayerLeaderBoard';
-import SelectedTeam from './gamepage/SelectedTeam';
-import UserPicks from './gamepage/UserPicks';
+import CurrentActivePlayers from '../components/gamepage/CurrentActivePlayers';
+import PickTeam from '../components/gamepage/PickTeam';
+import PlayerLeaderBoard from '../components/gamepage/PlayerLeaderBoard';
+import SelectedTeam from '../components/gamepage/SelectedTeam';
+import UserPicks from '../components/gamepage/UserPicks';
 
 import { teams } from '../data/teams';
 

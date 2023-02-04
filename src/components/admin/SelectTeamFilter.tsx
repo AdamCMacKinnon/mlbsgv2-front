@@ -1,12 +1,16 @@
+//Components
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
+//Data
 import { teams } from "../../data/teams";
 
-export default function SelectTeamFilter(props: any) {
+
+
+const SelectTeamFilter = (props: any) => {
   const { filterPickValue, setFilterPickValue } = props;
 
   return (
@@ -35,3 +39,5 @@ export default function SelectTeamFilter(props: any) {
     </>
   );
 }
+
+export default SelectTeamFilter;
