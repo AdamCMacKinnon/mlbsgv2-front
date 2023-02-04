@@ -1,9 +1,14 @@
-import styled from "styled-components";
-
+//Components
 import SelectTeamFilter from "./SelectTeamFilter";
 import TextField from "@mui/material/TextField";
 import WeekSelection from "./WeekSelection";
-export default function Filters(props: any) {
+
+//Styles
+import { FilterContainer } from "./Filters.styles";
+
+
+
+const Filters = (props: any) => {
   const {
     week,
     setWeek,
@@ -34,14 +39,4 @@ export default function Filters(props: any) {
   );
 }
 
-const FilterContainer = styled.div`
-  display: flex;
-  background-color: white;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  > div {
-    margin: 5px;
-  }
-`;
-
+export default Filters;

@@ -1,16 +1,23 @@
-import { Button } from '@mui/material';
 import { useState } from 'react';
 
-import styled from 'styled-components';
-
+//Components
 import Filters from './Filters';
 import PlayerList from './PlayerList';
 import ShowInactiveCheckbox from './ShowInactiveCheckbox';
+import { Button } from '@mui/material';
 
-import { eliminateUsers, fetchAdminUsers } from '../../functions';
-import { filterUsers, getSortedUsers} from './functions';
+//Global functions
+import { fetchAdminUsers } from '../../functions';
 
-export default function Players(props: any) {
+//Admin functions
+import { filterUsers, getSortedUsers, eliminateUsers} from './functions';
+
+//Styles
+import { ActionsContainer, ActionsContainerBottomSection } from './Players.styles';
+
+
+
+const Players = (props: any) => {
   const [week, setWeek] = useState(1);
   const [sort, setSort] = useState("username");
   const [sortDirection, setSortDirection] = useState("asc");
@@ -69,29 +76,4 @@ export default function Players(props: any) {
   )
 }
 
-const ActionsContainer = styled.div`
-  background-color: white;
-  margin: 20px 0;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 5px;
-  border-radius: 5px;
-
-  button {
-    background-color: rgba(6,128,55);
-  }
-`
-
-const ActionsContainerBottomSection = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 5px 5px 10px;
-  width: 100%;
-
-  button {
-    margin: 0 5px;
-  }
-`
+export default Players;

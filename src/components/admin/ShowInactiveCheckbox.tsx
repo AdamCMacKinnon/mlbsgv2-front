@@ -1,4 +1,4 @@
-export default function ShowInactiveCheckbox(props: any) {
+const ShowInactiveCheckbox = (props: any) => {
   const { showInactive, setShowInactive} = props;
   return (
     <div>
@@ -11,3 +11,5 @@ export default function ShowInactiveCheckbox(props: any) {
     </div>
   )
 }
+
+export default ShowInactiveCheckbox;

@@ -79,21 +79,6 @@ export async function makePick(token: any, week: any, pick: any) {
   }
 }
 
-export async function eliminateUsers(token: any, users: any) {
-  try {
-    const response = await axios.patch(`${process.env.REACT_APP_SERVER}/admin/eliminate`, {
-      username: users
-    },{
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    const data = await response.data;
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 export const filteredUsersByWeek = (users: any, week: number) => {
   return users.map((user: any) => {

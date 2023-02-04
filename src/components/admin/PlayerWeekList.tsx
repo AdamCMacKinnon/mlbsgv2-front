@@ -1,11 +1,7 @@
-
-
-export default function PlayerWeekList(props: any) {
+const PlayerWeekList = (props: any) => {
   const { pick } = props;
 
-  return (
-    <li>
-      Week {pick.week}-{pick.pick}
-          </li>
-  )
+  return <li>Week {pick.week}-{pick.pick}</li>
 }
+
+export default PlayerWeekList;

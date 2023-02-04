@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-import styled from 'styled-components'
-
+//Components
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
@@ -16,6 +15,9 @@ import { getWeekNumbers, getTeamsArray } from './functions';
 
 //Styles
 import { SelectTeamContainer } from '../gamepage/PickTeam.styles';
+import { RunDifferentialContainer, MessageContainer, FilterContainer } from './RunDifferential.styles';
+
+
 
 const RunDifferential = (props: any) => {
   const [team, setTeam] = useState('');
@@ -119,33 +121,3 @@ const RunDifferential = (props: any) => {
 
 export default RunDifferential;
 
-const RunDifferentialContainer = styled.div`
-  background-color: white;
-  margin: 20px 0;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 5px;
-  border-radius: 5px;
-  justify-content: center;
-
-  button {
-    background-color: rgba(6,128,55);
-  }
-`
-
-const MessageContainer = styled.div`
-  width: 100%;
-`
-
-const FilterContainer = styled.div`
-  display: flex;
-  background-color: white;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 100%;
-  > div {
-    margin: 5px;
-  }
-`;
