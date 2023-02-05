@@ -8,11 +8,16 @@ export function checkToken(token: any){
     let now = new Date().getTime() / 1000;
   
     if (now > decodedToken.exp) {
-      console.log('Expired Token');
       return false
     }
     return true
   }
+}
+
+
+export function getLocalStorageToken() {
+  const token = localStorage.getItem('token');
+  return token;
 }
 
 
