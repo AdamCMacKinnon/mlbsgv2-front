@@ -26,7 +26,7 @@ const LoginMoreInfoModal = (props: any) => {
             More Info
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Selecting "Stay logged in for and hour" will enable the app to store your user id on the browser to avoid having to log in every time the app is reloaded.  The only information that is stored is a user Id that is used to access the account and no personal information.
+            Selecting "Stay logged in for an hour" will enable the app to store your user id on the browser to avoid having to log in every time the app is reloaded.  The only information that is stored is a user Id that is used to access the account and no personal information.
           </Typography>
           <Button onClick={handleClose}>Close</Button>
         </Box>
