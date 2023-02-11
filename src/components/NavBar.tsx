@@ -1,5 +1,6 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
+
+//Components
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -11,15 +12,17 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-
-import styled from 'styled-components';
-
 import Logout from './Logout';
+import LeaderBoardModal from './LeaderBoardModal';
 
-const pages = ['Full Schedule and Standings'];
+//Styles
+import { AppBarContainer, DropdownMenuItemContainer} from './NavBar.styles';
+
 const settings = ['Profile', 'Account'];
 
-export default function NavBar(props: any) {
+
+
+const NavBar = (props: any) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -91,11 +94,11 @@ export default function NavBar(props: any) {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              
+                <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
+                  <LeaderBoardModal />
+                </DropdownMenuItemContainer>
+            
             </Menu>
           </Box>
           <Typography
@@ -117,15 +120,15 @@ export default function NavBar(props: any) {
             MLBSVG
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+          
               <Button
-                key={page}
+              
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                <LeaderBoardModal />
               </Button>
-            ))}
+          
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -167,6 +170,5 @@ export default function NavBar(props: any) {
   );
 }
 
-const AppBarContainer = styled(AppBar)`
-  background-color: rgba(6,128,55, 0.6) !important;
-`
+
+export default NavBar

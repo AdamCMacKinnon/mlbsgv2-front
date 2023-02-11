@@ -58,7 +58,7 @@ export default function App(){
           navigate('/admin');
         }
         else{
-          users = await fetchUsers(token);
+          users = await fetchUsers();
           navigate('/gamepage');
         }
         setUsers(users);
