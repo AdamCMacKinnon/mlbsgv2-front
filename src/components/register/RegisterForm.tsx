@@ -2,12 +2,16 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
+//Components
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
+//Global functions
+import { login, fetchUsers, getLoggedInUser } from '../../functions';
+
+//Styles
 import { FormBox, ErrorMessage } from './RegisterForm.styles'
 
-import { login, fetchUsers, getLoggedInUser } from '../../functions';
 
 
 const RegisterForm = (props: any) => {
@@ -47,7 +51,7 @@ const RegisterForm = (props: any) => {
 
         if (loginResponse.status === 201) {
           let token = loginResponse.data.accessToken;
-          let users = await fetchUsers(token);
+          let users = await fetchUsers();
 
           setToken(token)
           setUsers(users);

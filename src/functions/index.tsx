@@ -46,7 +46,7 @@ export async function getLoggedInUser(token: any){
 }
 
 
-export async function fetchUsers(token: any) {
+export async function fetchUsers() {
   try {
     const response = await axios.get(`${process.env.REACT_APP_SERVER}/auth/standings`);
     const data = await response.data;
