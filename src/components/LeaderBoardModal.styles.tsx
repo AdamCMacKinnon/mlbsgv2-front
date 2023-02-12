@@ -15,7 +15,8 @@ export const style = {
   boxShadow: 24,
   p: 4,
   display: 'flex',
-  flexDirection: 'column'
+  flexDirection: 'column',
+  alignItems: 'center'
 };
 
 export const ModalContainer = styled.div`
@@ -25,14 +26,12 @@ export const ModalContainer = styled.div`
 
 `
 
-
 export const ModalButton = styled(Button)`
   color: white !important;
 `
 
 export const ModalCloseButton = styled(Button)`
-color: rgba(6,128,55) !important;
-
+  color: rgba(6,128,55) !important;
 `
 
 export const ModalBox = styled(Box)`
