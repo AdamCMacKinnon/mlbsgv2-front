@@ -9,7 +9,6 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Logout from './Logout';
@@ -17,6 +16,7 @@ import LeaderBoardModal from './LeaderBoardModal';
 
 //Styles
 import { AppBarContainer, DropdownMenuItemContainer} from './NavBar.styles';
+import IssueTrackerFormModal from './IssueTrackerFormModal';
 
 const settings = ['Profile', 'Account'];
 
@@ -98,6 +98,9 @@ const NavBar = (props: any) => {
                 <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
                   <LeaderBoardModal />
                 </DropdownMenuItemContainer>
+                <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
+                  <IssueTrackerFormModal user={user}/>
+                </DropdownMenuItemContainer>
             
             </Menu>
           </Box>
@@ -121,13 +124,13 @@ const NavBar = (props: any) => {
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
           
-              <Button
-              
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
+              <div onClick={handleCloseNavMenu}>
                 <LeaderBoardModal />
-              </Button>
+              </div>
+
+              <div onClick={handleCloseNavMenu}>
+                <IssueTrackerFormModal user={user}/>
+              </div>
           
           </Box>
 

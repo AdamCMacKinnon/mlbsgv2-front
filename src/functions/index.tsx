@@ -109,3 +109,14 @@ export async function fetchAdminUsers(token: any) {
     console.log(error)
   }
 }
+
+export async function createIssueTicket(requestData: any) {
+  try{
+    const response = await axios.post(`${process.env.REACT_APP_SERVER}/support/createticket`, requestData)
+    const data = await response.data;
+    return data
+  }
+  catch(e: any) {
+    console.log(e);
+  }
+}
