@@ -14,6 +14,7 @@ import RunDifferential from './components/admin/RunDifferential';
 import Player from './components/admin/Player';
 
 import { checkToken, getLocalStorageToken, getLoggedInUser, fetchAdminUsers, fetchUsers } from './functions';
+import UserAccount from './components/gamepage/UserAccount';
 
 
 
@@ -67,7 +68,7 @@ export default function App(){
       handleUser(token);
       setLoadTokenSw(false);
     } 
-  },[navigate, token, loadTokenSw]) 
+  },[navigate, token, loadTokenSw, user]) 
 
   const validToken = checkToken(token);
   
@@ -89,6 +90,12 @@ export default function App(){
                 <GamePage user={user} setUser={setUser} token={token} setUsers={setUsers} users={users}/>
               </Protected>
             } />
+
+           <Route path='account' element={
+            <Protected isAllowed={validToken}>
+              <UserAccount user={user} token={token} setUser={setUser}/>
+            </Protected>
+           }/>    
           
           <Route 
             path='admin' 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom'
 
 //Components
 import Box from '@mui/material/Box';
@@ -18,7 +19,7 @@ import LeaderBoardModal from './LeaderBoardModal';
 import { AppBarContainer, DropdownMenuItemContainer} from './NavBar.styles';
 import IssueTrackerFormModal from './IssueTrackerFormModal';
 
-const settings = ['Profile', 'Account'];
+const settings = [{title: 'Account', route: '/account'}];
 
 
 
@@ -158,8 +159,11 @@ const NavBar = (props: any) => {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.title} onClick={handleCloseUserMenu}>
+                  <Link to={setting.route}>
+                  <Typography textAlign="center">{setting.title}</Typography>
+                  </Link>
+                  
                 </MenuItem>
               ))}
               <MenuItem key='logout' onClick={handleCloseUserMenu}>
