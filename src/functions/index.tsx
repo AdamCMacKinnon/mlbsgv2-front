@@ -120,3 +120,13 @@ export async function createIssueTicket(requestData: any) {
     console.log(e);
   }
 }
+
+
+export const updateUserInfo = async (requestData: any) => {
+  try {
+    const response = await axios.patch(`${process.env.REACT_APP_SERVER}/auth/update/`, requestData);
+    return response;
+  } catch (error: any) {
+    return error.response
+  }
+}

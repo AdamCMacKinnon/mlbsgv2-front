@@ -14,3 +14,11 @@ export const UserAccountContainer = styled.div`
   margin: 20px auto 0;
   text-align: center;
 `
+
+export const ButtonContainer = styled.div`
+display: flex;
+flex-direction: column;
+width: 40%;
+margin: 20px auto;
+gap: 10px;
+`
