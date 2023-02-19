@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ForgotPasswordModal from '../components/login/ForgotPasswordModal';
 
 //Components
 import LoginForm from '../components/login/LoginForm'
@@ -19,6 +20,7 @@ const Login = (props: any) => {
         <h2>LOGIN PAGE</h2>
         <LoginForm setToken={setToken} setUsers={setUsers} setUser={setUser} stayLoggedIn={stayLoggedIn}/>
         <StayLoggedIn stayLoggedIn={stayLoggedIn} setStayLoggedIn={setStayLoggedIn}/>
+        <ForgotPasswordModal />
         <BottomLinks>
           <LoginFormLink to="/">Back to Home</LoginFormLink>
           <LoginFormLink to="/register">Register Here!</LoginFormLink>

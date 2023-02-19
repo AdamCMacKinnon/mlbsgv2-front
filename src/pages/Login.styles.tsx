@@ -12,14 +12,13 @@ export const LoginFormSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  max-height: 350px;
   position: relative;
 `
 
 export const LoginFormContainer = styled.div`
   height: 97vh;
   width: 100vw;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   position: relative;
