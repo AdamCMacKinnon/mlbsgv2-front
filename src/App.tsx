@@ -6,7 +6,7 @@ import Admin from './pages/Admin'
 import GamePage from './pages/GamePage';
 import LandingPage from './pages/LandingPage'
 import Login from './pages/Login'
-import NavBar from './components/NavBar';
+import NavBar from './components/navbar/NavBar';
 import Players from './components/admin/Players';
 import Protected from './components/Protected';
 import Register from './pages/Register';

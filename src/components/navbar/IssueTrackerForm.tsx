@@ -10,10 +10,10 @@ import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
 
 //Global functions
-import { createIssueTicket } from '../functions';
+import { createIssueTicket } from '../../functions';
 
 //Styles
-import { FormBox } from './register/RegisterForm.styles'
+import { FormBox } from '../register/RegisterForm.styles'
 
 const issueTypeList = [
   {

@@ -6,7 +6,7 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 
 //Styles
-import { style, ModalContainer} from '../LeaderBoardModal.styles';
+import { style, ModalContainer} from '../navbar/LeaderBoardModal.styles';
 import ForgotPassword from './ForgotPassword';
 
 

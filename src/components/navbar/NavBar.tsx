@@ -14,6 +14,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Logout from './Logout';
 import LeaderBoardModal from './LeaderBoardModal';
+import Rules from './Rules';
 
 //Styles
 import { AppBarContainer, DropdownMenuItemContainer} from './NavBar.styles';
@@ -96,6 +97,9 @@ const NavBar = (props: any) => {
               }}
             >
               
+              <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
+                  <Rules />
+                </DropdownMenuItemContainer>
                 <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
                   <LeaderBoardModal />
                 </DropdownMenuItemContainer>
@@ -124,6 +128,10 @@ const NavBar = (props: any) => {
             MLBSVG
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+
+          <div onClick={handleCloseNavMenu}>
+                <Rules />
+              </div>
           
               <div onClick={handleCloseNavMenu}>
                 <LeaderBoardModal />

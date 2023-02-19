@@ -3,7 +3,7 @@ import { useState } from 'react';
 //Components
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import LeaderBoard from './LeaderBoard';
+import LeaderBoard from '../LeaderBoard';
 
 //Styles
 import { style, ModalContainer, ModalButton, ModalCloseButton} from './LeaderBoardModal.styles';
