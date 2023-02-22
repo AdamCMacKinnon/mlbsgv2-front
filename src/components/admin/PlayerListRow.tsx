@@ -1,9 +1,11 @@
-import * as React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import styled from 'styled-components';
+//Styles
+import { TableData } from './PlayerListRow.styles';
 
-export default function PlayerListRow(props: any) {
+
+
+const PlayerListRow = (props: any) => {
 
   const { user, handleClick, isChecked } = props;
 
@@ -34,15 +36,4 @@ export default function PlayerListRow(props: any) {
 
 }
 
-const TableData = styled.td`
-  .link {
-    cursor: pointer;
-  }
-
-  .inactive {
-    color: black;
-    font-weight: 100;
-    font-style: italic;
-  }
-`;
-
+export default PlayerListRow;

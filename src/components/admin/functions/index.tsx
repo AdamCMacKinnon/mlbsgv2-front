@@ -1,3 +1,7 @@
+import axios from 'axios';
+
+import { teams } from '../../../data/teams';
+
 export const filterUsersByUsername = (users: any, value: any) => {
   return users.filter((user: any) =>
     user.username.toUpperCase().startsWith(value.toUpperCase())
@@ -106,3 +110,36 @@ export const getSortedUsers = (users: any, sort: string, direction: string) => {
       return;
   }
 };
+
+
+export const getWeekNumbers = () => {
+  const weekNumbers:any = []
+  for (let i = 1; i <= 26; i++) {
+    weekNumbers.push(i)
+  }
+  return weekNumbers;
+}
+
+export const getTeamsArray = () => {
+  const teamNames: any = []
+  teams.forEach((team: any) => {
+    teamNames.push(team.name)
+  })
+  return teamNames;
+}
+
+export async function eliminateUsers(token: any, users: any) {
+  try {
+    const response = await axios.patch(`${process.env.REACT_APP_SERVER}/admin/eliminate`, {
+      username: users
+    },{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}

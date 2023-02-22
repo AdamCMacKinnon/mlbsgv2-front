@@ -8,11 +8,16 @@ export function checkToken(token: any){
     let now = new Date().getTime() / 1000;
   
     if (now > decodedToken.exp) {
-      console.log('Expired Token');
       return false
     }
     return true
   }
+}
+
+
+export function getLocalStorageToken() {
+  const token = localStorage.getItem('token');
+  return token;
 }
 
 
@@ -41,7 +46,7 @@ export async function getLoggedInUser(token: any){
 }
 
 
-export async function fetchUsers(token: any) {
+export async function fetchUsers() {
   try {
     const response = await axios.get(`${process.env.REACT_APP_SERVER}/auth/standings`);
     const data = await response.data;
@@ -51,19 +56,7 @@ export async function fetchUsers(token: any) {
   }
 }
 
-export async function fetchAdminUsers(token: any) {
-  try {
-    const response = await axios.get(`${process.env.REACT_APP_SERVER}/admin/users`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    const data = await response.data;
-    return data;
-  } catch (error) {
-    console.log(error)
-  }
-}
+
 
 export async function login(username: String, password: string) {
   const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/login`, {
@@ -91,21 +84,6 @@ export async function makePick(token: any, week: any, pick: any) {
   }
 }
 
-export async function eliminateUsers(token: any, users: any) {
-  try {
-    const response = await axios.patch(`${process.env.REACT_APP_SERVER}/admin/eliminate`, {
-      username: users
-    },{
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-    const data = await response.data;
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 export const filteredUsersByWeek = (users: any, week: number) => {
   return users.map((user: any) => {
@@ -116,3 +94,39 @@ export const filteredUsersByWeek = (users: any, week: number) => {
     };
   });
 };
+
+
+export async function fetchAdminUsers(token: any) {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_SERVER}/admin/users`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+export async function createIssueTicket(requestData: any) {
+  try{
+    const response = await axios.post(`${process.env.REACT_APP_SERVER}/support/createticket`, requestData)
+    const data = await response.data;
+    return data
+  }
+  catch(e: any) {
+    console.log(e);
+  }
+}
+
+
+export const updateUserInfo = async (requestData: any) => {
+  try {
+    const response = await axios.patch(`${process.env.REACT_APP_SERVER}/auth/update/`, requestData);
+    return response;
+  } catch (error: any) {
+    return error.response
+  }
+}

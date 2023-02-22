@@ -1,9 +1,13 @@
-import styled from 'styled-components';
-
+//Components
 import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
-export default function PlayerListColumnHeader(props: any) {
+//Styles
+import { TableHeaderStyle } from "./PlayerListColumnHeader.styles";
+
+
+
+const PlayerListColumnHeader = (props: any) => {
   const {
     sort,
     setSort,
@@ -52,11 +56,4 @@ export default function PlayerListColumnHeader(props: any) {
   );
 }
 
-export const TableHeaderStyle = styled.p`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  padding: 0;
-  margin: 0;
-`;
+export default PlayerListColumnHeader;

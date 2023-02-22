@@ -1,7 +1,8 @@
+//Components
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 
-export default function WeekSelection(props: any) {
+const WeekSelection = (props: any) => {
   const { week, setWeek } = props;
 
   const weeks = Array.from(Array(26).keys())
@@ -21,3 +22,5 @@ export default function WeekSelection(props: any) {
     </>
   );
 }
+
+export default WeekSelection;

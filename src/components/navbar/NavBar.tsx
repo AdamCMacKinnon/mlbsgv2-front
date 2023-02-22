@@ -1,5 +1,7 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
+import { Link } from 'react-router-dom'
+
+//Components
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
@@ -8,18 +10,21 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-
-import styled from 'styled-components';
-
 import Logout from './Logout';
+import LeaderBoardModal from './LeaderBoardModal';
+import Rules from './Rules';
 
-const pages = ['Full Schedule and Standings'];
-const settings = ['Profile', 'Account'];
+//Styles
+import { AppBarContainer, DropdownMenuItemContainer} from './NavBar.styles';
+import IssueTrackerFormModal from './IssueTrackerFormModal';
 
-export default function NavBar(props: any) {
+const settings = [{title: 'Account', route: '/account'}];
+
+
+
+const NavBar = (props: any) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
@@ -91,11 +96,17 @@ export default function NavBar(props: any) {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
-                </MenuItem>
-              ))}
+              
+              <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
+                  <Rules />
+                </DropdownMenuItemContainer>
+                <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
+                  <LeaderBoardModal />
+                </DropdownMenuItemContainer>
+                <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
+                  <IssueTrackerFormModal user={user}/>
+                </DropdownMenuItemContainer>
+            
             </Menu>
           </Box>
           <Typography
@@ -117,15 +128,19 @@ export default function NavBar(props: any) {
             MLBSVG
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+
+          <div onClick={handleCloseNavMenu}>
+                <Rules />
+              </div>
+          
+              <div onClick={handleCloseNavMenu}>
+                <LeaderBoardModal />
+              </div>
+
+              <div onClick={handleCloseNavMenu}>
+                <IssueTrackerFormModal user={user}/>
+              </div>
+          
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
@@ -152,8 +167,11 @@ export default function NavBar(props: any) {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
+                <MenuItem key={setting.title} onClick={handleCloseUserMenu}>
+                  <Link to={setting.route}>
+                  <Typography textAlign="center">{setting.title}</Typography>
+                  </Link>
+                  
                 </MenuItem>
               ))}
               <MenuItem key='logout' onClick={handleCloseUserMenu}>
@@ -167,6 +185,5 @@ export default function NavBar(props: any) {
   );
 }
 
-const AppBarContainer = styled(AppBar)`
-  background-color: rgba(6,128,55, 0.6) !important;
-`
+
+export default NavBar

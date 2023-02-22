@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom';
 
 import styled from 'styled-components';
 
-import AdminMenu from './admin/AdminMenu';
+import AdminMenu from '../components/admin/AdminMenu';
 
 export default function Admin(props: any) {  
   return (
