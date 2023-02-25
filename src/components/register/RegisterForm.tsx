@@ -27,21 +27,12 @@ const RegisterForm = (props: any) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const currentDate = new Date();
-    const isoDate = currentDate.toISOString();
-
     try{
       const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/register`, {
         "username": username,
         "password": password,
-        "email": email.toLowerCase(),
-        "isactive": true,
-        "role": 'player',
-        "pastchamp": false,
-        "diff": 0,
-        "createdAt": isoDate,
-        "updatedAt": isoDate        
-      })
+        "email": email.toLowerCase(),    
+      });
       if (response.status === 201) {
         setUsername('')
         setEmail('')
