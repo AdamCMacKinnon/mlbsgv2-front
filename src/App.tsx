@@ -11,6 +11,7 @@ import Players from './components/admin/Players';
 import Protected from './components/Protected';
 import Register from './pages/Register';
 import RunDifferential from './components/admin/RunDifferential';
+import Schedule from './pages/Schedule';
 import Player from './components/admin/Player';
 
 import { checkToken, getLocalStorageToken, getLoggedInUser, fetchAdminUsers, fetchUsers } from './functions';
@@ -109,6 +110,8 @@ export default function App(){
             <Route path='player/:username' element={<Player users={users} token={token} setUsers={setUsers}/>} />
             <Route path='runDifferential' element={<RunDifferential token={token} setUsers={setUsers}/>} />      
           </Route>
+
+          <Route path='schedule' element={<Schedule />} />
         
         </Routes>
 
