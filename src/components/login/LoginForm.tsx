@@ -58,16 +58,16 @@ const LoginForm = (props: any) => {
         } 
         setUsers(users);
       }
+      else {
+        setErrorMessage('Invalid login');
+      }
     } catch (e: any) {
       console.log(e)
-      const status = e.response.status;
       if (e.code === 'ERR_NETWORK') {
         setErrorMessage('Network Error');
       } 
       else {
-        if (status === 400) {
           setErrorMessage('Invalid login');
-        }
       }     
    }
   }
