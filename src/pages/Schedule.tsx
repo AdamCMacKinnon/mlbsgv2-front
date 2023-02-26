@@ -1,13 +1,41 @@
-import schedule from '../data/download.json';
+import { useState } from 'react';
 
-console.log(schedule)
+//Components
+import DatePicker from '../components/DatePicker';
+import SelectTeamFilter from '../components/admin/SelectTeamFilter';
+
+//Global functions
+import {displaySchedule, getDateTimeByDifference} from '../functions/index';
+
+//Styles
+import { ScheduleContainer, FilterContainer } from './Schedule.styles';
+import ScheduleGameCard from '../components/schedule/ScheduleGameCard';
+
+
 
 const Schedule = () => {
+  const [dateFrom, setDateFrom] = useState(getDateTimeByDifference(0));
+  const [dateTo, setDateTo] = useState("2023-04-06");
+  const [team, setTeam] = useState('New York Yankees');
+  const schedule = displaySchedule(dateFrom, dateTo, team);
+
   return (
-    <>
-    <h1>Schedule</h1>
-    </>
+    <ScheduleContainer>
+      <FilterContainer>
+      <DatePicker label="Date From" date={dateFrom} setDate={setDateFrom}/>
+      <DatePicker label="Date To" date={dateTo} setDate={setDateTo}/>
+      <SelectTeamFilter filterPickValue={team} setFilterPickValue={setTeam}/>
+      <div className="homeaway">
+        <div className="home"></div>
+        Home 
+        <div className="away"></div>
+        Away
+      </div>
+      </FilterContainer>      
+      {schedule.map((game: any) => <ScheduleGameCard team={team} game={game} key={game.gamePk}/>)}
+    </ScheduleContainer>
   )
 }
 
 export default Schedule;
+
