@@ -4,6 +4,8 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 
+import styled from 'styled-components'
+
 import { ModalContainer, ModalButton, } from './LeaderBoardModal.styles';
 import { style } from './Rules.styles'
 
@@ -26,7 +28,8 @@ const Rules = (props: any) => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
           MLBSG Rules and How to Play:
           </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+
+          <RulesList>
           <i>The idea of the game is simple. For each week of the season, pick an MLB team. If they outscore their combined opponents at the end of the week, you advance! If they don’t, you’re eliminated. Of course there’s more to it than that, so here’s a rundown on the rules….</i>
           <ol>
             <li>Only one account per person. Users found to be using multiple accounts will be disqualified and subject to further bans from the game.</li>
@@ -49,21 +52,9 @@ const Rules = (props: any) => {
             <li>In the event of site difficulties that delays/inhibits users to make a pick, Admins have the discretion to decide whether or not to enter those picks.</li>
             <li>Any picks not submitted via the game page will be considered ineligible unless specified otherwise by an admin.</li>
           </ol>
-
-
-
-
-
-
-
-
-
-
-
-
-
 <i>Admins can be reached via the “support” form in the top bar of the page. We’re actual people, so feel free to message us if you have any questions or problems!! </i>
-          </Typography>
+</RulesList>
+
           <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
@@ -72,3 +63,12 @@ const Rules = (props: any) => {
 }
 
 export default Rules;
+
+const RulesList = styled.div`
+margin: 0;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 0.00938em;
+    margin-top: 16px;`

@@ -1,5 +1,7 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import scheduleData from '../data/download.json';
+
 
 
 export function checkToken(token: any){
@@ -129,4 +131,45 @@ export const updateUserInfo = async (requestData: any) => {
   } catch (error: any) {
     return error.response
   }
+}
+
+
+export const displaySchedule = (dateFrom: string, dateTo: string, team: string) => {
+  const shed: any = scheduleData;
+
+  const filteredDate = shed.dates.filter((date : any) => {
+    return (date.date >= dateFrom && date.date <= dateTo)
+  })
+  const gamesByDate = filteredDate.map((date: any) => {
+    const filteredGames = date.games.filter((game: any) => {
+      return (game.teams.away.team.name === team || game.teams.home.team.name === team)
+    });
+    return filteredGames
+  })
+  const filteredGames = gamesByDate.filter((game: any) => game.length > 0).flat(1);
+
+  return filteredGames
+}
+
+export const getDateTimeByDifference = (daysDifference: number) => {
+  const date = Date.now()
+  const currentDate = new Date(date);
+  const year = currentDate.getFullYear()
+  let month = (currentDate.getMonth() + 1).toString();
+  let day = (currentDate.getDate() + daysDifference).toString()
+
+  month = month.length === 1 ? ('0' + month) : month;
+  day = day.length === 1 ? ('0' + day) : day
+
+  const dateFormatted = `${year}-${month}-${day}`;
+  return dateFormatted;
+}
+
+export const getDisplayTime = (date: any) => {
+  let hour = date.getHours();
+  let minutes = date.getMinutes().toString();
+  minutes = minutes.length === 1 ? ('0'+minutes) : minutes; 
+  let AmOrPm = hour >= 12 ? 'pm' : 'am'
+  hour = (hour % 12 || 12)
+  return hour + ':' + minutes + ' ' + AmOrPm
 }
