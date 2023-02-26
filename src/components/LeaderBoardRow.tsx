@@ -2,7 +2,6 @@ import { UserRow } from "./LeaderBoardRow.styles";
 
 const LeaderBoardRow = (props: any) => {
   const { user } = props;
-  console.log(user);
 
   return (
     <UserRow key={user.username} isactive={user.isactive}>

@@ -17,7 +17,6 @@ import { LeaderBoardContainer, LeaderBoardTableBody } from './LeaderBoard.styles
 
 const LeaderBoard = (props: any) => {
   const [users, setUsers] = useState<{rank: string, username: string, diff: number}[]>([]);
-  console.log(users);
   
   useEffect(() => {
     const getUsers = async () => {
