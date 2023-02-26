@@ -22,7 +22,8 @@ export const getRankings = (users: any) => {
     let currentUser = {
       rank: currentRank,
       username: sortedUsers[i].username,
-      diff: sortedUsers[i].diff
+      diff: sortedUsers[i].diff,
+      isactive: sortedUsers[i].isactive
     };
     incrementRank++;
     rankedUsers.push(currentUser);
