@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 //Components
 import Box from '@mui/material/Box';
@@ -18,6 +18,7 @@ import Rules from './Rules';
 
 //Styles
 import { AppBarContainer, DropdownMenuItemContainer} from './NavBar.styles';
+import { ModalButton } from './LeaderBoardModal.styles';
 import IssueTrackerFormModal from './IssueTrackerFormModal';
 
 const settings = [{title: 'Account', route: '/account'}];
@@ -29,6 +30,8 @@ const NavBar = (props: any) => {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const { user, setToken } = props;
+
+  const navigate = useNavigate();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -44,6 +47,10 @@ const NavBar = (props: any) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const handleRoute = (route: string) => {
+    navigate(route);
+  }
 
   return (
     <AppBarContainer position="fixed">
@@ -104,16 +111,19 @@ const NavBar = (props: any) => {
                   <LeaderBoardModal />
                 </DropdownMenuItemContainer>
                 <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
+                <ModalButton onClick={(e: any) => handleRoute('/schedule')}>Schedule</ModalButton>
+                </DropdownMenuItemContainer>
+                <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
                   <IssueTrackerFormModal user={user}/>
                 </DropdownMenuItemContainer>
-            
+              
             </Menu>
           </Box>
           <Typography
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -138,8 +148,13 @@ const NavBar = (props: any) => {
               </div>
 
               <div onClick={handleCloseNavMenu}>
+              <ModalButton onClick={(e: any) => handleRoute('/schedule')}>Schedule</ModalButton>
+              </div>
+
+              <div onClick={handleCloseNavMenu}>
                 <IssueTrackerFormModal user={user}/>
               </div>
+              
           
           </Box>
 
