@@ -111,12 +111,12 @@ const NavBar = (props: any) => {
                   <LeaderBoardModal />
                 </DropdownMenuItemContainer>
                 <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
-                  <IssueTrackerFormModal user={user}/>
-                </DropdownMenuItemContainer>
-                <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
                 <ModalButton onClick={(e: any) => handleRoute('/schedule')}>Schedule</ModalButton>
                 </DropdownMenuItemContainer>
-            
+                <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
+                  <IssueTrackerFormModal user={user}/>
+                </DropdownMenuItemContainer>
+              
             </Menu>
           </Box>
           <Typography
@@ -148,11 +148,13 @@ const NavBar = (props: any) => {
               </div>
 
               <div onClick={handleCloseNavMenu}>
-                <IssueTrackerFormModal user={user}/>
-              </div>
-              <div onClick={handleCloseNavMenu}>
               <ModalButton onClick={(e: any) => handleRoute('/schedule')}>Schedule</ModalButton>
               </div>
+
+              <div onClick={handleCloseNavMenu}>
+                <IssueTrackerFormModal user={user}/>
+              </div>
+              
           
           </Box>
 
