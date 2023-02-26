@@ -19,6 +19,7 @@ const Schedule = () => {
   const [team, setTeam] = useState('New York Yankees');
   const schedule = displaySchedule(dateFrom, dateTo, team);
 
+  const displayScheduleGames = schedule.length > 0 ? schedule.map((game: any) => <ScheduleGameCard team={team} game={game} key={game.gamePk}/>) : (<p style={{color: 'white'}}>No games for this time period</p>);
   return (
     <ScheduleContainer>
       <FilterContainer>
@@ -31,8 +32,9 @@ const Schedule = () => {
         <div className="away"></div>
         Away
       </div>
-      </FilterContainer>      
-      {schedule.map((game: any) => <ScheduleGameCard team={team} game={game} key={game.gamePk}/>)}
+      </FilterContainer>
+      {displayScheduleGames}    
+      
     </ScheduleContainer>
   )
 }

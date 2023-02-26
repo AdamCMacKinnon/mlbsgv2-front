@@ -10,8 +10,15 @@ export const ScheduleContainer = styled.div`
 
   @media (max-width: 768px) {
     justify-content: center;
+    align-items: flex-start;
     margin: 0 auto;
     flex-wrap: no-wrap;
+    position: relative;
+
+    > p {
+      position: relative;
+      top: -100px;
+    }
   }
 `
 
