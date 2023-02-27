@@ -1,4 +1,5 @@
 import { useState } from "react";
+import {useNavigate} from 'react-router-dom';
 
 //Components
 import Box from "@mui/material/Box";
@@ -22,6 +23,7 @@ const UserAccount = (props: any) => {
   const [password, setPassword] = useState('');
   const [isUpdated, setIsUpdated] = useState(false);
 
+  const navigate = useNavigate()
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -57,6 +59,10 @@ const UserAccount = (props: any) => {
     }
   }
 
+  const handleGamePageClick = () => {
+    navigate('/gamepage');
+  }
+
   return (
     <UserAccountContainer>
       <h3>Account Info</h3>
@@ -83,7 +89,7 @@ const UserAccount = (props: any) => {
       <ButtonContainer>
       <Button variant="contained" type="submit">Update Info</Button>
       {isUpdated ? (<p>Account Info Updated</p>): null}
-      <Button color="success" href="/">
+      <Button color="success" onClick={handleGamePageClick}>
             Go to Game Page
           </Button>
       </ButtonContainer>

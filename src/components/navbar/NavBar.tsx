@@ -52,6 +52,10 @@ const NavBar = (props: any) => {
     navigate(route);
   }
 
+  const handleIconClick = () => {
+    navigate('/')
+  }
+
   return (
     <AppBarContainer position="fixed">
       <Container maxWidth="xl">
@@ -60,7 +64,7 @@ const NavBar = (props: any) => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
+            onClick={handleIconClick}
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -123,7 +127,7 @@ const NavBar = (props: any) => {
             variant="h5"
             noWrap
             component="a"
-            href="/"
+            onClick={handleIconClick}
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },

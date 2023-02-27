@@ -19,7 +19,7 @@ export default function GamePage(props: any) {
 
   return (
     <GamePageContainer>
-      <h1>ACTIVE</h1>
+      {user.isactive? (<h1>ACTIVE</h1>) : <h1 style={{color: 'grey'}}>INACTIVE</h1>}
       <CurrentActivePlayers users={users}/>
       <GamePageComponents>
         <Section>
