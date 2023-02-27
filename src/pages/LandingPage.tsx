@@ -1,3 +1,5 @@
+import {useNavigate} from 'react-router-dom';
+
 //Components
 import Button from "@mui/material/Button";
 import LeaderBoard from "../components/LeaderBoard";
@@ -7,6 +9,12 @@ import { LandingPageContainer, LandingPageSection } from "./LandingPage.styles";
 
 
 const LandingPage = () => {
+  const navigate = useNavigate();
+
+  const handleClick = (route: string) => {
+    navigate(route)
+  }
+
   return (
     <LandingPageContainer>
       <LandingPageSection>
@@ -17,10 +25,10 @@ const LandingPage = () => {
           <LeaderBoard />
         </div>
         <div className="loginButton">
-          <Button variant="contained" color="success" href="/login">
+          <Button variant="contained" color="success" onClick={e => handleClick('/login')}>
             GO TO LOGIN
           </Button>
-          <Button variant="contained" color="success" href="/register">
+          <Button variant="contained" color="success" onClick={e => handleClick('/register')}>
             GO TO REGISTER
           </Button>
         </div>
