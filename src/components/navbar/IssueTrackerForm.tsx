@@ -8,12 +8,14 @@ import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
+import CircleLoader from '../CircleLoader';
 
 //Global functions
 import { createIssueTicket } from '../../functions';
 
 //Styles
 import { FormBox } from '../register/RegisterForm.styles'
+import { LoadingContainer } from './IssueTrackerForm.styles';
 
 const issueTypeList = [
   {
@@ -40,6 +42,7 @@ const IssueTrackerForm = (props: any) => {
   const [emailError, setEmailError] = useState('');
   const [issueTypeError, setIssueTypeError] = useState('');
   const [ticketBodyError, setTicketBodyError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const {user, setTicketSubmitted} = props;
 
@@ -58,9 +61,9 @@ const IssueTrackerForm = (props: any) => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setIsLoading(true);
 
     const valid = checkFieldValues();
-
     const data = {
       username,
       email,
@@ -68,10 +71,11 @@ const IssueTrackerForm = (props: any) => {
       ticket_body
     }
     if (valid) {
-      const createTicketResponse = await createIssueTicket(data);
+     const createTicketResponse = await createIssueTicket(data);
       
       if (createTicketResponse.createdAt) {
         setTicketSubmitted(true);
+        setIsLoading(false);
       } 
     }
   }
@@ -140,7 +144,7 @@ const IssueTrackerForm = (props: any) => {
         helperText={ticketBodyError ? ticketBodyError : ''}
       />
        
-    <Button variant="contained" type="submit">Submit</Button>
+    {isLoading ? (<LoadingContainer><CircleLoader /></LoadingContainer>) : (<Button variant="contained" type="submit" >Submit</Button>)}
   </FormBox>
   )
 }

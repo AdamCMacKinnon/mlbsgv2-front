@@ -13,7 +13,10 @@ import IssueTrackerForm from './IssueTrackerForm';
 const IssueTrackerFormModal = (props: any) => {
   const [open, setOpen] = useState(false);
   const [ticketSubmitted, setTicketSubmitted] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    setOpen(true);
+    setTicketSubmitted(false);
+  }
   const handleClose = () => {
     setOpen(false)
     setTicketSubmitted(false);
