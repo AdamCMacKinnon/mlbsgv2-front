@@ -30,7 +30,6 @@ const LoginForm = (props: any) => {
         username,
         password
       })
-      console.log(response);
       if (response.status === 201) {
         setUsername('')
         setPassword('')
