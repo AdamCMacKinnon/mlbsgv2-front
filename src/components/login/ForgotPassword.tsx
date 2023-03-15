@@ -1,12 +1,10 @@
 import { useState } from 'react';
 
 //Components
-import Input from "@mui/material/Input";
-import InputLabel from "@mui/material/InputLabel";
-import FormControl from "@mui/material/FormControl";
 import Button from "@mui/material/Button";
-import PasswordInput from '../PasswordInput';
 import DisplayMessage from '../DisplayMessage';
+import TextInputOutlined from '../TextInputOutlined';
+import PasswordInputOutlined from '../PasswordInputOutlined';
 
 //Global functions
 import { updateUserInfo } from '../../functions';
@@ -31,7 +29,7 @@ const ForgotPassword = () => {
     if (email || password) {
       const response: any = await updateUserInfo(requestData);
       setOpen(true)
-      console.log(response)
+      // console.log(response)
       setResponse(response);
       if (response.status === 200) {
         setPassword('');
@@ -46,15 +44,9 @@ const ForgotPassword = () => {
         onSubmit={handleSubmit}
       >
         <h3>Reset Password</h3>
-        <FormControl variant="standard">
-          <InputLabel htmlFor="component-simple">Email</InputLabel>
-          <Input
-            id="component-simple"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-          />
-        </FormControl>
-        <PasswordInput password={password} setPassword={setPassword} />
+
+        <TextInputOutlined id="email" label="Email" value={email} setValue={setEmail}/>
+        <PasswordInputOutlined value={password} setValue={setPassword} label="Set New Password"/>
         <Button variant="contained" type="submit">Update Password</Button>
         
         <DisplayMessage response={response} successMessage="Password Updated" open={open} setOpen={setOpen}/>

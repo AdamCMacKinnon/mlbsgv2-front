@@ -38,7 +38,7 @@ const RegisterForm = (props: any) => {
         setEmail('')
         setPassword('')
         
-        const loginResponse = await login(username, password);
+        const loginResponse: any = await login(username, password);
 
         if (loginResponse.status === 201) {
           let token = loginResponse.data.accessToken;

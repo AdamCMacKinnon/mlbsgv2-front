@@ -60,16 +60,27 @@ export async function fetchUsers() {
 
 
 
-export async function login(username: String, password: string) {
-  const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/login`, {
-    username,
-    password
-  })  
-  return response;
+export async function login(username: string, password: string) {
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/login`, {
+      username,
+      password
+    })   
+    return formatResponse(response);
+  } catch (error: any) {
+    console.log(error)
+    return formatResponse(error.response)
+  }
+}
+
+const formatResponse = (response: any) => {
+  return {
+    status: response.status,
+    data: response.data
+  }
 }
 
 export async function makePick(token: any, week: any, pick: any) {
-
   try {
     const response = await axios.post(`${process.env.REACT_APP_SERVER}/picks`, {
       week: week,
@@ -129,7 +140,12 @@ export const updateUserInfo = async (requestData: any) => {
     const response = await axios.patch(`${process.env.REACT_APP_SERVER}/auth/update/`, requestData);
     return response;
   } catch (error: any) {
-    return error.response
+    console.log(error);
+    return {
+      data: {
+        message: 'Internal Server Error'},
+      status: 500
+    }
   }
 }
 
@@ -172,4 +188,8 @@ export const getDisplayTime = (date: any) => {
   let AmOrPm = hour >= 12 ? 'pm' : 'am'
   hour = (hour % 12 || 12)
   return hour + ':' + minutes + ' ' + AmOrPm
+}
+
+export const resetStateValues = (setState: any[]) => {
+  setState.map((state) => state(''))
 }
