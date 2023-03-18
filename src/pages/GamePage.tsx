@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import ActiveBanner from '../components/gamepage/ActiveBanner';
 import CurrentActivePlayers from '../components/gamepage/CurrentActivePlayers';
 import PickTeam from '../components/gamepage/PickTeam';
 import PlayerLeaderBoard from '../components/gamepage/PlayerLeaderBoard';
@@ -19,7 +20,7 @@ export default function GamePage(props: any) {
 
   return (
     <GamePageContainer>
-      {user.isactive? (<h1>ACTIVE</h1>) : <h1 style={{color: 'grey'}}>INACTIVE</h1>}
+      <ActiveBanner user={user} />
       <CurrentActivePlayers users={users}/>
       <GamePageComponents>
         <Section>
