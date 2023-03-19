@@ -11,7 +11,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 const PasswordInput = (props: any) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const {password, setPassword} = props;
+  const {password, setPassword, label} = props;
 
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -20,8 +20,8 @@ const PasswordInput = (props: any) => {
   };
   
   return(
-    <FormControl sx={{ m: 1, width: '25ch' }} variant="standard">
-      <InputLabel htmlFor="standard-adornment-password">Set New Password</InputLabel>
+    <FormControl variant="standard">
+      <InputLabel htmlFor="standard-adornment-password">{label}</InputLabel>
         <Input
           id="standard-adornment-password"
           type={showPassword ? 'text' : 'password'}
