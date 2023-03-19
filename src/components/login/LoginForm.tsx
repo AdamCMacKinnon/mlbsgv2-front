@@ -5,19 +5,21 @@ import { useNavigate } from 'react-router-dom';
 import Button from "@mui/material/Button";
 import TextInputOutlined from "../TextInputOutlined";
 import PasswordInputOutlined from "../PasswordInputOutlined";
+import DisplayMessage from "../DisplayMessage";
 
 //Global functions
 import { fetchUsers, fetchAdminUsers, getLoggedInUser, resetStateValues, login } from '../../functions';
 
 //Styles
-import { Form, ErrorMessage } from './LoginForm.styles';
+import { Form } from './LoginForm.styles';
 
 
 
 const LoginForm = (props: any) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [errorMessage, setErrorMessage] = useState('');
+  const [apiResponse, setApiResponse] =  useState({});
+  const [open, setOpen] = useState(false);
 
   const { setToken, setUsers, setUser, stayLoggedIn } = props;
 
@@ -27,9 +29,10 @@ const LoginForm = (props: any) => {
     e.preventDefault();
 
     const response: any = await login(username, password);
+    setApiResponse(response);
 
       if (response.status === 201) {
-        resetStateValues([setUsername, setPassword, setErrorMessage]);
+        resetStateValues([setUsername, setPassword]);
 
         let token = response.data.accessToken;
         let users;
@@ -54,7 +57,7 @@ const LoginForm = (props: any) => {
         setUsers(users);
       }
       else {
-        setErrorMessage('Invalid login');
+        setOpen(true);
       }
   }
   return (
@@ -70,7 +73,7 @@ const LoginForm = (props: any) => {
       value={password}
       setValue={setPassword}/>
       <Button variant="contained" type="submit">Submit</Button>
-      <ErrorMessage>{errorMessage ? errorMessage : ' '}</ErrorMessage>
+      <DisplayMessage response={apiResponse} open={open} setOpen={setOpen} />
     </Form>
   );
 }

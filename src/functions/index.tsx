@@ -69,7 +69,20 @@ export async function login(username: string, password: string) {
     return formatResponse(response);
   } catch (error: any) {
     console.log(error)
-    return formatResponse(error.response)
+    if (error.code === 'ERR_NETWORK'){
+      return {
+        status: 500,
+        data: {
+          message: 'Network Error - Please contact support'
+        }
+      }
+    }
+    return {
+      status: 401,
+      data: {
+        message: 'Invalid Login'
+      }
+    }
   }
 }
 

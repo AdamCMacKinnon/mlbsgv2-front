@@ -22,6 +22,6 @@ const AdminContainer = styled.div`
   flex-wrap: wrap;
   align-items: center;
   justify-self: center;
-  margin: 0 auto;
+  margin: 50px auto 0;
   text-align: center;
 `
