@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const LandingPageContainer = styled.div`
   width: 100vw;
-  height: 80vh;
+  height: 100vh;
+  margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items:center;

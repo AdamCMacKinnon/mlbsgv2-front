@@ -77,7 +77,7 @@ export default function App(){
   <>
     
     <AppContainer>
-    <NavBar user={user} setToken={setToken}/>
+    <NavBar user={user} setUser={setUser} setToken={setToken}/>
         <Routes>
           
           <Route path='/' element={<LandingPage />} />
