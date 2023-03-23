@@ -5,7 +5,7 @@ export const ScheduleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 50px;
+  margin: 50px auto 0;
 `
 
 export const GamePageLink = styled(Link)`
