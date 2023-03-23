@@ -1,23 +1,25 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
 
 //Components
 import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
+import TextInputOutlined from "../TextInputOutlined";
+import PasswordInputOutlined from "../PasswordInputOutlined";
+import DisplayMessage from "../DisplayMessage";
 
 //Global functions
-import { fetchUsers, fetchAdminUsers, getLoggedInUser } from '../../functions';
+import { fetchUsers, fetchAdminUsers, getLoggedInUser, resetStateValues, login } from '../../functions';
 
 //Styles
-import { Form, ErrorMessage } from './LoginForm.styles';
+import { Form } from './LoginForm.styles';
 
 
 
 const LoginForm = (props: any) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [errorMessage, setErrorMessage] = useState('');
+  const [apiResponse, setApiResponse] =  useState({});
+  const [open, setOpen] = useState(false);
 
   const { setToken, setUsers, setUser, stayLoggedIn } = props;
 
@@ -25,15 +27,12 @@ const LoginForm = (props: any) => {
 
   const handleSubmit = async (e: any) => {  
     e.preventDefault();
-    try {
-      const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/login`, {
-        username,
-        password
-      })
+
+    const response: any = await login(username, password);
+    setApiResponse(response);
+
       if (response.status === 201) {
-        setUsername('')
-        setPassword('')
-        setErrorMessage('')
+        resetStateValues([setUsername, setPassword]);
 
         let token = response.data.accessToken;
         let users;
@@ -58,17 +57,8 @@ const LoginForm = (props: any) => {
         setUsers(users);
       }
       else {
-        setErrorMessage('Invalid login');
+        setOpen(true);
       }
-    } catch (e: any) {
-      console.log(e)
-      if (e.code === 'ERR_NETWORK') {
-        setErrorMessage('Network Error');
-      } 
-      else {
-          setErrorMessage('Invalid login');
-      }     
-   }
   }
   return (
     <Form
@@ -76,23 +66,14 @@ const LoginForm = (props: any) => {
       autoComplete="off"
       onSubmit={handleSubmit}
     >      
-      <TextField
-        required
-        id="outlined-required"
-        label="Username"
-        value={username}
-        onChange={e => setUsername(e.target.value)}
-      />
-      <TextField
-        id="outlined-password-input"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      /> 
+      <TextInputOutlined      label='Username' 
+      value={username} 
+      setValue={setUsername}/>
+      <PasswordInputOutlined 
+      value={password}
+      setValue={setPassword}/>
       <Button variant="contained" type="submit">Submit</Button>
-      <ErrorMessage>{errorMessage ? errorMessage : ' '}</ErrorMessage>
+      <DisplayMessage response={apiResponse} open={open} setOpen={setOpen} />
     </Form>
   );
 }

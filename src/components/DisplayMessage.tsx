@@ -10,8 +10,6 @@ export default function DisplayMessage(props: any) {
 
   let displayMessage = '';
 
-  console.log(typeof response.status == 'number');
-
   if (typeof response.status == 'number') {
     if (response.status === 200 || response.status === 201){
        displayMessage = successMessage;
