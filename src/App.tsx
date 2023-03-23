@@ -75,9 +75,9 @@ export default function App(){
   
   return (
   <>
-    <NavBar user={user} setToken={setToken}/>
+    
     <AppContainer>
-  
+    <NavBar user={user} setToken={setToken}/>
         <Routes>
           
           <Route path='/' element={<LandingPage />} />
@@ -124,7 +124,6 @@ export default function App(){
 
 
 const AppContainer = styled.div`
-  margin-top: 50px;
   display: flex;
   position: relative;
 

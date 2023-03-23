@@ -5,7 +5,7 @@ export const LoginFormSection = styled.div`
   width: 80%;
   max-width: 500px;
   padding: 20px;
-  background-color: lightcyan;
+  background-color: white;
   color:rgb(6, 128, 55);
   border-radius: 30px;
   display: flex;
