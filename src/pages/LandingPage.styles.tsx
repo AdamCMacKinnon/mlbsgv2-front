@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const LandingPageContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  margin-top: 50px;
   display: flex;
   justify-content: center;
   align-items:center;
@@ -12,6 +11,7 @@ export const LandingPageContainer = styled.div`
 
   @media(max-width: 768px) {
     align-items: flex-start;
+    margin-top: 50px;
   }
 `
 
