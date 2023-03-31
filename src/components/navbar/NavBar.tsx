@@ -29,7 +29,7 @@ const NavBar = (props: any) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
-  const { user, setToken } = props;
+  const { user, setUser, setToken } = props;
 
   const navigate = useNavigate();
 
@@ -194,7 +194,7 @@ const NavBar = (props: any) => {
                 </MenuItem>
               ))}
               <MenuItem key='logout' onClick={handleCloseUserMenu}>
-                  <Logout setToken={setToken}/>
+                  <Logout setToken={setToken} setUser={setUser}/>
                 </MenuItem>
             </Menu>
           </Box>
