@@ -16,10 +16,12 @@ export const filterUsersByPick = (users: any, value: any) => {
 
 export const filteredUsersByWeek = (users: any, week: number) => {
   return users.map((user: any) => {
-    const userPick = user.picks[week - 1]?.pick;
+    const weekPick = user.picks.filter((pick: any) => {
+      return pick.week === week
+    })[0]?.pick;
     return {
       ...user,
-      pick: userPick ? userPick : "--No Pick--"
+      pick: weekPick ? weekPick : "--No Pick--"
     };
   });
 };
