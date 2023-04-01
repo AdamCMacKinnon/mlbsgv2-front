@@ -40,7 +40,7 @@ const Player = (props: any) => {
         {player.isactive ? (<div className="active-tag tag">ACTIVE</div>) : (<div className="inactive-tag tag">INACTIVE</div>)}
         <p>Run Diff: {player.diff}</p>
         <ul>
-          {player.picks.map((pick: any) => <PlayerWeekList key={pick.id} pick={pick}/>)}
+          {player.picks.map((pick: any) => <PlayerWeekList key={pick.pickId} pick={pick}/>)}
         </ul>
         <Button variant="contained" color="error" onClick={handleDeleteUser}>DELETE USER</Button>
       </PlayerInfoSection>
