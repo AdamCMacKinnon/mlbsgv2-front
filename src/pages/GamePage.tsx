@@ -21,7 +21,7 @@ export default function GamePage(props: any) {
 
   return (
     <GamePageContainer>
-      <AlertMessage open={true} severity="error" message="Week 5 will go from May 1 - 7" />
+      <AlertMessage open={true} severity="error" message="Week 6 will go from May 8 - 14" />
       <ActiveBanner user={user} />
       <CurrentActivePlayers users={users}/>
       <GamePageComponents>
