@@ -50,7 +50,7 @@ export async function getLoggedInUser(token: any){
 
 export async function fetchUsers() {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_SERVER}/auth/standings`);
+    const response = await axios.get(`${process.env.REACT_APP_SERVER}/data/standings`);
     const data = await response.data;
     return data;
   } catch (error) {
@@ -80,7 +80,7 @@ export async function login(username: string, password: string) {
     return {
       status: 401,
       data: {
-        message: 'Invalid Login'
+        message: 'Invalid Login.  Check your username and password.  If you\'re still having trouble, contact support.'
       }
     }
   }
