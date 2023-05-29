@@ -15,7 +15,7 @@ import ScheduleGameCard from '../components/schedule/ScheduleGameCard';
 
 const Schedule = () => {
   const [dateFrom, setDateFrom] = useState(getDateTimeByDifference(0));
-  const [dateTo, setDateTo] = useState("2023-05-28");
+  const [dateTo, setDateTo] = useState("2023-06-04");
   const [team, setTeam] = useState('None');
   const schedule = displaySchedule(dateFrom, dateTo, team);
 
