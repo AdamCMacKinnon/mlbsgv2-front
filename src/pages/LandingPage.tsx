@@ -10,7 +10,7 @@ import { LandingPageContainer, LandingPageSection, CloseRegistration } from "./L
 
 
 const LandingPage = () => {
-  const [closeRegistration] = useState(true);
+  const [closeRegistration] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = (route: string) => {
@@ -36,7 +36,7 @@ const LandingPage = () => {
             closeRegistration ?
             <CloseRegistration>We are not accepting new registrations since the season has started</CloseRegistration>
             :
-            <Button variant="contained" color="success" disabled onClick={e => handleClick('/register')}>
+            <Button variant="contained" color="success"  onClick={e => handleClick('/register')}>
             GO TO REGISTER
           </Button>
           }

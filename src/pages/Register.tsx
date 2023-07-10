@@ -8,7 +8,7 @@ import { RegistrationContainer, RegistrationForm } from './Register.styles';
 
 
 const Register = (props: any) => {
-  const [closeRegistration] = useState(true);
+  const [closeRegistration] = useState(false);
   const { setToken, setUsers, setUser } = props
   return (
     <RegistrationContainer>
