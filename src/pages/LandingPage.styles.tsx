@@ -27,7 +27,7 @@ export const LandingPageSection = styled.div`
     color: white;
     justify-content: space-evenly;
     margin-top: 20px;
-    flex-direction: column;
+    // flex-direction: column;
   }
 
   @media (max-width: 768px){
