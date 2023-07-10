@@ -58,7 +58,15 @@ export async function fetchUsers() {
   }
 }
 
-
+export async function fetchTotalUserDiff() {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_SERVER}/data/userdiffs`);
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export async function login(username: string, password: string) {
   try {
@@ -138,7 +146,7 @@ export async function fetchAdminUsers(token: any) {
 
 export async function createIssueTicket(requestData: any) {
   try{
-    const response = await axios.post(`${process.env.REACT_APP_SERVER}/support/createticket`, requestData)
+    const response = await axios.post(`${process.env.REACT_APP_SERVER}/email/createticket`, requestData)
     const data = await response.data;
     return data
   }
