@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import ActiveBanner from '../components/gamepage/ActiveBanner';
+import AlertMessage from '../components/AlertMessage';
 import CurrentActivePlayers from '../components/gamepage/CurrentActivePlayers';
 import PickTeam from '../components/gamepage/PickTeam';
 import PlayerLeaderBoard from '../components/gamepage/PlayerLeaderBoard';
@@ -20,6 +21,7 @@ export default function GamePage(props: any) {
 
   return (
     <GamePageContainer>
+      <AlertMessage open={true} severity="error" message="Week 9 will go from May 29 - June 4" />
       <ActiveBanner user={user} />
       <CurrentActivePlayers users={users}/>
       <GamePageComponents>

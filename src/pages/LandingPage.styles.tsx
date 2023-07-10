@@ -12,6 +12,7 @@ export const LandingPageContainer = styled.div`
 
   @media(max-width: 768px) {
     align-items: flex-start;
+    margin-top: 50px;
   }
 `
 
@@ -26,6 +27,7 @@ export const LandingPageSection = styled.div`
     color: white;
     justify-content: space-evenly;
     margin-top: 20px;
+    flex-direction: column;
   }
 
   @media (max-width: 768px){
@@ -37,4 +39,10 @@ export const LandingPageSection = styled.div`
       height: 150px;
     }  
   }
+`
+
+export const CloseRegistration = styled.div`
+  max-width: 300px;
+  text-align: center;
+  margin: 0 auto;
 `

@@ -88,7 +88,7 @@ export async function login(username: string, password: string) {
     return {
       status: 401,
       data: {
-        message: 'Invalid Login'
+        message: 'Invalid Login.  Check your username and password.  If you\'re still having trouble, contact support.'
       }
     }
   }
