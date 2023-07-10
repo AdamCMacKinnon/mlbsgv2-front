@@ -58,7 +58,15 @@ export async function fetchUsers() {
   }
 }
 
-
+export async function fetchTotalUserDiff() {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_SERVER}/data/userdiffs`);
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 export async function login(username: string, password: string) {
   try {
