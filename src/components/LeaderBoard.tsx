@@ -4,7 +4,7 @@ import { useState, useEffect} from 'react';
 import LeaderBoardRow from './LeaderBoardRow';
 
 //Global function
-import { fetchUsers } from "../functions";
+import { fetchTotalUserDiff } from "../functions";
 
 //GamePage functions
 import { getRankings } from './gamepage/functions';
@@ -20,7 +20,7 @@ const LeaderBoard = (props: any) => {
   
   useEffect(() => {
     const getUsers = async () => {
-      const userList = await fetchUsers()
+      const userList = await fetchTotalUserDiff()
       const rankedUsers: any = await getRankings(userList);
       setUsers(rankedUsers);
     }
@@ -30,7 +30,7 @@ const LeaderBoard = (props: any) => {
 
   return (
     <LeaderBoardContainer>
-      <h3>LeaderBoard</h3>
+      <h3>First Run 2023 <b>FINAL STANDINGS</b></h3>
       <PlayerLeaderBoardTable>
         <thead>
           <tr>

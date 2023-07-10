@@ -5,7 +5,8 @@ interface UserRowProps {
 }
 
 export const UserRow = styled.tr`
-  color: ${(props: UserRowProps) => props.isactive ? 'black' : 'grey'};
-  font-style: ${(props: UserRowProps) => props.isactive ? 'regular' : 'italic'};
-  text-decoration: ${(props: UserRowProps) => props.isactive ? 'none' : 'line-through'};
+  // color: ${(props: UserRowProps) => props.isactive ? 'black' : 'grey'};
+  // font-style: ${(props: UserRowProps) => props.isactive ? 'bold' : 'italic'};
+  // text-decoration: ${(props: UserRowProps) => props.isactive ? 'none' : 'line-through'};
+  color: 'black';
 `
