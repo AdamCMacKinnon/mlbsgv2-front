@@ -50,7 +50,7 @@ export async function getLoggedInUser(token: any){
 
 export async function fetchUsers() {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_SERVER}/auth/standings`);
+    const response = await axios.get(`${process.env.REACT_APP_SERVER}/data/standings`);
     const data = await response.data;
     return data;
   } catch (error) {
@@ -138,7 +138,7 @@ export async function fetchAdminUsers(token: any) {
 
 export async function createIssueTicket(requestData: any) {
   try{
-    const response = await axios.post(`${process.env.REACT_APP_SERVER}/support/createticket`, requestData)
+    const response = await axios.post(`${process.env.REACT_APP_SERVER}/email/createticket`, requestData)
     const data = await response.data;
     return data
   }
