@@ -23,7 +23,7 @@ const LandingPage = () => {
         <div className="message">
           <h1>The MLB Survivor Game</h1>
           <h1><i>Congratulations to our First Run 2023 Champion:</i></h1>
-          <h1 style={{color: "lightgreen", fontSize: "50px"}}><span>eschultz22</span></h1>
+          <h1 style={{color: "lightgreen", fontSize: "50px"}}><span>stonekerney</span></h1>
         </div>
         <div>
           <LeaderBoard />
