@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface LandingPageSectionProps {
+  closeRegistration: boolean
+}
+
 export const LandingPageContainer = styled.div`
   width: 100vw;
   height: 80vh;
@@ -27,7 +31,7 @@ export const LandingPageSection = styled.div`
     color: white;
     justify-content: space-evenly;
     margin-top: 20px;
-    // flex-direction: column;
+    flex-direction: ${(props: LandingPageSectionProps) => props.closeRegistration ? 'column':'row'}
   }
 
   @media (max-width: 768px){

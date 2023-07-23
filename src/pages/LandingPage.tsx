@@ -10,7 +10,7 @@ import { LandingPageContainer, LandingPageSection, CloseRegistration } from "./L
 
 
 const LandingPage = () => {
-  const [closeRegistration] = useState(false);
+  const [closeRegistration] = useState(true);
   const navigate = useNavigate();
 
   const handleClick = (route: string) => {
@@ -19,12 +19,10 @@ const LandingPage = () => {
 
   return (
     <LandingPageContainer>
-      <LandingPageSection>
+      <LandingPageSection closeRegistration={closeRegistration}>
         <div className="message">
           <h1>The MLB Survivor Game</h1>
-          <h1><i>Congratulations to our First Run 2023 Champion:</i></h1>
-          <h1 style={{color: "lightgreen", fontSize: "50px"}}><span>stonekerney</span></h1>
-        </div>
+  </div>
         <div>
           <LeaderBoard />
         </div>
