@@ -40,6 +40,8 @@ export async function getLoggedInUser(token: any){
         }
       });
     const data = await response.data;
+    console.log("getLoggedInUser data")
+    console.log(response)
     return data;
     } catch (error) {
       console.log(error);
@@ -112,6 +114,8 @@ export async function makePick(token: any, week: any, pick: any) {
       }
     });
     const data = await response.data;
+    console.log("MakePick data")
+    console.log(data);
     return data;
   } catch (error) {
     console.log(error)

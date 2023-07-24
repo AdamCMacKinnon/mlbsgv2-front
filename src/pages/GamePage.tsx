@@ -18,7 +18,6 @@ export default function GamePage(props: any) {
   const userPickList: any = []
   user.picks?.forEach((pick: any) => userPickList.push(pick.pick));
   const pickTeams = teams.filter(team => !userPickList.includes(team.name))
-
   return (
     <GamePageContainer>
       <AlertMessage open={true} severity="error" message="Week 1 will go from July 24 - July 30" />
