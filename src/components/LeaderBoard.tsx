@@ -30,7 +30,7 @@ const LeaderBoard = (props: any) => {
 
   return (
     <LeaderBoardContainer>
-      <h3>First Run 2023 <b>FINAL STANDINGS</b></h3>
+      <h3>LeaderBoard</h3>
       <PlayerLeaderBoardTable>
         <thead>
           <tr>
