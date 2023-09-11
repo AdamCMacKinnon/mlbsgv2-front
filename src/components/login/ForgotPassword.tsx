@@ -4,19 +4,18 @@ import { useState } from 'react';
 import Button from "@mui/material/Button";
 import DisplayMessage from '../DisplayMessage';
 import TextInputOutlined from '../TextInputOutlined';
-import PasswordInputOutlined from '../PasswordInputOutlined';
 
 //Global functions
-import { updateUserInfo } from '../../functions';
+import { resetPassword } from '../../functions';
 
 //Styles
 import { FormBox } from '../register/RegisterForm.styles';
 
 
 
-const ForgotPassword = () => {
+const ForgotPassword = (props: any) => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setusername] = useState('');
   const [open, setOpen] = useState(false);
   const [response, setResponse] = useState({});
 
@@ -24,16 +23,13 @@ const ForgotPassword = () => {
     e.preventDefault();
     let requestData = {
       email,
-      password
+      username,
     }
-    if (email || password) {
-      const response: any = await updateUserInfo(requestData);
+    if (email) {
+      const response: any = await resetPassword(requestData);
       setOpen(true)
-      // console.log(response)
       setResponse(response);
-      if (response.status === 200) {
-        setPassword('');
-      }
+      console.log(response);
     } 
   }
 
@@ -46,10 +42,9 @@ const ForgotPassword = () => {
         <h3>Reset Password</h3>
 
         <TextInputOutlined id="email" label="Email" value={email} setValue={setEmail}/>
-        <PasswordInputOutlined value={password} setValue={setPassword} label="Set New Password"/>
-        <Button variant="contained" type="submit">Update Password</Button>
-        
-        <DisplayMessage response={response} successMessage="Password Updated" open={open} setOpen={setOpen}/>
+        <TextInputOutlined id="username" label="Username" value={username} setValue={setusername}/>
+        <Button variant="contained" type="submit">Request Temporary Password</Button>
+        <DisplayMessage response={response} open={open} setOpen={setOpen}/>
       </FormBox>
   
   )
