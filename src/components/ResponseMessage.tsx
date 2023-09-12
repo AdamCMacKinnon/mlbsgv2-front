@@ -3,7 +3,7 @@ import {useState} from 'react';
 const ResponseMessage = (props: any) => {
   const [message, setMessage] = useState('');
 
-  const { display, response, successMessage} = props;
+  const { display, response, successMessage } = props;
 
   let styles = {
     color: ''

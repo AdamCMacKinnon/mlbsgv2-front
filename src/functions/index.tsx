@@ -174,6 +174,25 @@ export const updateUserInfo = async (requestData: any) => {
   }
 }
 
+export const resetPassword = async (requestData: any) => {
+  try {
+    const response = await axios.patch(`${process.env.REACT_APP_SERVER}/auth/passwordreset/`, requestData);
+    return response;
+  } catch (error: any) {
+    if (error.code === "ERR_NETWORK") {
+      return {
+        status: 500,
+        message: 'API Connection Error'
+      }
+    } else {
+      return {
+        status: 404,
+        message: 'Error Resetting Password.  Credentials are invalid'
+      }
+    }
+  }
+}
+
 
 export const displaySchedule = (dateFrom: string, dateTo: string, team: string) => {
   const shed: any = scheduleData;

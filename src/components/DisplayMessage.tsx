@@ -6,16 +6,23 @@ import CloseIcon from "@mui/icons-material/Close";
 
 export default function DisplayMessage(props: any) {
   
-  const { response, successMessage, open, setOpen } = props;
+  const { response, open, setOpen } = props;
 
   let displayMessage = '';
 
-  if (typeof response.status == 'number') {
-    if (response.status === 200 || response.status === 201){
-       displayMessage = successMessage;
-    } else {
-      displayMessage = response.data.message;
-    }   
+  switch (response.status) {
+    case 200:
+      displayMessage = 'Password Reset Successfully.  Check your Email for more details.';
+      console.log(response);
+      break;
+    case 404:
+      displayMessage = 'Email is not found.  Check your credentials and try again.'
+      break;
+    case 500:
+      displayMessage = 'There is a Server error.  Contact Support or try again later!'
+      break;
+    default:
+      displayMessage = 'We dont know whats going on here';
   }
 
   return (
