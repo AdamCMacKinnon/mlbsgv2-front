@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+// import { Outlet } from 'react-router-dom';
 
 import styled from 'styled-components';
 
@@ -8,7 +8,7 @@ export default function Admin(props: any) {
   return (
     <AdminContainer>
       <AdminMenu />
-      <Outlet />
+      {/* <Outlet /> */}
     </AdminContainer>
   )
 }
