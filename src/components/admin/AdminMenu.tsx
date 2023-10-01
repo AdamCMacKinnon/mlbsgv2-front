@@ -32,15 +32,15 @@ const AdminMenu = () => {
           setValue(newValue);
         }}
       >
-        <BottomNavigationAction label="Player Management" icon={<AccountCircleIcon />} />
         <BottomNavigationAction  label="League Management" icon={<SportsBaseballIcon />} />
+        <BottomNavigationAction label="Player Management" icon={<AccountCircleIcon />} />
         <BottomNavigationAction label="League Data" icon={<QueryStatsIcon />} />
       </BottomNavigation>
     </Box>
     </AdminMenuContainer>
     <div>
-    { value === 0 ? <Outlet /> : null }
-    { value === 1 ? <AdminCards /> : null }
+    { value === 0 ? <AdminCards /> : null }
+    { value === 1 ? <Outlet /> : null }
     { value === 2 ? <RunDifferential /> : null }
     </div>
     </>

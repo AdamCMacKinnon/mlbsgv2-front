@@ -10,8 +10,8 @@ const APcard = (
   <React.Fragment>
     <CardContent sx={{ backgroundColor: "lightgray", textAlign: "center" }}>
       <Typography sx={{ fontSize: 22}} color="green">
-        18 <br></br>Surviving Users<br></br>
-        <Button variant="contained" color="success">See User Distribution</Button>
+        18 <br></br>Active Users<br></br>
+        <Button variant="contained" color="success">See League Leaderboard</Button>
       </Typography>
     </CardContent>
   </React.Fragment>
@@ -32,8 +32,10 @@ const DPcard = (
     <React.Fragment>
     <CardContent sx={{ backgroundColor: "lightgray", textAlign: "center" }}>
       <Typography sx={{ fontSize: 22}} color="red">
-      22<br></br>
-      Leading run diff for <br></br>AdamCMacK
+      Comissioner Tools
+      <br></br>
+      <br></br>
+      <Button variant="contained" color="error">Edit League Options</Button>
       </Typography>
     </CardContent>
   </React.Fragment>
