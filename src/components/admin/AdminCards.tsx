@@ -5,6 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Button from '@mui/material/Button';
 import { CardStack } from "./AdminCards.styles";
+import LeagueInfo from "./LeagueInfo";
 
 const APcard = (
   <React.Fragment>
@@ -43,6 +44,7 @@ const DPcard = (
 
 export default function OutlinedCard() {
   return (
+    <>
     <CardStack>
       <Box sx={{ minWidth: 275, margin: "10px" }}>
         <Card variant="outlined">{APcard}</Card>
@@ -56,5 +58,9 @@ export default function OutlinedCard() {
         </Card>
       </Box>
       </CardStack>
+      <div>
+        <LeagueInfo />
+      </div>
+      </>
   );
 }

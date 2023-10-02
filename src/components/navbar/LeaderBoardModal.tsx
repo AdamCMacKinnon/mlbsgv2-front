@@ -17,7 +17,7 @@ const LeaderBoardModal = (props: any) => {
 
   return (
     <ModalContainer>
-      <ModalButton onClick={handleOpen}>Full Standings</ModalButton>
+      <ModalButton onClick={handleOpen}>Global Game Standings</ModalButton>
       <Modal
         open={open}
         onClose={handleClose}
