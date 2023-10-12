@@ -33,10 +33,10 @@ const DPcard = (
     <React.Fragment>
     <CardContent sx={{ backgroundColor: "lightgray", textAlign: "center" }}>
       <Typography sx={{ fontSize: 22}} color="red">
-      Comissioner Tools
+      Close League
       <br></br>
       <br></br>
-      <Button variant="contained" color="error">Edit League Options</Button>
+      <Button variant="contained" color="error">Close League</Button>
       </Typography>
     </CardContent>
   </React.Fragment>

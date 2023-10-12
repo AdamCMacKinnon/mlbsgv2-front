@@ -5,3 +5,12 @@ export const LeagueInfoContainer = styled.div`
     border-radius: 7px;
     padding: 10px;
 `
+
+export const LeagueInfoForm = styled.div`
+    padding: 2px;
+    margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
