@@ -25,7 +25,7 @@ const LeagueInfo = () => {
           labelId="demo-simple-select-label"
           defaultValue={10}
           id="demo-simple-select"
-          label="Age"
+          label="Game Mode"
         >
           <MenuItem value={10}>Total Diff</MenuItem>
           <MenuItem value={20}>Survival</MenuItem>
@@ -44,9 +44,9 @@ const LeagueInfo = () => {
           labelId="demo-simple-select-label"
           defaultValue={10}
           id="demo-simple-select"
-          label="Age"
         >
-          <MenuItem value={10}>AdamCMacKDev (adamcmackdev@gmail.com)</MenuItem>
+            <MenuItem value={10} disabled={true}>Select Current commish...</MenuItem>
+          <MenuItem value={15}>AdamCMacKDev (adamcmackdev@gmail.com)</MenuItem>
           <MenuItem value={20}>PassonJim (passonjim@gmail.com)</MenuItem>
         </Select>
               </Grid>
