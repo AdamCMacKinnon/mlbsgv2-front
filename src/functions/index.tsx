@@ -103,11 +103,24 @@ const formatResponse = (response: any) => {
   }
 }
 
+/**
+ * For now, this function has a hardcoded "leagueId" value.
+ * This is temporary for local development.  Replace the UUID here with a subleague
+ * that exists on your local DB.  Eventually this will be passed in as a param
+ * from user state.
+ * 
+ * @param token 
+ * @param week 
+ * @param pick 
+ * @returns 
+ */
 export async function makePick(token: any, week: any, pick: any) {
+  const leagueId = 'd730ee25-08bd-408c-9536-000a6e39148c';
   try {
     const response = await axios.post(`${process.env.REACT_APP_SERVER}/picks`, {
       week: week,
-      pick: pick.name
+      pick: pick.name,
+      subleague_id: leagueId
     },{
       headers: {
         'Authorization': `Bearer ${token}`
