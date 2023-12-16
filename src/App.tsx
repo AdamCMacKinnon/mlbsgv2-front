@@ -13,17 +13,18 @@ import Register from './pages/Register';
 import RunDifferential from './components/admin/RunDifferential';
 import Schedule from './pages/Schedule';
 import Player from './components/admin/Player';
-
+import ProfilePage from './pages/ProfilePage';
 import { checkToken, getLocalStorageToken, getLoggedInUser, fetchAdminUsers, fetchUsers } from './functions';
 import UserAccount from './components/gamepage/UserAccount';
+
 
 
 
 export default function App(){
   const [token, setToken] = useState('');
   const [loadTokenSw, setLoadTokenSw] = useState(false);
-  const [user, setUser] = useState<{id: string, username: string,  email: string, isactive: boolean, role: string, pastchamp: boolean, diff: number, createdAt: string, updatedAt: string}>();
-  const [users, setUsers] = useState<{id: string, username: string,  email: string, isactive: boolean, role: string, pastchamp: boolean, diff: number, createdAt: string, updatedAt: string}[]>([]);
+  const [user, setUser] = useState<{id: string, username: string,  email: string, isactive: boolean, role: string, career_diff: number, createdAt: string, updatedAt: string}>();
+  const [users, setUsers] = useState<{id: string, username: string,  email: string, isactive: boolean, role: string, career_diff: number, createdAt: string, updatedAt: string}[]>([]);
 
   const navigate = useNavigate();
   const localStorageToken: any = getLocalStorageToken();
@@ -58,10 +59,9 @@ export default function App(){
         if (user.role === 'admin') {
           users = await fetchAdminUsers(token);
           navigate('/admin');
-        }
-        else{
+        } else {
           users = await fetchUsers();
-          navigate('/gamepage');
+          navigate('/profile');
         }
         setUsers(users);
     }
@@ -84,6 +84,14 @@ export default function App(){
           <Route path='login' element={<Login setToken={setToken} setUsers={setUsers} setUser={setUser}/>} />
           <Route path='register' element={<Register setToken={setToken} setUsers={setUsers} setUser={setUser}/>} />
 
+          <Route 
+            path='profile' 
+            element={
+              <Protected isAllowed={validToken}>
+                <ProfilePage user={user} setUser={setUser} token={token} setUsers={setUsers} users={users}/>
+              </Protected>
+            } />
+            
           <Route 
             path='gamePage' 
             element={
