@@ -91,9 +91,9 @@ export default function App(){
                 <ProfilePage user={user} setUser={setUser} token={token} setUsers={setUsers} users={users}/>
               </Protected>
             } />
-            
+
           <Route 
-            path='gamePage' 
+            path='profile/gamePage' 
             element={
               <Protected isAllowed={validToken}>
                 <GamePage user={user} setUser={setUser} token={token} setUsers={setUsers} users={users}/>
