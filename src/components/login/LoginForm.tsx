@@ -52,7 +52,7 @@ const LoginForm = (props: any) => {
         }
         else{  
           users = await fetchUsers();
-          navigate('/gamePage');
+          navigate('/profile');
         } 
         setUsers(users);
       }

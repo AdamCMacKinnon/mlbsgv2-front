@@ -16,7 +16,7 @@ const AdminContainer = styled.div`
   width: 80%;  
   padding: 20px;
   color:rgb(6, 128, 55);
-  border-radius: 30px;x
+  border-radius: 30px;
   justify-content: center;
   flex-wrap: wrap;
   align-items: center;
