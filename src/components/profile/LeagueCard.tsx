@@ -4,13 +4,14 @@ import Typography from '@mui/material/Typography'
 import React from 'react'
 import { LeagueCards } from './LeagueCard.styles';
 import { Link } from 'react-router-dom';
+import NullMessage from './NullMessage';
 
 export default function LeagueCard(props: any) {
     const { user } = props;
     console.log(user);
   return (
     <LeagueCards>
-        {user.subsUsers.map((subs: any) => (
+        {user.subsUsers.length > 0 ? user.subsUsers.map((subs: any) => (
             <Link to={subs.league_role === 'commish' ? 'admin' : 'gamepage'} style={{textDecoration: 'none'}}>
           <Card
           style={{"margin": "10px"}}
@@ -28,8 +29,7 @@ export default function LeagueCard(props: any) {
             </CardContent>
           </Card>
           </Link>
-        ))}
+        )) : <NullMessage />}
     </LeagueCards>
   )
 }
-

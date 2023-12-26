@@ -1,21 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import LeagueCard from "../components/profile/LeagueCard";
-import ButtonRow from "../components/profile/ButtonRow";
+import ProfileNavBar from "../components/profile/ProfileNavBar";
 
 export default function ProfilePage(props: any) {
   return (
     <>
       <ProfileContainer>
         <Headline>{props.user.username}'s Player Profile</Headline>
-        <ButtonRow />
+        <ProfileNavBar user={props.user} />
         <br></br>
-        {props.user.subsUsers.length > 0 ? <LeagueCard user={props.user} /> 
-        : <NullMessage>
-          You haven't Joined any Leagues Yet!
-          <br/>
-          Join the Global League to start playing Now!
-          </NullMessage>}
       </ProfileContainer>
     </>
   );
@@ -34,11 +27,6 @@ const ProfileContainer = styled.div`
   text-align: center;
   vertical-align: center;
 `;
-
-const NullMessage = styled.h1`
-color: white;
-margin-top: 150px;
-`
 
 const Headline = styled.h1`
 color: orange;
