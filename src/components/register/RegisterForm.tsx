@@ -50,7 +50,7 @@ const RegisterForm = (props: any) => {
           let user = await getLoggedInUser(token)
 
           setUser(user);
-          navigate('/gamePage');
+          navigate('/profile');
         }
       }
     } catch (e : any) {

@@ -11,7 +11,7 @@ export default function LeagueCard(props: any) {
   return (
     <LeagueCards>
         {user.subsUsers.map((subs: any) => (
-            <Link to={subs.league_role === 'commish' ? '/admin' : 'gamepage'} style={{textDecoration: 'none'}}>
+            <Link to={subs.league_role === 'commish' ? 'admin' : 'gamepage'} style={{textDecoration: 'none'}}>
           <Card
           style={{"margin": "10px"}}
           key={subs.league_id}
