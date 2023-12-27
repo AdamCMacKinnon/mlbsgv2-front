@@ -3,11 +3,13 @@ import styled from "styled-components";
 import ProfileNavBar from "../components/profile/ProfileNavBar";
 
 export default function ProfilePage(props: any) {
+  const { user, token } = props;
+  console.log(props);
   return (
     <>
       <ProfileContainer>
-        <Headline>{props.user.username}'s Player Profile</Headline>
-        <ProfileNavBar user={props.user} />
+        <Headline>{user.username}'s Player Profile</Headline>
+        <ProfileNavBar user={user} token={token} />
         <br></br>
       </ProfileContainer>
     </>

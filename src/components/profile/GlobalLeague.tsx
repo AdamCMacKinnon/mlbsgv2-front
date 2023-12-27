@@ -1,20 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import LeaderBoard from "../LeaderBoard";
 import styled from "styled-components";
 import { Button } from "@mui/material";
+import { enterGlobalLeague } from "../../functions";
+import DisplayMessage from "../DisplayMessage";
 
 export default function GlobalLeague(props: any) {
+    const [apiResponse, setApiResponse] =  useState({});
+    const [open, setOpen] = useState(false);
+  
+
+    const { user, token } = props;
+    const handleGlobalEntry = async (e: any) => {
+
+        const response: any = await enterGlobalLeague(token);
+        setApiResponse(response);
+        if (response === 'SUCCESS JOINING LEAGUE!') {
+            setOpen(true);
+        }
+    }  
   return (
     <>
-            <Button variant="contained" color="secondary">JOIN THE GLOBAL LEAGUE</Button>
+            <Button onClick={handleGlobalEntry} variant="contained" color="error" sx={{padding: '10px', marginBottom: '10px'}}>JOIN THE GLOBAL LEAGUE</Button>
+            <br />
+      <DisplayMessage response={apiResponse} open={open} setOpen={setOpen} />
       <Header>
         <h3>Current Global League Standings:</h3>
       </Header>
-      <LeaderBoard />
+      <LeaderBoard /> 
     </>
   );
 }
 
-const Header = styled.h1`
+const Header = styled.h3`
   color: white;
 `;

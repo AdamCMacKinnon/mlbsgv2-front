@@ -250,3 +250,19 @@ export const getDisplayTime = (date: any) => {
 export const resetStateValues = (setState: any[]) => {
   setState.map((state) => state(''))
 }
+
+export const enterGlobalLeague = async (token: any) => {
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_SERVER}/subs/join`, {
+      passcode: '846576f469bedb00'
+    },{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -11,7 +11,7 @@ import GlobalLeague from './GlobalLeague';
 
 
 export default function ProfileNavBar(props: any) {
-  const { user } = props;
+  const { user, token } = props;
     const [value, setValue] = useState(0);
   return (
     <>
@@ -43,7 +43,7 @@ export default function ProfileNavBar(props: any) {
         </Box>
         <div>
           {value === 0 ? <LeagueCard user={user} /> : null}
-          {value === 1 ? <GlobalLeague /> : null}
+          {value === 1 ? <GlobalLeague user={user} token={token} /> : null}
         </div>
     </>
   )

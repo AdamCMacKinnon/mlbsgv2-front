@@ -12,17 +12,22 @@ export default function DisplayMessage(props: any) {
 
   switch (response.status) {
     case 200:
-      displayMessage = 'Password Reset Successfully.  Check your Email for more details.';
+    case 201:
+    case "SUCCESS JOINING LEAGUE!":    
+      displayMessage = 'SUCCESS!';
       console.log(response);
       break;
     case 404:
-      displayMessage = 'Email is not found.  Check your credentials and try again.'
+      displayMessage = 'Resource Not Found.  Try again!'
       break;
     case 500:
       displayMessage = 'There is a Server error.  Contact Support or try again later!'
       break;
+    case 409:
+      displayMessage = 'It looks like what you entered already exists.  Choose another Value'
+      break;
     default:
-      displayMessage = 'We dont know whats going on here';
+      displayMessage = 'Generic Message';
   }
 
   return (
@@ -30,7 +35,7 @@ export default function DisplayMessage(props: any) {
       <Collapse in={open}>
         <Alert
           severity={
-            response.status === 200 || response.status === 201
+            response.status === 200 || response.status === 201 || "SUCCESS JOINING LEAGUE!"
               ? "success"
               : "error"
           }
