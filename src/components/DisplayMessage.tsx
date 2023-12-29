@@ -25,8 +25,11 @@ export default function DisplayMessage(props: any) {
     case 409:
       displayMessage = 'It looks like what you entered already exists.  Choose another Value'
       break;
+    case 401:
+      displayMessage = 'The Credentials entered do not match or you are not authorized to view this page.'
+      break;
     default:
-      displayMessage = 'Generic Message';
+      displayMessage = 'Unknown Error Code.  Please Try Again or Contact Support';
   }
 
   return (

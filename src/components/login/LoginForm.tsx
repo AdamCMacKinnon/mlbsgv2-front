@@ -47,14 +47,14 @@ const LoginForm = (props: any) => {
 
         setUser(user);
         console.log(user);
-        // if (user.role === 'admin') {
-        //   navigate('/admin');
-        //   users = await fetchAdminUsers(token);
-        // }
-        // else{  
+        if (user.role === 'admin') {
+          navigate('/admin');
+          users = await fetchAdminUsers(token);
+        }
+        else {  
           users = await fetchUsers();
           navigate('/profile');
-        // } 
+        } 
         setUsers(users);
       }
       else {
