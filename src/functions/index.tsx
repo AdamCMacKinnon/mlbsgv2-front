@@ -261,8 +261,15 @@ export const enterGlobalLeague = async (token: any) => {
       }
     });
     const data = await response.data;
-    return data;
+    return {
+      data: data,
+      status: 201
+    }
   } catch (error) {
     console.log(error);
+    return {
+      status: 409,
+      message: 'LEAGUE NOT FOUND OR ALREADY JOINED'
+    }
   }
 }

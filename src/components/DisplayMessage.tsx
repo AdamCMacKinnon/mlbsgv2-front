@@ -13,7 +13,6 @@ export default function DisplayMessage(props: any) {
   switch (response.status) {
     case 200:
     case 201:
-    case "SUCCESS JOINING LEAGUE!":    
       displayMessage = 'SUCCESS!';
       console.log(response);
       break;
@@ -35,7 +34,7 @@ export default function DisplayMessage(props: any) {
       <Collapse in={open}>
         <Alert
           severity={
-            response.status === 200 || response.status === 201 || "SUCCESS JOINING LEAGUE!"
+            response.status === 200 || response.status === 201
               ? "success"
               : "error"
           }

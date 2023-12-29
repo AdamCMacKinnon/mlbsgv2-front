@@ -15,8 +15,10 @@ export default function GlobalLeague(props: any) {
 
         const response: any = await enterGlobalLeague(token);
         setApiResponse(response);
-        if (response === 'SUCCESS JOINING LEAGUE!') {
-            setOpen(true);
+        if (!response) {
+            setOpen(false);
+        } else {
+            setOpen(true)
         }
     }  
   return (
