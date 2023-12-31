@@ -8,6 +8,7 @@ import AddIcon from '@mui/icons-material/Add';
 import LeagueCard from './LeagueCard';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import GlobalLeague from './GlobalLeague';
+import ComingSoon from './ComingSoon';
 
 
 export default function ProfileNavBar(props: any) {
@@ -44,6 +45,8 @@ export default function ProfileNavBar(props: any) {
         <div>
           {value === 0 ? <LeagueCard user={user} /> : null}
           {value === 1 ? <GlobalLeague user={user} token={token} /> : null}
+          {value === 2 ? <ComingSoon /> : null}
+          {value === 3 ? <ComingSoon /> : null}
         </div>
     </>
   )
