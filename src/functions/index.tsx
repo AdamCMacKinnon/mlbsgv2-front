@@ -103,11 +103,24 @@ const formatResponse = (response: any) => {
   }
 }
 
+/**
+ * For now, this function has a hardcoded "leagueId" value.
+ * This is temporary for local development.  Replace the UUID here with a subleague
+ * that exists on your local DB.  Eventually this will be passed in as a param
+ * from user state.
+ * 
+ * @param token 
+ * @param week 
+ * @param pick 
+ * @returns 
+ */
 export async function makePick(token: any, week: any, pick: any) {
+  const leagueId = 'd730ee25-08bd-408c-9536-000a6e39148c';
   try {
     const response = await axios.post(`${process.env.REACT_APP_SERVER}/picks`, {
       week: week,
-      pick: pick.name
+      pick: pick.name,
+      subleague_id: leagueId
     },{
       headers: {
         'Authorization': `Bearer ${token}`
@@ -174,6 +187,25 @@ export const updateUserInfo = async (requestData: any) => {
   }
 }
 
+export const resetPassword = async (requestData: any) => {
+  try {
+    const response = await axios.patch(`${process.env.REACT_APP_SERVER}/auth/passwordreset/`, requestData);
+    return response;
+  } catch (error: any) {
+    if (error.code === "ERR_NETWORK") {
+      return {
+        status: 500,
+        message: 'API Connection Error'
+      }
+    } else {
+      return {
+        status: 404,
+        message: 'Error Resetting Password.  Credentials are invalid'
+      }
+    }
+  }
+}
+
 
 export const displaySchedule = (dateFrom: string, dateTo: string, team: string) => {
   const shed: any = scheduleData;
@@ -217,4 +249,27 @@ export const getDisplayTime = (date: any) => {
 
 export const resetStateValues = (setState: any[]) => {
   setState.map((state) => state(''))
+}
+
+export const enterGlobalLeague = async (token: any) => {
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_SERVER}/subs/join`, {
+      passcode: '846576f469bedb00'
+    },{
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    const data = await response.data;
+    return {
+      data: data,
+      status: 201
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      status: 409,
+      message: 'LEAGUE NOT FOUND OR ALREADY JOINED'
+    }
+  }
 }

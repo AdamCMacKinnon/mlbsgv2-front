@@ -60,7 +60,7 @@ const UserAccount = (props: any) => {
   }
 
   const handleGamePageClick = () => {
-    navigate('/gamepage');
+    navigate('/profile/gamepage');
   }
 
   return (

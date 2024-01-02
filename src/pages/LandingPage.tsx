@@ -10,7 +10,7 @@ import { LandingPageContainer, LandingPageSection, CloseRegistration } from "./L
 
 
 const LandingPage = () => {
-  const [closeRegistration] = useState(true);
+  const [closeRegistration] = useState(false);
   const navigate = useNavigate();
 
   const handleClick = (route: string) => {

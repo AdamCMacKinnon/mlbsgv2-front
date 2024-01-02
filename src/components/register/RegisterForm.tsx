@@ -50,7 +50,7 @@ const RegisterForm = (props: any) => {
           let user = await getLoggedInUser(token)
 
           setUser(user);
-          navigate('/gamePage');
+          navigate('/profile');
         }
       }
     } catch (e : any) {
@@ -75,12 +75,14 @@ const RegisterForm = (props: any) => {
           onChange={e => setUsername(e.target.value)}
         />
         <TextField
-          id="outline"
+          required
+          id="outline-required"
           label="Email"
           value={email}
           onChange={e => setEmail(e.target.value)}
         />
         <TextField
+          required
           id="outlined-password-input"
           label="Password"
           type="password"
