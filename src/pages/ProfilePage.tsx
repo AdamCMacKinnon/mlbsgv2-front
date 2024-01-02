@@ -1,14 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import LeagueCard from "../components/profile/LeagueCard";
+import ProfileNavBar from "../components/profile/ProfileNavBar";
 
 export default function ProfilePage(props: any) {
+  const { user, token } = props;
+  console.log(props);
   return (
     <>
       <ProfileContainer>
-        <h1 style={{ color: "violet" }}>{props.user.username} League Menu</h1>
+        <Headline>{user.username}'s Player Profile</Headline>
+        <ProfileNavBar user={user} token={token} />
         <br></br>
-        <LeagueCard user={props.user} />
       </ProfileContainer>
     </>
   );
@@ -27,3 +29,9 @@ const ProfileContainer = styled.div`
   text-align: center;
   vertical-align: center;
 `;
+
+const Headline = styled.h1`
+color: orange;
+margin-bottom: 50px;
+
+`

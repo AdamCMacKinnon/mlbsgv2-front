@@ -12,17 +12,24 @@ export default function DisplayMessage(props: any) {
 
   switch (response.status) {
     case 200:
-      displayMessage = 'Password Reset Successfully.  Check your Email for more details.';
+    case 201:
+      displayMessage = 'SUCCESS!';
       console.log(response);
       break;
     case 404:
-      displayMessage = 'Email is not found.  Check your credentials and try again.'
+      displayMessage = 'Resource Not Found.  Try again!'
       break;
     case 500:
       displayMessage = 'There is a Server error.  Contact Support or try again later!'
       break;
+    case 409:
+      displayMessage = 'It looks like what you entered already exists.  Choose another Value'
+      break;
+    case 401:
+      displayMessage = 'The Credentials entered do not match or you are not authorized to view this page.'
+      break;
     default:
-      displayMessage = 'We dont know whats going on here';
+      displayMessage = 'Unknown Error Code.  Please Try Again or Contact Support';
   }
 
   return (
