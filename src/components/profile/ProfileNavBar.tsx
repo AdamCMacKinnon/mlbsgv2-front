@@ -8,7 +8,8 @@ import AddIcon from '@mui/icons-material/Add';
 import LeagueCard from './LeagueCard';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import GlobalLeague from './GlobalLeague';
-import ComingSoon from './ComingSoon';
+import JoinLeague from './JoinLeague';
+import CreateLeague from './CreateLeague';
 
 
 export default function ProfileNavBar(props: any) {
@@ -23,6 +24,7 @@ export default function ProfileNavBar(props: any) {
             onChange={(event, newValue) => {
               setValue(newValue);
             }}
+            sx={{padding: "10px"}}
           >
             <BottomNavigationAction
               label="Current Leagues"
@@ -45,8 +47,8 @@ export default function ProfileNavBar(props: any) {
         <div>
           {value === 0 ? <LeagueCard user={user} /> : null}
           {value === 1 ? <GlobalLeague user={user} token={token} /> : null}
-          {value === 2 ? <ComingSoon /> : null}
-          {value === 3 ? <ComingSoon /> : null}
+          {value === 2 ? <JoinLeague user={user} token={token} /> : null}
+          {value === 3 ? <CreateLeague user={user} token={token} /> : null}
         </div>
     </>
   )

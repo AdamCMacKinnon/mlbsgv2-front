@@ -4,6 +4,7 @@ import { playerLeaderBoardRowStyle } from "./PlayerLeaderBoardRow.styles";
 const PlayerLeaderBoardRow = (props: any) => {
   const { user, currentUser } = props;
 
+
   let style = {};
   if (user.username === currentUser.username) {
     style = playerLeaderBoardRowStyle
@@ -11,7 +12,7 @@ const PlayerLeaderBoardRow = (props: any) => {
 
   return (
     <tr key={user.username} style={style}>
-      <td>{user.rank}</td><td>{user.username}</td><td>{user.diff}</td>
+      <td>{user.username}</td><td>{user.pick}</td><td>{user.league_diff}</td>
     </tr>
   );
 };

@@ -9,12 +9,14 @@ import SelectedTeam from '../components/gamepage/SelectedTeam';
 import UserPicks from '../components/gamepage/UserPicks';
 
 import { teams } from '../data/teams';
-
+import { useLocation } from 'react-router-dom';
 
 
 export default function GamePage(props: any) {
   const { user, setUser, token, users } = props;
-
+  const location: any = useLocation();
+  const { leagueid } = location.state;
+  
   const userPickList: any = []
   user.picks?.forEach((pick: any) => userPickList.push(pick.pick));
   const pickTeams = teams.filter(team => !userPickList.includes(team.name))
@@ -34,7 +36,7 @@ export default function GamePage(props: any) {
           <UserPicks userPicks={user.picks}/>
         </Section>
         <Section>
-          <PlayerLeaderBoard currentUser={user} users={users}/>
+          <PlayerLeaderBoard currentUser={user} users={users} token={token} leagueid={leagueid}/>
         </Section>
       </GamePageComponents>     
     </GamePageContainer>
