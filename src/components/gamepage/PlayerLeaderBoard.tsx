@@ -2,12 +2,21 @@ import PlayerLeaderBoardRow from "./PlayerLeaderBoardRow";
 
 import { PlayerLeaderBoardContainer, PlayerLeaderBoardTable } from './PlayerLeaderBoard.styles';
 
-import { topRankedUsers } from "./functions";
+import { useEffect, useState } from "react";
+import { getLeagueLevelUsers } from "../../functions";
 
 const PlayerLeaderBoard = (props: any) => {
-  const {currentUser, users} = props;
+  const { currentUser, leagueid, token } = props;
+  const [leagueUsers, setLeagueUsers] = useState<{userId: string, username: string, week: any, pick: any, weekly_diff: any, league_diff: number}[]>([]);
 
-  const displayUsers = topRankedUsers(users, currentUser);
+
+  useEffect(() => {
+    const leagueUsers = async (leagueid: string, token: string) => {
+      const userList: any = await getLeagueLevelUsers(leagueid, token);
+      setLeagueUsers(userList.data);
+    }
+    leagueUsers(leagueid,token);
+  },[leagueid, token])
 
   return (
     <PlayerLeaderBoardContainer>
@@ -15,13 +24,13 @@ const PlayerLeaderBoard = (props: any) => {
       <PlayerLeaderBoardTable>
         <thead>
           <tr>
-            <th>Rank</th>
-            <th>User</th>
-            <th>Diff</th>
+            <th>Username</th>
+            <th>Current Pick</th>
+            <th>Overall Diff</th>
           </tr>
-        </thead>
+        </thead> 
         <tbody>
-          {displayUsers.map((user: any) => {
+          {leagueUsers.map((user: any) => {
           return <PlayerLeaderBoardRow key={user.username} user={user} currentUser={currentUser} />;
           })}
        </tbody>

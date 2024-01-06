@@ -321,3 +321,24 @@ export const createPrivateLeague = async (token: any, leagueName: string, userEm
     }
   }
 }
+
+export const getLeagueLevelUsers = async (leagueid: string, token: string) => {
+  try {
+    const response = await axios.get(`${process.env.REACT_APP_SERVER}/subs/leagues/${leagueid}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    const data = await response.data;
+    return {
+      data: data,
+      status: 200
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      status: 404,
+      message: 'NO USERS IN THIS LEAGUE'
+    }
+  }
+}

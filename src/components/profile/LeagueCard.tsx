@@ -8,11 +8,11 @@ import NullMessage from './NullMessage';
 
 export default function LeagueCard(props: any) {
     const { user } = props;
-    console.log(user);
+    console.log(user.subsUsers);
   return (
     <LeagueCards>
         {user.subsUsers.length > 0 ? user.subsUsers.map((subs: any) => (
-            <Link to={subs.league_role === 'commish' ? 'admin' : 'gamepage'} style={{textDecoration: 'none'}}>
+            <Link to={subs.league_role === 'commish' ? 'admin' : 'gamepage'} state={{leagueid: subs.league_id}} style={{textDecoration: 'none'}}>
           <Card
           style={{"margin": "10px"}}
           key={subs.league_id}
