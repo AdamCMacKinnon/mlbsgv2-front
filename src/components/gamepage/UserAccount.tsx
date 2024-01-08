@@ -20,13 +20,15 @@ import { UserAccountContainer, ButtonContainer } from "./UserAccount.styles";
 const UserAccount = (props: any) => {
   const { user, setUser } = props;
   const [email, setEmail] = useState(user.email);
+  const [passwordCheck, setPasswordCheck] = useState('');
   const [password, setPassword] = useState('');
   const [isUpdated, setIsUpdated] = useState(false);
 
   const navigate = useNavigate()
 
   const handleSubmit = async (e: any) => {
-    e.preventDefault();
+    e.preventDefault(); 
+    console.log('Submitted!')
 
     let requestData;
     if(password) {
@@ -82,10 +84,14 @@ const UserAccount = (props: any) => {
             value={email}
             onChange={e => setEmail(e.target.value)}
           />
-        </FormControl>
+     
 <PasswordInput password={password} setPassword={setPassword} />
-        
+<PasswordInput password={passwordCheck} setPassword={setPasswordCheck} />
+{password !== passwordCheck ? <p>Please make sure passwords match.</p> : null}
+
+</FormControl>
       </Box>
+      
       <ButtonContainer>
       <Button variant="contained" type="submit">Update Info</Button>
       {isUpdated ? (<p>Account Info Updated</p>): null}
