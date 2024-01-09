@@ -15,7 +15,7 @@ import { useLocation } from 'react-router-dom';
 export default function GamePage(props: any) {
   const { user, setUser, token, users } = props;
   const location: any = useLocation();
-  const { leagueid } = location.state;
+  const { leagueid, leagueName } = location.state;
   
   const userPickList: any = []
   user.picks?.forEach((pick: any) => userPickList.push(pick.pick));
@@ -23,8 +23,8 @@ export default function GamePage(props: any) {
   return (
     <GamePageContainer>
       <AlertMessage open={true} severity="error" message="Week 1 will go from July 24 - July 30" />
+      <h1 style={{color: 'white'}}>{leagueName}</h1>
       <ActiveBanner user={user} />
-      <CurrentActivePlayers users={users}/>
       <GamePageComponents>
         <Section>
           <SelectedTeam user={user}/>
