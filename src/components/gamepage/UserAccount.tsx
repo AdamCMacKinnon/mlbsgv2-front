@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 //Components
 import Box from "@mui/material/Box";
@@ -15,41 +15,40 @@ import { updateUserInfo } from "../../functions";
 //Styles
 import { UserAccountContainer, ButtonContainer } from "./UserAccount.styles";
 
-
-
 const UserAccount = (props: any) => {
-  const { user, setUser } = props;
+  const { user, setUser, token } = props;
   const [email, setEmail] = useState(user.email);
-  const [password, setPassword] = useState('');
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const [password, setPassword] = useState("");
   const [isUpdated, setIsUpdated] = useState(false);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    console.log("Submitted!");
 
     let requestData;
-    if(password) {
+    if (password) {
       requestData = {
         username: user.username,
         email,
-        password
-      }
+        password,
+      };
     } else {
       requestData = {
         username: user.username,
-        email
-      }
+        email,
+      };
     }
 
-    if (email !==user.email || password) {
-
-      const response: any = await updateUserInfo(requestData)
+    if (email !== user.email || password) {
+      const response: any = await updateUserInfo(requestData, token);
 
       if (response.status === 200) {
         setUser(response.data);
         setIsUpdated(true);
-        setPassword('');
+        setPassword("");
         console.log(response.data);
       } else {
         console.log(response.data.message);
@@ -57,11 +56,11 @@ const UserAccount = (props: any) => {
     } else {
       setIsUpdated(false);
     }
-  }
+  };
 
   const handleGamePageClick = () => {
-    navigate('/profile/gamepage');
-  }
+    navigate("/profile/gamepage");
+  };
 
   return (
     <UserAccountContainer>
@@ -69,7 +68,7 @@ const UserAccount = (props: any) => {
       <Box
         component="form"
         sx={{
-          "& > :not(style)": { m: 1, width: "25ch" }
+          "& > :not(style)": { m: 1, width: "25ch" },
         }}
         noValidate
         autoComplete="off"
@@ -80,22 +79,31 @@ const UserAccount = (props: any) => {
           <Input
             id="component-simple"
             value={email}
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
+
+          <PasswordInput password={password} setPassword={setPassword} />
+          <PasswordInput
+            password={passwordCheck}
+            setPassword={setPasswordCheck}
+          />
+          {password !== passwordCheck ? (
+            <p style={{color: 'red'}}>Please make sure passwords match.</p>
+          ) : null}
         </FormControl>
-<PasswordInput password={password} setPassword={setPassword} />
-        
       </Box>
+
       <ButtonContainer>
-      <Button variant="contained" type="submit">Update Info</Button>
-      {isUpdated ? (<p>Account Info Updated</p>): null}
-      <Button color="success" onClick={handleGamePageClick}>
-            Go to Game Page
-          </Button>
+        <Button variant="contained" type="submit" onClick={handleSubmit}>
+          Update Info
+        </Button>
+        {isUpdated ? <p>Account Info Updated</p> : null}
+        <Button color="success" onClick={handleGamePageClick}>
+          Go to Game Page
+        </Button>
       </ButtonContainer>
     </UserAccountContainer>
-    
-  )
-} 
+  );
+};
 
 export default UserAccount;
