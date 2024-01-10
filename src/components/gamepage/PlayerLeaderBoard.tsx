@@ -2,28 +2,25 @@ import PlayerLeaderBoardRow from "./PlayerLeaderBoardRow";
 
 import { PlayerLeaderBoardContainer, PlayerLeaderBoardTable } from './PlayerLeaderBoard.styles';
 
-import { topRankedUsers } from "./functions";
+// import { useEffect, useState } from "react";
+// import { getLeagueLevelUsers } from "../../functions";
 
 const PlayerLeaderBoard = (props: any) => {
-  const {currentUser, users} = props;
-
-  const displayUsers = topRankedUsers(users, currentUser);
-
+  const { currentUser, leagueUsers } = props;
   return (
     <PlayerLeaderBoardContainer>
       <h3>LeaderBoard</h3>
       <PlayerLeaderBoardTable>
         <thead>
           <tr>
-            <th>Rank</th>
-            <th>User</th>
-            <th>Diff</th>
+            <th>Username</th>
+            <th>Current Pick</th>
+            <th>Current Week Diff</th>
+            <th>Overall Diff</th>
           </tr>
-        </thead>
+        </thead> 
         <tbody>
-          {displayUsers.map((user: any) => {
-          return <PlayerLeaderBoardRow key={user.username} user={user} currentUser={currentUser} />;
-          })}
+          <PlayerLeaderBoardRow currentUser={currentUser} leagueUsers={leagueUsers} />
        </tbody>
       </PlayerLeaderBoardTable>
     </PlayerLeaderBoardContainer>

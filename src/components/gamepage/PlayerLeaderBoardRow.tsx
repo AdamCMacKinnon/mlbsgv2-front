@@ -1,19 +1,34 @@
-
+import styled from "styled-components";
 import { playerLeaderBoardRowStyle } from "./PlayerLeaderBoardRow.styles";
 
 const PlayerLeaderBoardRow = (props: any) => {
-  const { user, currentUser } = props;
+  const { user, currentUser, leagueUsers } = props;
+
+  console.log(user);
+  console.log(leagueUsers);
 
   let style = {};
-  if (user.username === currentUser.username) {
-    style = playerLeaderBoardRowStyle
+  if (leagueUsers.username === currentUser.username) {
+    style = playerLeaderBoardRowStyle;
   }
 
   return (
-    <tr key={user.username} style={style}>
-      <td>{user.rank}</td><td>{user.username}</td><td>{user.diff}</td>
-    </tr>
-  );
+    <>
+    {leagueUsers.map((player: any) => {
+      return <LeaderBoardRow key={leagueUsers.username} style={style}>
+        <td>{player.username}</td>
+        <td>{player.pick}</td>
+        <td>{player.weekly_diff}</td>
+        <td>{player.league_diff}</td>
+    </LeaderBoardRow>})}
+    </>
+  )
 };
+
+const LeaderBoardRow = styled.tr`
+font-weight: bolder;
+color: black;
+backgroundColor: green;
+`
 
 export default PlayerLeaderBoardRow;
