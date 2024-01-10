@@ -46,7 +46,7 @@ export default function GamePage(props: any) {
   return (
     <GamePageContainer>
       <h1 style={{color: 'white'}}>{leagueName}</h1>
-      <ActiveBanner user={user} week={leagueUsers[0].week} />
+      <ActiveBanner user={user} />
       <GamePageComponents>
         <Section>
           <SelectedTeam user={user}/>
