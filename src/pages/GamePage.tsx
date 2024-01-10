@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 import ActiveBanner from '../components/gamepage/ActiveBanner';
 import AlertMessage from '../components/AlertMessage';
-import CurrentActivePlayers from '../components/gamepage/CurrentActivePlayers';
 import PickTeam from '../components/gamepage/PickTeam';
 import PlayerLeaderBoard from '../components/gamepage/PlayerLeaderBoard';
 import SelectedTeam from '../components/gamepage/SelectedTeam';
@@ -10,21 +9,44 @@ import UserPicks from '../components/gamepage/UserPicks';
 
 import { teams } from '../data/teams';
 import { useLocation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { getLeagueLevelUsers } from '../functions';
+import Spinner from '../components/gamepage/Spinner';
 
 
 export default function GamePage(props: any) {
   const { user, setUser, token, users } = props;
   const location: any = useLocation();
   const { leagueid, leagueName } = location.state;
+  const [loading, setLoading] = useState(true);
+  const [leagueUsers, setLeagueUsers] = useState<{userId: string, username: string, week: any, pick: any, weekly_diff: any, league_diff: number}[]>([]);
+
+
+  useEffect(() => {
+    setTimeout(function () {
+      const leagueUsers = async (leagueid: string, token: string) => {
+        const userList: any = await getLeagueLevelUsers(leagueid, token);
+        setLeagueUsers(userList.data);
+      }
+      leagueUsers(leagueid,token);
+      setLoading(false);
+    }, 800)
+  },[leagueid, token]);
   
   const userPickList: any = []
-  user.picks?.forEach((pick: any) => userPickList.push(pick.pick));
+  leagueUsers.forEach((pick: any) => userPickList.push(pick.pick));
   const pickTeams = teams.filter(team => !userPickList.includes(team.name))
+
+  if (loading) {
+    return (
+      <GamePageContainer>
+            <Spinner />
+      </GamePageContainer>
+  )}
   return (
     <GamePageContainer>
-      <AlertMessage open={true} severity="error" message="Week 1 will go from July 24 - July 30" />
       <h1 style={{color: 'white'}}>{leagueName}</h1>
-      <ActiveBanner user={user} />
+      <ActiveBanner user={user} week={leagueUsers[0].week} />
       <GamePageComponents>
         <Section>
           <SelectedTeam user={user}/>
@@ -35,9 +57,9 @@ export default function GamePage(props: any) {
         <Section>
           <UserPicks userPicks={user.picks}/>
         </Section>
-        <Section>
-          <PlayerLeaderBoard currentUser={user} users={users} token={token} leagueid={leagueid}/>
-        </Section>
+        <LeaderBoardSection>
+          <PlayerLeaderBoard currentUser={user} users={users} token={token} leagueid={leagueid} leagueUsers={leagueUsers}/>
+        </LeaderBoardSection>
       </GamePageComponents>     
     </GamePageContainer>
   )
@@ -80,4 +102,15 @@ const GamePageComponents = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: space-between;
+`
+
+const LeaderBoardSection = styled.div`
+  width: 80%;
+  margin: 20px;
+  // background-color: rgba(0 , 43, 15, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
+  margin: 10px auto;
+  border-radius: 5px;
+  position: relative;
+  padding: 15px;
 `

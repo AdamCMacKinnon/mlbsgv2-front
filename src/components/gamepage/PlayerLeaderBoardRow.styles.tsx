@@ -3,3 +3,9 @@ export const playerLeaderBoardRowStyle = {
   color: "#fff",
   backgroundColor: "green"
 }
+
+export const LeaderBoardRowStyle = {
+  fontWeight: "bolder",
+  color: "#fff",
+  backgroundColor: "green"
+}
