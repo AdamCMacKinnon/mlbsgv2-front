@@ -9,7 +9,6 @@ const TextInput = (props: any) => {
     setValue(e.target.value);
   }
   
-  console.log(value);
   return (
     <FormControl variant="standard">
       <InputLabel htmlFor={id}>{label}</InputLabel>

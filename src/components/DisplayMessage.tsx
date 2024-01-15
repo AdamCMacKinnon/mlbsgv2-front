@@ -14,7 +14,6 @@ export default function DisplayMessage(props: any) {
     case 200:
     case 201:
       displayMessage = 'SUCCESS!';
-      console.log(response);
       break;
     case 404:
       displayMessage = 'Resource Not Found.  Try again!'

@@ -9,7 +9,6 @@ const ResponseMessage = (props: any) => {
     color: ''
   }
 
-  console.log(response);
   if (response?.status) {
     if (response.status === 200) {
       setMessage(successMessage)

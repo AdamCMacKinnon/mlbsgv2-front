@@ -8,7 +8,6 @@ import { Button, MenuItem, Select } from "@mui/material";
 
 const LeagueInfo = (props: any) => {
   const { leagueUsers, leagueName } = props;
-  console.log(leagueUsers, leagueName);
 
   return (
     <LeagueInfoContainer>

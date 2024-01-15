@@ -35,7 +35,6 @@ export default function GamePage(props: any) {
     }, 800)
   },[leagueid, token]);
   
-  console.log(user);
   const userPickList: any = []
   leagueUsers.forEach((pick: any) => userPickList.push(pick.pick));
   const pickTeams = teams.filter(team => !userPickList.includes(team.name))
