@@ -93,7 +93,7 @@ export default function App(){
             } />
 
           <Route 
-            path='profile/gamePage' 
+            path='profile/gamePage/:leagueid' 
             element={
               <Protected isAllowed={validToken}>
                 <GamePage user={user} setUser={setUser} token={token} setUsers={setUsers} users={users}/>
@@ -107,9 +107,9 @@ export default function App(){
            }/>    
           
           <Route 
-            path='admin' 
+            path='profile/gamepage/:id/admin' 
             element={
-              <Protected isAllowed={validToken && user?.role === 'admin'}>
+              <Protected isAllowed={validToken}>
                 <Admin />
               </Protected>
           }>
