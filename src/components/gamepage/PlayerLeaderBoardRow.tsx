@@ -2,10 +2,7 @@ import styled from "styled-components";
 import { playerLeaderBoardRowStyle } from "./PlayerLeaderBoardRow.styles";
 
 const PlayerLeaderBoardRow = (props: any) => {
-  const { user, currentUser, leagueUsers } = props;
-
-  console.log(user);
-  console.log(leagueUsers);
+  const { currentUser, leagueUsers } = props;
 
   let style = {};
   if (leagueUsers.username === currentUser.username) {

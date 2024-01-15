@@ -59,7 +59,7 @@ const UserAccount = (props: any) => {
   };
 
   const handleGamePageClick = () => {
-    navigate("/profile/gamepage");
+    navigate("/profile");
   };
 
   return (
@@ -99,7 +99,7 @@ const UserAccount = (props: any) => {
         </Button>
         {isUpdated ? <p>Account Info Updated</p> : null}
         <Button color="success" onClick={handleGamePageClick}>
-          Go to Game Page
+          Return to Profile Page
         </Button>
       </ButtonContainer>
     </UserAccountContainer>

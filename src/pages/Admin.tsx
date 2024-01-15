@@ -5,9 +5,10 @@ import AdminMenu from "../components/admin/AdminMenu";
 
 
 export default function Admin(props: any) {
+  const { user, leagueUsers, leagueName, leagueid, token } = props;
   return (
     <AdminContainer>
-      <AdminMenu />
+      <AdminMenu user={user} token={token} leagueUsers={leagueUsers} leagueName={leagueName} leagueid={leagueid}/>
     </AdminContainer>
   );
 }

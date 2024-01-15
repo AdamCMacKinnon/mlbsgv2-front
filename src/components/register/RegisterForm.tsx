@@ -54,7 +54,6 @@ const RegisterForm = (props: any) => {
         }
       }
     } catch (e : any) {
-      console.log(e.response.data.message)
       setErrorMessage(e.response.data.message)
     }
   }

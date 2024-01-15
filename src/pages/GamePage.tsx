@@ -1,25 +1,27 @@
 import styled from 'styled-components';
 
 import ActiveBanner from '../components/gamepage/ActiveBanner';
-import AlertMessage from '../components/AlertMessage';
 import PickTeam from '../components/gamepage/PickTeam';
 import PlayerLeaderBoard from '../components/gamepage/PlayerLeaderBoard';
 import SelectedTeam from '../components/gamepage/SelectedTeam';
 import UserPicks from '../components/gamepage/UserPicks';
 
 import { teams } from '../data/teams';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getLeagueLevelUsers } from '../functions';
 import Spinner from '../components/gamepage/Spinner';
+import Button from '@mui/material/Button';
+import AdminMenu from '../components/admin/AdminMenu';
 
 
 export default function GamePage(props: any) {
   const { user, setUser, token, users } = props;
   const location: any = useLocation();
-  const { leagueid, leagueName } = location.state;
+  const { leagueid, leagueName, leagueRole } = location.state;
   const [loading, setLoading] = useState(true);
-  const [leagueUsers, setLeagueUsers] = useState<{userId: string, username: string, week: any, pick: any, weekly_diff: any, league_diff: number}[]>([]);
+  const [show, setShow] = useState(true);
+  const [leagueUsers, setLeagueUsers] = useState<{userId: string, role: string, username: string, week: any, pick: any, weekly_diff: any, league_diff: number}[]>([]);
 
 
   useEffect(() => {
@@ -46,8 +48,10 @@ export default function GamePage(props: any) {
   return (
     <GamePageContainer>
       <h1 style={{color: 'white'}}>{leagueName}</h1>
-      <ActiveBanner user={user} />
+      {leagueRole === 'commish' ? <Button variant='contained' color='success' sx={{margin: '10px'}} onClick={() => setShow(!show)}>Go To {show ? 'Admin' : 'Game'} Page</Button> : null}
+      {!show ? <AdminMenu  user={user} token={token} leagueUsers={leagueUsers} leagueName={leagueName} leagueid={leagueid}/> : 
       <GamePageComponents>
+        <ActiveBanner user={user} />
         <Section>
           <SelectedTeam user={user}/>
         </Section>
@@ -60,7 +64,8 @@ export default function GamePage(props: any) {
         <LeaderBoardSection>
           <PlayerLeaderBoard currentUser={user} users={users} token={token} leagueid={leagueid} leagueUsers={leagueUsers}/>
         </LeaderBoardSection>
-      </GamePageComponents>     
+      </GamePageComponents>  
+}   
     </GamePageContainer>
   )
 }

@@ -2,10 +2,13 @@ import React from "react";
 import { LeagueInfoContainer } from "./LeagueInfo.styles";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import { Button, Checkbox, Link, MenuItem, Select } from "@mui/material";
+// import FormControlLabel from "@mui/material/FormControlLabel";
+import { Button, MenuItem, Select } from "@mui/material";
 
-const LeagueInfo = () => {
+
+const LeagueInfo = (props: any) => {
+  const { leagueUsers, leagueName } = props;
+
   return (
     <LeagueInfoContainer>
         <Grid container spacing={2}>
@@ -16,6 +19,7 @@ const LeagueInfo = () => {
                   fullWidth
                   id="leagueName"
                   label="League Name"
+                  placeholder={leagueName}
                   autoFocus
                 />
               </Grid>
@@ -26,19 +30,13 @@ const LeagueInfo = () => {
           defaultValue={10}
           id="demo-simple-select"
           label="Game Mode"
+          disabled={true}
         >
           <MenuItem value={10}>Total Diff</MenuItem>
           <MenuItem value={20}>Survival</MenuItem>
         </Select>
               </Grid>
               <Grid item xs={12}>
-                {/* <TextField
-                  fullWidth
-                  id="email"
-                  label="Current Commish"
-                  name="email"
-                  autoComplete="email"
-                /> */}
         <Select
         fullWidth
           labelId="demo-simple-select-label"
@@ -54,12 +52,13 @@ const LeagueInfo = () => {
                 <TextField
                   fullWidth
                   name="leaguePasscode"
-                  label="League Passcode"
-                  type="text"
                   id="leaguePasscode"
+                  placeholder={`League Passcode: ${leagueUsers[0].passcode}`}
+                  autoFocus
+                  disabled={true}
                 />
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <FormControlLabel
                   control={<Checkbox value="splitLeague" color="warning" />}
                   label="Split League at All-Star Break"
@@ -70,26 +69,22 @@ const LeagueInfo = () => {
                   control={<Checkbox value="closeReg" color="error" />}
                   label="Close Registration"
                 />
-              </Grid>
+              </Grid> */}
             </Grid>
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              color="secondary"
+              color="success"
               sx={{ mt: 3, mb: 2 }}
             >
               Update League Info
             </Button>
             <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link href="/gamepage" variant="body2">
-                  Go to your Player Page
-                </Link>
-              </Grid>
             </Grid>
     </LeagueInfoContainer>
   );
 };
+
 
 export default LeagueInfo;

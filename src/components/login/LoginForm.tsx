@@ -46,7 +46,6 @@ const LoginForm = (props: any) => {
         let user = await getLoggedInUser(token)
 
         setUser(user);
-        console.log(user);
         if (user.role === 'admin') {
           navigate('/admin');
           users = await fetchAdminUsers(token);

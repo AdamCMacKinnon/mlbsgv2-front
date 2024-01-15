@@ -4,6 +4,7 @@ interface ActiveBannerProps {
 }
 
 export const ActiveBannerContainer = styled.div`
+  margin-top: 25px;
   width: 100%;
   background-color: rgba(6,128,55, 0.8);
   color: ${(props: ActiveBannerProps) => props.active ? 'rgba(255, 255, 255, 1)' : 'rgba(255, 0, 0)'};
