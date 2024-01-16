@@ -287,7 +287,7 @@ export const enterGlobalLeague = async (token: any) => {
     const response = await axios.post(
       `${process.env.REACT_APP_SERVER}/subs/join`,
       {
-        passcode: "846576f469bedb00",
+        passcode: process.env.REACT_APP_GLOBAL_PASSCODE,
       },
       {
         headers: {
