@@ -50,3 +50,13 @@ export const CloseRegistration = styled.div`
   text-align: center;
   margin: 0 auto;
 `
+
+export const LandingContent = styled.div`
+  text-align: center;
+  color: darkgreen;
+  background-color: lightgray;
+  padding: 20px;
+  border-radius: 5px;
+  opacity: 0.85;
+  
+`
