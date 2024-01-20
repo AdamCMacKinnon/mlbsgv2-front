@@ -4,15 +4,15 @@ import { playerLeaderBoardRowStyle } from "./PlayerLeaderBoardRow.styles";
 const PlayerLeaderBoardRow = (props: any) => {
   const { currentUser, leagueUsers } = props;
 
-  let style = {};
-  if (leagueUsers.username === currentUser.username) {
-    style = playerLeaderBoardRowStyle;
-  }
+  // let style = {};
+  // if (leagueUsers.username === currentUser.username) {
+  //   style = playerLeaderBoardRowStyle;
+  // }
 
   return (
     <>
     {leagueUsers.map((player: any) => {
-      return <LeaderBoardRow key={leagueUsers.username} style={style}>
+      return <LeaderBoardRow key={leagueUsers.username} >
         <td>{player.username}</td>
         <td>{player.pick}</td>
         <td>{player.weekly_diff}</td>

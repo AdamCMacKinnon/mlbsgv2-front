@@ -15,7 +15,7 @@ const PickTeam = (props: any) => {
   const [week, setWeek] = useState('');
   const [selections, setSelections] = useState([]);
   const [modalOpen, setModalOpen] = useState(false)
-  const { pickTeams, token, user, setUser } = props;
+  const { pickTeams, token, user, setUser, userPickList } = props;
 
   const handleWeekChange = (event: SelectChangeEvent) => {
     setWeek(event.target.value as string);
@@ -40,7 +40,7 @@ const PickTeam = (props: any) => {
         weekNumbers.push(i)
       }
       const pickedWeekNumbers: any = []
-      user.picks.forEach((pick: any) => {
+      userPickList.forEach((pick: any) => {
       pickedWeekNumbers.push(pick.week)
       }
       );
@@ -53,7 +53,7 @@ const PickTeam = (props: any) => {
     const currentWeekSelection = weekSelections()[0];
     setSelections(weekSelections());
     setWeek(currentWeekSelection);
-  },[user])
+  },[user, userPickList])
 
   return ( 
     <SelectTeamForm>

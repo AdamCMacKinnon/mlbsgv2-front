@@ -365,6 +365,7 @@ export const getLeagueLevelUsers = async (leagueid: string, token: string) => {
       }
     });
     const data = await response.data;
+    console.log(data);
     return {
       data: data,
       status: 200
