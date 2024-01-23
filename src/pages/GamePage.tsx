@@ -61,7 +61,7 @@ export default function GamePage(props: any) {
           <SelectedTeam userPickList={userPickList}/>
         </Section>
         <Section>
-          <PickTeam pickTeams={pickTeams} userPickList={userPickList} token={token} user={user} setUser={setUser} />
+          <PickTeam pickTeams={pickTeams} userPickList={userPickList} token={token} user={user} setUser={setUser} leagueid={leagueid} />
         </Section>
         <Section>
           <UserPicks userPicks={userPickList}/>

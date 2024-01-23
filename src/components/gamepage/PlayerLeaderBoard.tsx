@@ -2,9 +2,6 @@ import PlayerLeaderBoardRow from "./PlayerLeaderBoardRow";
 
 import { PlayerLeaderBoardContainer, PlayerLeaderBoardTable } from './PlayerLeaderBoard.styles';
 
-// import { useEffect, useState } from "react";
-// import { getLeagueLevelUsers } from "../../functions";
-
 const PlayerLeaderBoard = (props: any) => {
   const { currentUser, leagueUsers } = props;
   return (

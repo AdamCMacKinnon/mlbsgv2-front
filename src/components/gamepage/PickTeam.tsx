@@ -9,13 +9,14 @@ import ConfirmPickModal from './ConfirmPickModal';
 import { SelectTeamContainer, SelectTeamForm } from './PickTeam.styles';
 
 import { makePick, getLoggedInUser } from '../../functions';
+import DisplayMessage from '../DisplayMessage';
 
 const PickTeam = (props: any) => {
   const [team, setTeam] = useState('');
   const [week, setWeek] = useState('');
   const [selections, setSelections] = useState([]);
   const [modalOpen, setModalOpen] = useState(false)
-  const { pickTeams, token, user, setUser, userPickList } = props;
+  const { pickTeams, token, user, setUser, userPickList, leagueid } = props;
 
   const handleWeekChange = (event: SelectChangeEvent) => {
     setWeek(event.target.value as string);
@@ -28,7 +29,7 @@ const PickTeam = (props: any) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setTeam('')
-    await makePick(token, week, team);
+    await makePick(token, week, team, leagueid);
     let user = await getLoggedInUser(token)
     setUser(user);
   }

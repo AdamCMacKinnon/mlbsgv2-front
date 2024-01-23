@@ -120,15 +120,14 @@ const formatResponse = (response: any) => {
  * @param pick
  * @returns
  */
-export async function makePick(token: any, week: any, pick: any) {
-  const leagueId = "d730ee25-08bd-408c-9536-000a6e39148c";
+export async function makePick(token: any, week: any, pick: any, leagueid: string) {
   try {
     const response = await axios.post(
       `${process.env.REACT_APP_SERVER}/picks`,
       {
         week: week,
         pick: pick.name,
-        subleague_id: leagueId,
+        subleague_id: leagueid,
       },
       {
         headers: {
@@ -140,8 +139,13 @@ export async function makePick(token: any, week: any, pick: any) {
     console.log("MakePick data");
     console.log(data);
     return data;
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
+    if (error.code === "ERR_BAD_RESPONSE") {
+      return {
+        status: 409
+      }
+    }
   }
 }
 

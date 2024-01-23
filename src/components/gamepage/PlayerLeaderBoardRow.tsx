@@ -1,13 +1,7 @@
 import styled from "styled-components";
-import { playerLeaderBoardRowStyle } from "./PlayerLeaderBoardRow.styles";
 
 const PlayerLeaderBoardRow = (props: any) => {
-  const { currentUser, leagueUsers } = props;
-
-  // let style = {};
-  // if (leagueUsers.username === currentUser.username) {
-  //   style = playerLeaderBoardRowStyle;
-  // }
+  const { leagueUsers } = props;
 
   return (
     <>
