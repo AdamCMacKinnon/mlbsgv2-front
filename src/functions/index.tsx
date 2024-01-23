@@ -138,14 +138,19 @@ export async function makePick(token: any, week: any, pick: any, leagueid: strin
     const data = await response.data;
     console.log("MakePick data");
     console.log(data);
+    if (data.status === 409) {
+      return {
+        status: 409,
+        message: "Week or team is not unique"
+      }
+    }
     return data;
   } catch (error: any) {
     console.log(error);
-    if (error.code === "ERR_BAD_RESPONSE") {
-      return {
-        status: 409
-      }
-    }
+    return {
+      status: 500,
+      message: "Server Error",
+    };
   }
 }
 

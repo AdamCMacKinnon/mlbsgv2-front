@@ -9,11 +9,13 @@ import ConfirmPickModal from './ConfirmPickModal';
 import { SelectTeamContainer, SelectTeamForm } from './PickTeam.styles';
 
 import { makePick, getLoggedInUser } from '../../functions';
-import DisplayMessage from '../DisplayMessage';
+import PickTeamConfirm from './PickTeamConfirm';
 
 const PickTeam = (props: any) => {
   const [team, setTeam] = useState('');
   const [week, setWeek] = useState('');
+  const [response, setResponse] = useState<any>({});
+  const [open, setOpen] = useState(false);
   const [selections, setSelections] = useState([]);
   const [modalOpen, setModalOpen] = useState(false)
   const { pickTeams, token, user, setUser, userPickList, leagueid } = props;
@@ -29,7 +31,10 @@ const PickTeam = (props: any) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setTeam('')
-    await makePick(token, week, team, leagueid);
+    const response: any = await makePick(token, week, team, leagueid);
+    setOpen(true);
+    console.log(response);
+    setResponse(response);
     let user = await getLoggedInUser(token)
     setUser(user);
   }
@@ -88,8 +93,7 @@ const PickTeam = (props: any) => {
         </FormControl>
       </SelectTeamContainer>
       {user.isactive ? (<ConfirmPickModal modalOpen={modalOpen} setModalOpen={setModalOpen} handleSubmit={handleSubmit} team={team} week={week}/>) : (<p>Inactive</p>)}
-      
-      
+      {open === false ? null : <PickTeamConfirm open={open} setOpen={setOpen} response={response} />}
     </SelectTeamForm>
   )}
 
