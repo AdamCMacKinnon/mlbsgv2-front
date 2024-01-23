@@ -8,6 +8,7 @@ import { Button, MenuItem, Select } from "@mui/material";
 
 const LeagueInfo = (props: any) => {
   const { leagueUsers, leagueName } = props;
+  console.log(leagueUsers);
 
   return (
     <LeagueInfoContainer>
@@ -53,7 +54,7 @@ const LeagueInfo = (props: any) => {
                   fullWidth
                   name="leaguePasscode"
                   id="leaguePasscode"
-                  placeholder={`League Passcode: ${leagueUsers[0].passcode}`}
+                  // placeholder={`League Passcode: ${leagueUsers[0].passcode}`}
                   autoFocus
                   disabled={true}
                 />

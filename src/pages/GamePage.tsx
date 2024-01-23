@@ -34,8 +34,13 @@ export default function GamePage(props: any) {
       setLoading(false);
     }, 800)
   },[leagueid, token]);
+
+  console.log(leagueUsers);
   
   const userPickList: any = []
+  if (!leagueUsers) {
+    userPickList.push('NO PICKS!');
+  }
   leagueUsers.forEach((pick: any) => userPickList.push(pick.pick));
   const pickTeams = teams.filter(team => !userPickList.includes(team.name))
 
@@ -53,19 +58,19 @@ export default function GamePage(props: any) {
       <GamePageComponents>
         <ActiveBanner user={user} />
         <Section>
-          <SelectedTeam user={user}/>
+          <SelectedTeam userPickList={userPickList}/>
         </Section>
         <Section>
-          <PickTeam pickTeams={pickTeams} token={token} user={user} setUser={setUser} />
+          <PickTeam pickTeams={pickTeams} userPickList={userPickList} token={token} user={user} setUser={setUser} leagueid={leagueid} />
         </Section>
         <Section>
-          <UserPicks userPicks={user.picks}/>
+          <UserPicks userPicks={userPickList}/>
         </Section>
         <LeaderBoardSection>
           <PlayerLeaderBoard currentUser={user} users={users} token={token} leagueid={leagueid} leagueUsers={leagueUsers}/>
         </LeaderBoardSection>
       </GamePageComponents>  
-}   
+} 
     </GamePageContainer>
   )
 }

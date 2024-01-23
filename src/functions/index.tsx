@@ -120,15 +120,14 @@ const formatResponse = (response: any) => {
  * @param pick
  * @returns
  */
-export async function makePick(token: any, week: any, pick: any) {
-  const leagueId = "d730ee25-08bd-408c-9536-000a6e39148c";
+export async function makePick(token: any, week: any, pick: any, leagueid: string) {
   try {
     const response = await axios.post(
       `${process.env.REACT_APP_SERVER}/picks`,
       {
         week: week,
         pick: pick.name,
-        subleague_id: leagueId,
+        subleague_id: leagueid,
       },
       {
         headers: {
@@ -139,9 +138,19 @@ export async function makePick(token: any, week: any, pick: any) {
     const data = await response.data;
     console.log("MakePick data");
     console.log(data);
+    if (data.status === 409) {
+      return {
+        status: 409,
+        message: "Week or team is not unique"
+      }
+    }
     return data;
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
+    return {
+      status: 500,
+      message: "Server Error",
+    };
   }
 }
 
@@ -365,6 +374,7 @@ export const getLeagueLevelUsers = async (leagueid: string, token: string) => {
       }
     });
     const data = await response.data;
+    console.log(data);
     return {
       data: data,
       status: 200

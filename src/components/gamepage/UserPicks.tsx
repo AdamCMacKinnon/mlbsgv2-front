@@ -7,10 +7,10 @@ const UserPicks = (props: any) => {
 
   return (
     <UserPicksContainer>
-      <h3>Past Picks (By Week)</h3>
+      <h3>Past Picks</h3>
       <UserPicksList>
         {reverseUserPicks.map((pick: any) => {
-            return <li key={pick.week}>{pick.week}. {pick.pick}</li>
+            return <li key={pick.week}>{pick.week}. {userPicks}</li>
         })}
       </UserPicksList>
     </UserPicksContainer>)
