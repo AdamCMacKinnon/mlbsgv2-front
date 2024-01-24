@@ -7,7 +7,7 @@ import SelectedTeam from '../components/gamepage/SelectedTeam';
 import UserPicks from '../components/gamepage/UserPicks';
 
 import { teams } from '../data/teams';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getLeagueLevelUsers } from '../functions';
 import Spinner from '../components/gamepage/Spinner';
