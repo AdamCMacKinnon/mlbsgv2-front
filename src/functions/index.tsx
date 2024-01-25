@@ -408,42 +408,39 @@ export const getLeagueLevelUsers = async (leagueid: string, token: string) => {
   }
 };
 
-// export const updateUserLeagues = async (
-//   token: string,
-//   leagueid: string,
-//   leagueName?: string | null,
-//   passcode?: boolean | null,
-//   commish?: string | null,
-//   regStatus?: boolean | null,
-//   active?: boolean | null
-// ) => {
-//   try {
-//     const response = await axios.patch(
-//       `${process.env.REACT_APP_SERVER}/subs/leagues/update/${leagueid}`,
-//       {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//         body: {
-//           leagueName: leagueName,
-//           passcode: passcode,
-//           commmish: commish,
-//           regStatus: regStatus,
-//           active: active,
+export const updateUserLeagues = async (
+  token: string,
+  leagueid: string,
+  leagueShortname?: string | null,
+  resetCode?: boolean | null,
+  regStatus?: boolean | null,
+) => {
+  try {
+    const response = await axios.patch(
+      `${process.env.REACT_APP_SERVER}/subs/leagues/update/${leagueid}`, 
+      {
+          leagueName: leagueShortname,
+          passcode: resetCode,
+          regStatus: regStatus,
 
-//         }
-//       }
-//     );
-//     const data = await response.data;
-//     return {
-//       data: data,
-//       status: 201
-//     }
-//   } catch (error) {
-//     console.log(error);
-//     return {
-//       status: 500,
-//       message: "SERVER ERROR"
-//     }
-//   }
-// };
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.data;
+    console.log(data);
+    return {
+      data: data,
+      status: 201
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      status: 500,
+      message: "SERVER ERROR"
+    }
+  }
+};

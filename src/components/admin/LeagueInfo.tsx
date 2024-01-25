@@ -1,23 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import { LeagueInfoContainer } from "./LeagueInfo.styles";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
-// import FormControlLabel from "@mui/material/FormControlLabel";
-import { Button, Checkbox, FormControlLabel, MenuItem, Select } from "@mui/material";
-
+import {
+  Box,
+  Button,
+  Checkbox,
+  FormControlLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import Spinner from "../gamepage/Spinner";
+import { updateUserLeagues } from "../../functions";
+import LeagueUpdateConfirm from "./LeagueUpdateConfirm";
 
 const LeagueInfo = (props: any) => {
-  const { leagueUsers, leagueName } = props;
+  const { leagueUsers, leagueName, token, leagueid } = props;
+  const [loading, setLoading] = useState(false);
+  const [leagueShortname, setLeagueShortname] = useState(leagueName);
+  const [response, setResponse] = useState<any>({});
+  const [regStatus, setRegStatus] = useState(false);
+  const [resetCode, setResetCode] = useState(false);
+  const [open, setOpen] = useState(false);
   console.log(leagueUsers);
 
   const handleUpdateLeague = async (e: any) => {
     e.preventDefault();
+
+    try {
+      setLoading(true);
+      const response: any = await updateUserLeagues(
+        token,
+        leagueid,
+        leagueShortname,
+        resetCode,
+        regStatus
+      );
+      setOpen(true);
+      console.log(response);
+      setResponse(response);
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  if (loading) {
+    return (
+      <LeagueInfoContainer>
+        <Spinner />
+      </LeagueInfoContainer>
+    );
   }
 
   return (
     <LeagueInfoContainer>
+      <Box
+        component="form"
+        noValidate
+        autoComplete="off"
+        onSubmit={handleUpdateLeague}
+      >
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={8} sm={8}>
           <TextField
             autoComplete="given-name"
             name="leagueName"
@@ -25,19 +70,20 @@ const LeagueInfo = (props: any) => {
             id="leagueName"
             label="League Name"
             placeholder={leagueName}
+            onChange={(e) => setLeagueShortname(e.target.value)}
             autoFocus
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          Game Mode: &nbsp; &nbsp;
+        <Grid item xs={4} sm={4}>
           <Select
             labelId="demo-simple-select-label"
             defaultValue={20}
             id="demo-simple-select"
             label="Game Mode"
-            // disabled={true}
           >
-            {/* <MenuItem value={10}>Total Diff</MenuItem> */}
+            <MenuItem value={10} disabled={true}>
+              Total Diff
+            </MenuItem>
             <MenuItem value={20}>Survival</MenuItem>
           </Select>
         </Grid>
@@ -57,7 +103,7 @@ const LeagueInfo = (props: any) => {
             <MenuItem value={20}>PassonJim (passonjim@gmail.com)</MenuItem>
           </Select>
         </Grid> */}
-        <Grid item sm ={10}xs={12}>
+        <Grid item sm={8} xs={8}>
           <TextField
             fullWidth
             name="leaguePasscode"
@@ -68,7 +114,7 @@ const LeagueInfo = (props: any) => {
             disabled={true}
           />
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={4}>
           <Button
             onClick={() =>
               navigator.clipboard.writeText(`${leagueUsers[0].passcode}`)
@@ -78,29 +124,43 @@ const LeagueInfo = (props: any) => {
           </Button>
         </Grid>
         <Grid item xs={6}>
-                <FormControlLabel
-                  control={<Checkbox value="splitLeague" color="warning" />}
-                  label="Refresh Passcode?"
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <FormControlLabel
-                  control={<Checkbox value="closeReg" color="error" />}
-                  label="Close Registration"
-                />
-              </Grid>
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="refreshCode"
+                color="warning"
+                onChange={(e) => setResetCode(true)}
+              />
+            }
+            label="Refresh Passcode"
+          />
+        </Grid>
+        <Grid item xs={6}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                value="closeReg"
+                color="error"
+                onChange={(e) => setRegStatus(true)}
+              />
+            }
+            label="Close Registration"
+          />
+        </Grid>
       </Grid>
+      </Box>
       <Button
         type="submit"
         fullWidth
         variant="contained"
         color="success"
-        onSubmit={handleUpdateLeague}
+        onClick={handleUpdateLeague}
         sx={{ mt: 3, mb: 2 }}
       >
         Update League Info
       </Button>
       <Grid container justifyContent="flex-end"></Grid>
+      {open === false ? null : <LeagueUpdateConfirm open={open} setOpen={setOpen} response={response} />}
     </LeagueInfoContainer>
   );
 };

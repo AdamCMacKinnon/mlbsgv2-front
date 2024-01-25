@@ -41,7 +41,8 @@ export default function GamePage(props: any) {
   if (!leagueUsers) {
     userPickList.push('NO PICKS!');
   }
-  leagueUsers.forEach((pick: any) => userPickList.push(pick.pick));
+  const currentUser = leagueUsers.filter(p => p.userId === user.id)
+  currentUser.forEach((pick: any) => userPickList.push(pick.pick));
   const pickTeams = teams.filter(team => !userPickList.includes(team.name))
 
   if (loading) {

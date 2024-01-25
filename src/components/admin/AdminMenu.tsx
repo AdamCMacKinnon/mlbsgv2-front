@@ -18,9 +18,10 @@ import BottomNavigationAction from "@mui/material/BottomNavigationAction";
 import RunDifferential from "./RunDifferential";
 import { Outlet } from "react-router-dom";
 import LeagueInfo from "./LeagueInfo";
+import ComingSoon from "../profile/ComingSoon";
 
 const AdminMenu = (props: any) => {
-  const { user, leagueUsers, leagueName, leagueid } = props;
+  const { user, leagueUsers, leagueName, leagueid, token } = props;
   const [value, setValue] = useState(0);
 
   useEffect(() => {
@@ -53,9 +54,9 @@ const AdminMenu = (props: any) => {
         </Box>
       </AdminMenuContainer>
       <AdminContent>
-        {value === 0 ? <LeagueInfo user={user} leagueUsers={leagueUsers} leagueName={leagueName} leagueid={leagueid}/> : null}
-        {value === 1 ? <Outlet /> : null}
-        {value === 2 ? <RunDifferential /> : null}
+        {value === 0 ? <LeagueInfo user={user} token={token} leagueUsers={leagueUsers} leagueName={leagueName} leagueid={leagueid}/> : null}
+        {value === 1 ? <ComingSoon /> : null}
+        {value === 2 ? <ComingSoon /> : null}
       </AdminContent>
     </>
   );
