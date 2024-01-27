@@ -15,8 +15,6 @@ import BottomNavigation from "@mui/material/BottomNavigation";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SportsBaseballIcon from "@mui/icons-material/SportsBaseball";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import RunDifferential from "./RunDifferential";
-import { Outlet } from "react-router-dom";
 import LeagueInfo from "./LeagueInfo";
 import ComingSoon from "../profile/ComingSoon";
 
