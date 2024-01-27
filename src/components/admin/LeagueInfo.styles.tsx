@@ -8,6 +8,7 @@ export const LeagueInfoContainer = styled.div`
 
 export const LeagueInfoForm = styled.div`
     padding: 2px;
+    margin-top: 10px;
     margin-left: 25px;
     margin-right: 25px;
     display: flex;

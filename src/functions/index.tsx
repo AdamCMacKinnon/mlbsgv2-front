@@ -120,7 +120,12 @@ const formatResponse = (response: any) => {
  * @param pick
  * @returns
  */
-export async function makePick(token: any, week: any, pick: any, leagueid: string) {
+export async function makePick(
+  token: any,
+  week: any,
+  pick: any,
+  leagueid: string
+) {
   try {
     const response = await axios.post(
       `${process.env.REACT_APP_SERVER}/picks`,
@@ -141,8 +146,8 @@ export async function makePick(token: any, week: any, pick: any, leagueid: strin
     if (data.status === 409) {
       return {
         status: 409,
-        message: "Week or team is not unique"
-      }
+        message: "Week or team is not unique",
+      };
     }
     return data;
   } catch (error: any) {
@@ -316,74 +321,126 @@ export const enterGlobalLeague = async (token: any) => {
       message: "LEAGUE NOT FOUND OR ALREADY JOINED",
     };
   }
-}
+};
 
 export const joinPrivateLeague = async (token: any, passcode: string) => {
   try {
-    const response = await axios.post(`${process.env.REACT_APP_SERVER}/subs/join`, {
-      passcode: passcode
-    },{
-      headers: {
-        'Authorization': `Bearer ${token}`
+    const response = await axios.post(
+      `${process.env.REACT_APP_SERVER}/subs/join`,
+      {
+        passcode: passcode,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
-    });
+    );
     const data = await response.data;
     return {
       data: data,
-      status: 201
-    }
+      status: 201,
+    };
   } catch (error) {
     console.log(error);
     return {
       status: 409,
-      message: 'LEAGUE NOT FOUND OR ALREADY JOINED'
-    }
+      message: "LEAGUE NOT FOUND OR ALREADY JOINED",
+    };
   }
-}
+};
 
-export const createPrivateLeague = async (token: any, leagueName: string, userEmail: string) => {
+export const createPrivateLeague = async (
+  token: any,
+  leagueName: string,
+  userEmail: string
+) => {
   try {
-    const response = await axios.post(`${process.env.REACT_APP_SERVER}/subs/create`, {
-      leagueName: leagueName,
-      gameMode: 'survival',
-      commishEmail: userEmail
-    },{
-      headers: {
-        'Authorization': `Bearer ${token}`
+    const response = await axios.post(
+      `${process.env.REACT_APP_SERVER}/subs/create`,
+      {
+        leagueName: leagueName,
+        gameMode: "survival",
+        commishEmail: userEmail,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
-    });
+    );
     const data = await response.data;
     return {
       data: data,
-      status: 201
-    }
+      status: 201,
+    };
   } catch (error) {
     console.log(error);
     return {
       status: 409,
-      message: 'LEAGUE NOT FOUND OR ALREADY JOINED'
-    }
+      message: "LEAGUE NOT FOUND OR ALREADY JOINED",
+    };
   }
-}
+};
 
 export const getLeagueLevelUsers = async (leagueid: string, token: string) => {
   try {
-    const response = await axios.get(`${process.env.REACT_APP_SERVER}/subs/leagues/${leagueid}`, {
-      headers: {
-        'Authorization': `Bearer ${token}`
+    const response = await axios.get(
+      `${process.env.REACT_APP_SERVER}/subs/leagues/${leagueid}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       }
-    });
+    );
     const data = await response.data;
     console.log(data);
     return {
       data: data,
-      status: 200
-    }
+      status: 200,
+    };
   } catch (error) {
     console.log(error);
     return {
       status: 404,
-      message: 'NO USERS IN THIS LEAGUE'
+      message: "NO USERS IN THIS LEAGUE",
+    };
+  }
+};
+
+export const updateUserLeagues = async (
+  token: string,
+  leagueid: string,
+  leagueShortname?: string | null,
+  resetCode?: boolean | null,
+  regStatus?: boolean | null,
+) => {
+  try {
+    const response = await axios.patch(
+      `${process.env.REACT_APP_SERVER}/subs/leagues/update/${leagueid}`, 
+      {
+          leagueName: leagueShortname,
+          passcode: resetCode,
+          regStatus: regStatus,
+
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    const data = await response.data;
+    console.log(data);
+    return {
+      data: data,
+      status: 201
+    }
+  } catch (error) {
+    console.log(error);
+    return {
+      status: 500,
+      message: "SERVER ERROR"
     }
   }
-}
+};

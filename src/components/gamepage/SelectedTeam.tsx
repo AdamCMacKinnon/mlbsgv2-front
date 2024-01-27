@@ -27,7 +27,7 @@ const SelectedTeam = (props: any) => {
         <p>Selected Team</p>
         <SelectedTeamWeek>Week {}</SelectedTeamWeek>
         <h2>{currentSelection}</h2>
-        {currentSelection ? <SelectedTeamImage alt={currentSelection} src={`../images/${image}`} />: ''} 
+        {currentSelection ? <SelectedTeamImage alt={currentSelection} src={`../../images/${image}`} />: ''} 
         </>
       ) : (
         <p>Make your first pick selection</p>

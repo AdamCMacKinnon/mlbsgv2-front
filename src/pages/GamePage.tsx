@@ -7,7 +7,7 @@ import SelectedTeam from '../components/gamepage/SelectedTeam';
 import UserPicks from '../components/gamepage/UserPicks';
 
 import { teams } from '../data/teams';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getLeagueLevelUsers } from '../functions';
 import Spinner from '../components/gamepage/Spinner';
@@ -41,7 +41,8 @@ export default function GamePage(props: any) {
   if (!leagueUsers) {
     userPickList.push('NO PICKS!');
   }
-  leagueUsers.forEach((pick: any) => userPickList.push(pick.pick));
+  const currentUser = leagueUsers.filter(p => p.userId === user.id)
+  currentUser.forEach((pick: any) => userPickList.push(pick.pick));
   const pickTeams = teams.filter(team => !userPickList.includes(team.name))
 
   if (loading) {

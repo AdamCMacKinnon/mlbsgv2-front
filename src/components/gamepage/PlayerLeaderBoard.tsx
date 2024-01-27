@@ -6,7 +6,7 @@ const PlayerLeaderBoard = (props: any) => {
   const { currentUser, leagueUsers } = props;
   return (
     <PlayerLeaderBoardContainer>
-      <h3>LeaderBoard</h3>
+      <h3>Current Week LeaderBoard</h3>
       <PlayerLeaderBoardTable>
         <thead>
           <tr>
