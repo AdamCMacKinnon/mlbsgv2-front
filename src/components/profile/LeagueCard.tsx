@@ -17,7 +17,7 @@ export default function LeagueCard(props: any) {
           style={{"margin": "10px"}}
           key={subs.league_id}
           >
-            <CardContent sx={{backgroundColor: 'lightgray', textDecoration: 'none'}}>
+            <CardContent sx={{backgroundColor: subs.run_diff >= 0 ? 'rgba(6,128,55)' : '#CC3433', color: subs.run_diff >= 0 ? 'white' : 'black', textDecoration: 'none'}}>
               <Typography sx={{fontWeight: 'bold'}}>
                 League Name: {subs.league_name}
                 <br />

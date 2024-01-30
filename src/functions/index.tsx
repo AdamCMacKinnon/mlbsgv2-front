@@ -130,7 +130,7 @@ export async function makePick(
     const response = await axios.post(
       `${process.env.REACT_APP_SERVER}/picks`,
       {
-        week: week,
+        week: parseInt(week),
         pick: pick.name,
         subleague_id: leagueid,
       },
