@@ -42,7 +42,7 @@ const PickTeam = (props: any) => {
   useEffect(() => {
     const weekSelections: any = () => {
       const weekNumbers:any = []
-      for (let i = 1; i <= 26; i++) {
+      for (let i = 0; i <= 26; i++) {
         weekNumbers.push(i)
       }
       const pickedWeekNumbers: any = []
@@ -58,6 +58,7 @@ const PickTeam = (props: any) => {
     }
     const currentWeekSelection = weekSelections()[0];
     setSelections(weekSelections());
+    // throw error if not selecting current week?
     setWeek(currentWeekSelection);
   },[user, userPickList])
 
