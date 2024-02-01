@@ -3,6 +3,9 @@ import styled from "styled-components";
 const PlayerLeaderBoardRow = (props: any) => {
   const { leagueUsers } = props;
 
+// ADD A MAP OR FILTER FUNCTION TO DETERMINE WHICH WEEK IT IS.
+// do the same for past picks, but just make it "teams selected"
+
   return (
     <>
     {leagueUsers.map((player: any) => {
