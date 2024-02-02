@@ -1,4 +1,3 @@
-import { InputLabel, Menu } from "@mui/material";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
@@ -6,7 +5,6 @@ import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import React from "react";
 import styled from "styled-components";
-import PickTeam from "../gamepage/PickTeam";
 
 export default function PlayerManagementForm(props: any) {
   const { user } = props;
@@ -36,7 +34,7 @@ export default function PlayerManagementForm(props: any) {
             value={user.username}
             disabled={true}
             autoFocus
-            sx={{width: "40%"}}
+            sx={{width: "30%"}}
           />
                   <TextField
             autoComplete="given-name"
@@ -46,24 +44,45 @@ export default function PlayerManagementForm(props: any) {
             value={user.email}
             disabled={true}
             autoFocus
-            sx={{width: "50%"}}
+            sx={{width: "40%", marginLeft: "10px"}}
           />
-        </FormTextRow>
-        <SelectorRow>
-        <Select
+                  <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Status"
             defaultValue={user.active === 'ACTIVE' ? 20 : 10}
-            sx={{width: "20%"}}
+            sx={{width: "20%", marginLeft: "10px"}}
           >
             <MenuItem value={10}>
               Active
             </MenuItem>
             <MenuItem value={20}>Inactive</MenuItem>
           </Select>
-        </SelectorRow>
+        </FormTextRow>
       </Box>
+      <FormRowTwo>
+      <FocusUserPickList>
+        <FocusUserTable>
+        <thead>
+            <PmTableRow>
+                <PmTableHeader>Team</PmTableHeader>
+                <PmTableHeader>Week</PmTableHeader>
+                <PmTableHeader>Diff</PmTableHeader>
+            </PmTableRow>
+        </thead>
+        <tr>
+            <td>Atlanta Braves</td>
+            <td>1</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>Miami Marlins</td>
+            <td>2</td>
+            <td>10</td>
+        </tr>
+        </FocusUserTable>
+      </FocusUserPickList>
+      <AdminButtonContainer>
       <Button
         type="submit"
         variant="contained"
@@ -88,6 +107,8 @@ export default function PlayerManagementForm(props: any) {
       >
         Remove Player
       </Button>
+      </AdminButtonContainer>
+      </FormRowTwo>
     </PlayerFormContainer>
   );
 }
@@ -95,19 +116,50 @@ export default function PlayerManagementForm(props: any) {
 const PlayerFormContainer = styled.div`
   margin-top: 40px;
   background-color: lightgray;
-  width: 80%;
+  width: 90%;
 `;
 
 const FormTextRow = styled.div`
 display: flex;
 flex-direction: row;
-justify-content: space-between;
-margin: 15px;
+justify-content: space-around;
+margin: 10px;
 `;
 
-const SelectorRow = styled.div`
+const AdminButtonContainer = styled.div`
+display: flex;
+flex-direction:column;
+margin-left: auto;
+width: 30%;
+`;
+
+const FocusUserPickList = styled.div`
+margin-left: 10%;
+width: 80%;
+`;
+
+const FormRowTwo = styled.div`
 display: flex;
 flex-direction: row;
-justify-content: space-between;
-margin: 15px;
+width: 100%;
+`
+const PmTableHeader = styled.th`
+font-weight: bold;
+text-decoration: underline;
+color: white;
+font-size: large;
+padding-bottom: 5px;
+text-align: center;
+background-color: forestgreen;
+`;
+
+const FocusUserTable = styled.table`
+    border: 1px solid;
+    margin-bottom: 5px;
+    width: 80%;
+    text-align: center;
+`
+
+const PmTableRow = styled.tr`
+
 `
