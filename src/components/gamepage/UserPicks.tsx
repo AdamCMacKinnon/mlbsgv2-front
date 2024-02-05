@@ -5,7 +5,7 @@ const UserPicks = (props: any) => {
 
   return (
     <UserPicksContainer>
-      <h3>Past Picks</h3>
+      <h3>Teams Already Picked:</h3>
       <UserPicksList>
         {userPicks.map((pick: any) => {
             return <li>{pick}</li>

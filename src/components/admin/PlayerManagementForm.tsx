@@ -8,7 +8,6 @@ import styled from "styled-components";
 
 export default function PlayerManagementForm(props: any) {
   const { user, leagueUsers } = props;
-  console.log(user);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -71,15 +70,29 @@ export default function PlayerManagementForm(props: any) {
                 <PmTableHeader>Diff</PmTableHeader>
             </PmTableRow>
         </thead>
+        {/* <tr>
             <td>Atlanta Braves</td>
             <td>1</td>
             <td>4</td>
-
+        </tr>
         <tr>
             <td>Miami Marlins</td>
             <td>2</td>
             <td>10</td>
-        </tr>
+        </tr> */}
+        {leagueUsers.map((u: any) => {
+            if (u.userId === user.userId) {
+                return (
+                    <tr>
+                        <td>{u.pick}</td>
+                        <td>{u.week}</td>
+                        <td>{u.weekly_diff}</td>
+                    </tr>
+                )
+            } else {
+                return null;
+            }
+        })}
         </FocusUserTable>
       </FocusUserPickList>
       <AdminButtonContainer>
