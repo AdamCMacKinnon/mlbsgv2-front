@@ -10,6 +10,12 @@ export default function PlayerManagement(props: any) {
   const [focusUser, setFocusUser] = useState('');
   const { leagueUsers } = props;
   console.log(leagueUsers);
+  console.log(leagueUsers[0].userId);
+
+  const uniqueUsers = leagueUsers.filter((obj: { userId: any; }, index: any) => {
+    return index === leagueUsers.findIndex((u: { userId: any; }) => obj.userId === u.userId);
+});
+console.log(uniqueUsers);
   return (
     <PlayerManageContainer>
       <PlayerManageTable>
@@ -18,12 +24,11 @@ export default function PlayerManagement(props: any) {
             <TableHeader>User Name</TableHeader>
             <TableHeader>Email</TableHeader>
             <TableHeader>Status</TableHeader>
-            <TableHeader>Latest Pick</TableHeader>
             <TableHeader>Total Diff</TableHeader>
           </tr>
         </thead>
         <PlayerManageBody>
-          {leagueUsers.map((user: any) => {
+          {uniqueUsers.map((user: any) => {
             return (
               <PlayerRow>
                 <td>
@@ -36,14 +41,13 @@ export default function PlayerManagement(props: any) {
                 </td>
                 <td>{user.email}</td>
                 <td>{user.active === true ? "ACTIVE" : "INACTIVE"}</td>
-                <td>{!user.pick ? "NONE" : user.pick}</td>
                 <td>{user.league_diff}</td>
               </PlayerRow>
             );
           })}
         </PlayerManageBody>
       </PlayerManageTable>
-      {open === false ? <h2 style={{color: "white", marginTop: "30px"}}>Select a Player to Edit</h2> : <PlayerManagementForm user={focusUser} />}
+      {open === false ? <h2 style={{color: "white", marginTop: "30px"}}>Select a Player to Edit</h2> : <PlayerManagementForm user={focusUser} leagueUser={leagueUsers} />}
     </PlayerManageContainer>
   );
 }

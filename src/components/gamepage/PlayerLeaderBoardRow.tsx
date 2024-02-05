@@ -3,12 +3,23 @@ import styled from "styled-components";
 const PlayerLeaderBoardRow = (props: any) => {
   const { leagueUsers } = props;
 
+  const leaderBoardUsers: any = [];
+
 // ADD A MAP OR FILTER FUNCTION TO DETERMINE WHICH WEEK IT IS.
 // do the same for past picks, but just make it "teams selected"
 
+console.log(leagueUsers);
+const currentWeek = 0;
+
+leagueUsers.forEach((player: any) => {
+  if (player.week === currentWeek) {
+    leaderBoardUsers.push(player);
+  }
+})
+
   return (
     <>
-    {leagueUsers.map((player: any) => {
+    {leaderBoardUsers.map((player: any) => {
       return <LeaderBoardRow key={leagueUsers.username} >
         <td>{player.username}</td>
         <td>{player.pick}</td>

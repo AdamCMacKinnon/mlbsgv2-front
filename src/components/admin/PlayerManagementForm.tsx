@@ -7,7 +7,8 @@ import React from "react";
 import styled from "styled-components";
 
 export default function PlayerManagementForm(props: any) {
-  const { user } = props;
+  const { user, leagueUsers } = props;
+  console.log(user);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -70,11 +71,10 @@ export default function PlayerManagementForm(props: any) {
                 <PmTableHeader>Diff</PmTableHeader>
             </PmTableRow>
         </thead>
-        <tr>
             <td>Atlanta Braves</td>
             <td>1</td>
             <td>4</td>
-        </tr>
+
         <tr>
             <td>Miami Marlins</td>
             <td>2</td>
