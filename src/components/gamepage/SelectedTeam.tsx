@@ -10,7 +10,9 @@ const SelectedTeam = (props: any) => {
 
   console.log(userPickList);
 
-  const currentSelection = userPickList[userPickList.length - 1];
+  const currentWeek = 0;
+
+  const currentSelection = userPickList[currentWeek];
 
   useEffect(() => {
     if (currentSelection) {

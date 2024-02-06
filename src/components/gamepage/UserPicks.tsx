@@ -3,14 +3,12 @@ import { UserPicksContainer, UserPicksList } from "./UserPicks.styles";
 const UserPicks = (props: any) => {
   const { userPicks } = props;
 
-  const reverseUserPicks = [...userPicks].reverse()
-
   return (
     <UserPicksContainer>
-      <h3>Past Picks</h3>
+      <h3>Teams Already Picked:</h3>
       <UserPicksList>
-        {reverseUserPicks.map((pick: any) => {
-            return <li key={pick.week}>{pick.week}. {userPicks}</li>
+        {userPicks.map((pick: any) => {
+            return <li>{pick}</li>
         })}
       </UserPicksList>
     </UserPicksContainer>)

@@ -130,13 +130,32 @@ export const getTeamsArray = () => {
   return teamNames;
 }
 
-export async function eliminateUsers(token: any, users: any) {
+export async function eliminateUsers(token: any, leagueid: string, userForUpdate: any, isactive: boolean) {
   try {
     const response = await axios.patch(`${process.env.REACT_APP_SERVER}/admin/eliminate`, {
-      username: users
+      leagueid,
+      userForUpdate,
+      isactive,
     },{
       headers: {
         'Authorization': `Bearer ${token}`
+      }
+    });
+    const data = await response.data;
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function deleteUsers(userForDelete: string, leagueid: string, token: string) {
+  try {
+    const response = await axios.delete(`${process.env.REACT_APP_SERVER}/admin/deleteuser/${userForDelete}`, {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
+      data: {
+        leagueid: leagueid,
       }
     });
     const data = await response.data;
