@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 export default function PlayerManagement(props: any) {
   const [open, setOpen] = useState(false);
   const [focusUser, setFocusUser] = useState('');
-  const { leagueUsers } = props;
+  const { leagueUsers, token } = props;
 
   const uniqueUsers = leagueUsers.filter((obj: { userId: any; }, index: any) => {
     return index === leagueUsers.findIndex((u: { userId: any; }) => obj.userId === u.userId);
@@ -45,7 +45,7 @@ console.log(uniqueUsers);
           })}
         </PlayerManageBody>
       </PlayerManageTable>
-      {open === false ? <h2 style={{color: "white", marginTop: "30px"}}>Select a Player to Edit</h2> : <PlayerManagementForm user={focusUser} leagueUsers={leagueUsers} />}
+      {open === false ? <h2 style={{color: "white", marginTop: "30px"}}>Select a Player to Edit</h2> : <PlayerManagementForm user={focusUser} leagueUsers={leagueUsers} token={token} />}
     </PlayerManageContainer>
   );
 }

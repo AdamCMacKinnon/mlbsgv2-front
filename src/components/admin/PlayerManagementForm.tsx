@@ -3,19 +3,37 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { deleteUsers, eliminateUsers } from "./functions";
 
 export default function PlayerManagementForm(props: any) {
-  const { user, leagueUsers } = props;
+  const { user, leagueUsers, token } = props;
+  const [userForDelete, setUserForDelete] = useState('');
+  const [userForUpdate, setUserForUpdate] = useState('');
+  const [isactive, setIsActive] = useState(user.active);
+  const [open, setOpen] = useState(false);
+  const leagueid = user.league_id;
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     console.log("CLICKED UPDATE");
+    setUserForUpdate(user.userId);
+    console.log(token, leagueid, userForUpdate, isactive);
+    const response: any = await eliminateUsers(token, leagueid, userForUpdate, isactive);
+    if (response) {
+        setOpen(true);
+    }
   };
   const handleDelete = async (e: any) => {
     e.preventDefault();
     console.log("CLICKED DELETE");
+    setUserForDelete(user.userId);
+    const response: any = await deleteUsers(userForDelete, leagueid, token);
+    console.log(response);
+    if (response === 'User Deleted') {
+        setOpen(true);
+    }
   };
   return (
     <PlayerFormContainer>
@@ -51,6 +69,7 @@ export default function PlayerManagementForm(props: any) {
             id="demo-simple-select"
             label="Status"
             defaultValue={user.active === 'ACTIVE' ? 20 : 10}
+            onChange={(e) => setIsActive(e.target.value === 10 ? true : false)}
             sx={{width: "20%", marginLeft: "10px"}}
           >
             <MenuItem value={10}>
@@ -70,16 +89,6 @@ export default function PlayerManagementForm(props: any) {
                 <PmTableHeader>Diff</PmTableHeader>
             </PmTableRow>
         </thead>
-        {/* <tr>
-            <td>Atlanta Braves</td>
-            <td>1</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>Miami Marlins</td>
-            <td>2</td>
-            <td>10</td>
-        </tr> */}
         {leagueUsers.map((u: any) => {
             if (u.userId === user.userId) {
                 return (
@@ -122,6 +131,8 @@ export default function PlayerManagementForm(props: any) {
       </Button>
       </AdminButtonContainer>
       </FormRowTwo>
+      {open === true ? (<p style={{color: "darkblue"}}>Successful.  Refresh to see changes.</p>) : null}
+
     </PlayerFormContainer>
   );
 }

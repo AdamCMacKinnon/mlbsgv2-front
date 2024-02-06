@@ -47,7 +47,7 @@ const AdminMenu = (props: any) => {
       </AdminMenuContainer>
       <AdminContent>
         {value === 0 ? <LeagueInfo user={user} token={token} leagueUsers={leagueUsers} leagueName={leagueName} leagueid={leagueid}/> : null}
-        {value === 1 ? <PlayerManagement leagueUsers={leagueUsers} /> : null}
+        {value === 1 ? <PlayerManagement leagueUsers={leagueUsers} token={token} /> : null}
         {value === 2 ? <ComingSoon /> : null}
       </AdminContent>
     </>
