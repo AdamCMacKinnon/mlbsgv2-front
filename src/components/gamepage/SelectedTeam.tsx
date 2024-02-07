@@ -6,11 +6,9 @@ import { SelectedTeamContainer, SelectedTeamWeek, SelectedTeamImage } from './Se
 
 const SelectedTeam = (props: any) => {
   const [image, setImage] = useState('');
-  const { userPickList } = props;
+  const { userPickList, currentWeek } = props;
 
   console.log(userPickList);
-
-  const currentWeek = 0;
 
   const currentSelection = userPickList[currentWeek];
 
@@ -27,7 +25,7 @@ const SelectedTeam = (props: any) => {
       {currentSelection ? (
         <>
         <p>Selected Team</p>
-        <SelectedTeamWeek>Week {}</SelectedTeamWeek>
+        <SelectedTeamWeek>Week {currentWeek}</SelectedTeamWeek>
         <h2>{currentSelection}</h2>
         {currentSelection ? <SelectedTeamImage alt={currentSelection} src={`../../images/${image}`} />: ''} 
         </>

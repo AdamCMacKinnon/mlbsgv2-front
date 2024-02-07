@@ -2,11 +2,11 @@
 import { ActiveBannerContainer } from "./ActiveBanner.styles";
 
 const ActiveBanner = (props: any) => {
-  const { user, week } = props;
+  const { user } = props;
 
   return (
     <ActiveBannerContainer active={user.isactive}>
-      {user.isactive ? <h1>WEEK {week} STATUS: ACTIVE</h1> : <h1>WEEK {week} STATUS:INACTIVE</h1>}
+      {user.isactive ? <h1> STATUS: ACTIVE</h1> : <h1>STATUS:INACTIVE</h1>}
     </ActiveBannerContainer>
   );
 };

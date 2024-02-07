@@ -3,10 +3,10 @@ import PlayerLeaderBoardRow from "./PlayerLeaderBoardRow";
 import { PlayerLeaderBoardContainer, PlayerLeaderBoardTable } from './PlayerLeaderBoard.styles';
 
 const PlayerLeaderBoard = (props: any) => {
-  const { currentUser, leagueUsers } = props;
+  const { currentUser, leagueUsers, currentWeek } = props;
   return (
     <PlayerLeaderBoardContainer>
-      <h3>Current Week LeaderBoard</h3>
+      <h3>Week {currentWeek} LeaderBoard</h3>
       <PlayerLeaderBoardTable>
         <thead>
           <tr>
@@ -17,7 +17,7 @@ const PlayerLeaderBoard = (props: any) => {
           </tr>
         </thead> 
         <tbody>
-          <PlayerLeaderBoardRow currentUser={currentUser} leagueUsers={leagueUsers} />
+          <PlayerLeaderBoardRow currentUser={currentUser} leagueUsers={leagueUsers} currentWeek={currentWeek}/>
        </tbody>
       </PlayerLeaderBoardTable>
     </PlayerLeaderBoardContainer>

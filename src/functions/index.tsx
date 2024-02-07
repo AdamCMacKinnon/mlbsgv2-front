@@ -1,6 +1,7 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import scheduleData from "../data/download.json";
+import { format } from 'date-fns';
 
 export function checkToken(token: any) {
   if (token) {
@@ -444,3 +445,12 @@ export const updateUserLeagues = async (
     }
   }
 };
+
+export const getCurrentWeek = async (date: string) => {
+  try {
+    const currentWeek =  await axios.get(`${process.env.REACT_APP_SERVER}/batch/getweek/${date}`);
+    return currentWeek;
+  } catch (error) {
+    console.log(error);
+  }
+}
