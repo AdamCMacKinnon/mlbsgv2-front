@@ -16,7 +16,7 @@ import AdminMenu from '../components/admin/AdminMenu';
 
 
 export default function GamePage(props: any) {
-  const { user, setUser, token, users } = props;
+  const { user, setUser, token, users, currentWeek } = props;
   const location: any = useLocation();
   const { leagueid, leagueName, leagueRole } = location.state;
   const [loading, setLoading] = useState(true);
@@ -57,9 +57,9 @@ export default function GamePage(props: any) {
       {leagueRole === 'commish' ? <Button variant='contained' color='success' sx={{margin: '10px'}} onClick={() => setShow(!show)}>Go To {show ? 'Admin' : 'Game'} Page</Button> : null}
       {!show ? <AdminMenu  user={user} token={token} leagueUsers={leagueUsers} leagueName={leagueName} leagueid={leagueid}/> : 
       <GamePageComponents>
-        <ActiveBanner user={user} />
+        <ActiveBanner user={user} currentWeek={currentWeek} />
         <Section>
-          <SelectedTeam userPickList={userPickList}/>
+          <SelectedTeam userPickList={userPickList} currentWeek={currentWeek}/>
         </Section>
         <Section>
           <PickTeam pickTeams={pickTeams} userPickList={userPickList} token={token} user={user} setUser={setUser} leagueid={leagueid} />
@@ -68,7 +68,7 @@ export default function GamePage(props: any) {
           <UserPicks userPicks={userPickList}/>
         </Section>
         <LeaderBoardSection>
-          <PlayerLeaderBoard currentUser={user} users={users} token={token} leagueid={leagueid} leagueUsers={leagueUsers}/>
+          <PlayerLeaderBoard currentUser={user} users={users} token={token} leagueid={leagueid} leagueUsers={leagueUsers} currentWeek={currentWeek}/>
         </LeaderBoardSection>
       </GamePageComponents>  
 } 

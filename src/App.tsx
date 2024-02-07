@@ -14,7 +14,8 @@ import RunDifferential from './components/admin/RunDifferential';
 import Schedule from './pages/Schedule';
 import Player from './components/admin/Player';
 import ProfilePage from './pages/ProfilePage';
-import { checkToken, getLocalStorageToken, getLoggedInUser, fetchAdminUsers, fetchUsers } from './functions';
+import { format } from 'date-fns';
+import { checkToken, getLocalStorageToken, getLoggedInUser, fetchAdminUsers, fetchUsers, getCurrentWeek } from './functions';
 import UserAccount from './components/gamepage/UserAccount';
 
 
@@ -23,12 +24,13 @@ import UserAccount from './components/gamepage/UserAccount';
 export default function App(){
   const [token, setToken] = useState('');
   const [loadTokenSw, setLoadTokenSw] = useState(false);
+  const [week, setWeek] = useState(0);
   const [user, setUser] = useState<{id: string, username: string,  email: string, isactive: boolean, role: string, career_diff: number, createdAt: string, updatedAt: string}>();
   const [users, setUsers] = useState<{id: string, username: string,  email: string, isactive: boolean, role: string, career_diff: number, createdAt: string, updatedAt: string}[]>([]);
 
   const navigate = useNavigate();
   const localStorageToken: any = getLocalStorageToken();
-
+  const date = format(new Date(), 'yyyy-LL-dd');
   useEffect(() => {   
     const handleToken = (localStorageToken: any) => {
       if (!token){
@@ -72,6 +74,16 @@ export default function App(){
   },[navigate, token, loadTokenSw, user]) 
 
   const validToken = checkToken(token);
+
+  useEffect(() => {
+    const handleWeek = async (date: string) => {
+      const dateToWeek = await getCurrentWeek(date);
+      console.log(dateToWeek?.data);
+      const thisWeek: any = dateToWeek?.data;
+      setWeek(thisWeek);
+    }
+    handleWeek(date);
+  }, [date])
   
   return (
   <>
@@ -88,7 +100,7 @@ export default function App(){
             path='profile' 
             element={
               <Protected isAllowed={validToken}>
-                <ProfilePage user={user} setUser={setUser} token={token} setUsers={setUsers} users={users}/>
+                <ProfilePage user={user} setUser={setUser} token={token} setUsers={setUsers} users={users} currentWeek={week} />
               </Protected>
             } />
 
@@ -96,7 +108,7 @@ export default function App(){
             path='profile/gamePage/:leagueid' 
             element={
               <Protected isAllowed={validToken}>
-                <GamePage user={user} setUser={setUser} token={token} setUsers={setUsers} users={users}/>
+                <GamePage user={user} setUser={setUser} token={token} setUsers={setUsers} users={users} currentWeek={week}/>
               </Protected>
             } />
 
@@ -106,18 +118,18 @@ export default function App(){
             </Protected>
            }/>    
           
-          <Route 
+          {/* <Route 
             path='profile/gamepage/:id/admin' 
             element={
               <Protected isAllowed={validToken}>
                 <Admin />
               </Protected>
-          }>
-            <Route index element={<Players users={users} token={token} setUsers={setUsers}/>} />
+          }> */}
+            {/* <Route index element={<Players users={users} token={token} setUsers={setUsers}/>} />
             <Route path='players' element={<Players users={users} token={token} setUsers={setUsers}/>} />
             <Route path='player/:username' element={<Player users={users} token={token} setUsers={setUsers}/>} />
-            <Route path='runDifferential' element={<RunDifferential token={token} setUsers={setUsers}/>} />      
-          </Route>
+            <Route path='runDifferential' element={<RunDifferential token={token} setUsers={setUsers}/>} />       */}
+          {/* </Route> */}
 
           <Route path='schedule' element={<Schedule />} />
         

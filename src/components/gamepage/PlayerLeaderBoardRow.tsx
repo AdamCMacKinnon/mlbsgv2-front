@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const PlayerLeaderBoardRow = (props: any) => {
-  const { leagueUsers } = props;
+  const { leagueUsers, currentWeek } = props;
 
   const leaderBoardUsers: any = [];
 
@@ -9,7 +9,6 @@ const PlayerLeaderBoardRow = (props: any) => {
 // do the same for past picks, but just make it "teams selected"
 
 console.log(leagueUsers);
-const currentWeek = 0;
 
 leagueUsers.forEach((player: any) => {
   if (player.week === currentWeek) {
