@@ -2,17 +2,13 @@ import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import styled from 'styled-components';
 
-import Admin from './pages/Admin'
 import GamePage from './pages/GamePage';
 import LandingPage from './pages/LandingPage'
 import Login from './pages/Login'
 import NavBar from './components/navbar/NavBar';
-import Players from './components/admin/Players';
 import Protected from './components/Protected';
 import Register from './pages/Register';
-import RunDifferential from './components/admin/RunDifferential';
 import Schedule from './pages/Schedule';
-import Player from './components/admin/Player';
 import ProfilePage from './pages/ProfilePage';
 import { format } from 'date-fns';
 import { checkToken, getLocalStorageToken, getLoggedInUser, fetchAdminUsers, fetchUsers, getCurrentWeek } from './functions';
