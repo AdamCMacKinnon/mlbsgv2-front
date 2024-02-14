@@ -109,7 +109,7 @@ const LeagueInfo = (props: any) => {
             name="leaguePasscode"
             id="leaguePasscode"
             label="League Passcode"
-            value={`${leagueUsers[0].passcode}`}
+            value={`${leagueUsers[0].passcode === undefined ? 'null' : leagueUsers[0].passcode}`}
             autoFocus
             disabled={true}
           />
@@ -117,7 +117,7 @@ const LeagueInfo = (props: any) => {
         <Grid item xs={4}>
           <Button
             onClick={() =>
-              navigator.clipboard.writeText(`${leagueUsers[0].passcode}`)
+              navigator.clipboard.writeText(`${leagueUsers[0].passcode === undefined ? 'null' : leagueUsers[0].passcode}`)
             }
           >
             Copy to Clipboard

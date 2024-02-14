@@ -113,9 +113,6 @@ const NavBar = (props: any) => {
                 <Rules />
               </DropdownMenuItemContainer>
               <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
-                <LeaderBoardModal />
-              </DropdownMenuItemContainer>
-              <DropdownMenuItemContainer onClick={handleCloseNavMenu}>
                 <ModalButton onClick={(e: any) => handleRoute("/schedule")}>
                   Schedule
                 </ModalButton>
@@ -147,11 +144,6 @@ const NavBar = (props: any) => {
             <div onClick={handleCloseNavMenu}>
               <Rules />
             </div>
-
-            <div onClick={handleCloseNavMenu}>
-              <LeaderBoardModal />
-            </div>
-
             <div onClick={handleCloseNavMenu}>
               <ModalButton onClick={(e: any) => handleRoute("/schedule")}>
                 Schedule

@@ -45,21 +45,11 @@ const PickTeam = (props: any) => {
       for (let i = 0; i <= 26; i++) {
         weekNumbers.push(i)
       }
-      const pickedWeekNumbers: any = []
-      userPickList.forEach((pick: any) => {
-      pickedWeekNumbers.push(pick.week)
-      }
-      );
-  
-      const filteredWeekNumbers = weekNumbers.filter((week: any) => !pickedWeekNumbers.includes(week));
-  
-      return filteredWeekNumbers;
-      
-    }
-    const currentWeekSelection = weekSelections()[0];
-    setSelections(weekSelections());
-    // throw error if not selecting current week?
-    setWeek(currentWeekSelection);
+      console.log(weekNumbers);
+      setSelections(weekNumbers);
+      return weekNumbers;
+  }
+  weekSelections();
   },[user, userPickList])
 
   return ( 
