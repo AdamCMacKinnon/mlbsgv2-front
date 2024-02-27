@@ -18,3 +18,8 @@ export const PlayerLeaderBoardTable = styled.table`
   width: 80%;
   padding-bottom: 5px;
 `
+
+export const LeaderBoardHeader = styled.div`
+display: flex;
+flex-direction: row;
+`

@@ -1,18 +1,26 @@
 import PlayerLeaderBoardRow from "./PlayerLeaderBoardRow";
+import InfoIcon from '@mui/icons-material/Info';
 
-import { PlayerLeaderBoardContainer, PlayerLeaderBoardTable } from './PlayerLeaderBoard.styles';
+import { PlayerLeaderBoardContainer, PlayerLeaderBoardTable, LeaderBoardHeader } from './PlayerLeaderBoard.styles';
+import Tooltip from "@mui/material/Tooltip";
 
 const PlayerLeaderBoard = (props: any) => {
   const { currentUser, leagueUsers, currentWeek } = props;
   return (
     <PlayerLeaderBoardContainer>
-      <h3>Week {currentWeek} LeaderBoard</h3>
+      <LeaderBoardHeader>
+      <h3>LeaderBoard</h3>
+      <Tooltip title="Data updates once daily.  May not reflect real time statistics." placement="right">
+                <InfoIcon style={{marginTop: '14px', marginLeft: '10px'}}/>
+              </Tooltip>
+      </LeaderBoardHeader>
       <PlayerLeaderBoardTable>
         <thead>
           <tr>
             <th>Username</th>
+            <th>Status</th>
             <th>Current Pick</th>
-            <th>Current Week Diff</th>
+            <th>Week {currentWeek} Diff</th>
             <th>Overall Diff</th>
           </tr>
         </thead> 
