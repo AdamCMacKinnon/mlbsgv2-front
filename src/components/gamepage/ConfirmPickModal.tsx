@@ -33,6 +33,8 @@ const ConfirmPickModal = (props: any) => {
           </Typography>
           <Button onClick={handleModalSubmit}>Confirm Pick</Button>
           <Button onClick={handleClose}>Cancel</Button>
+          <span style={{color: 'red'}}><i>Picks cannot be deleted or updated...</i></span>
+
         </Box>
       </Modal>
     </div>

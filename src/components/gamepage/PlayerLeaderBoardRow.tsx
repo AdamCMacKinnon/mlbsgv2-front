@@ -16,11 +16,14 @@ leagueUsers.forEach((player: any) => {
   }
 })
 
+
+console.log(leaderBoardUsers);
   return (
     <>
     {leaderBoardUsers.map((player: any) => {
-      return <LeaderBoardRow key={leagueUsers.username} >
+      return <LeaderBoardRow key={leagueUsers.username}>
         <td>{player.username}</td>
+        <td>{player.active === true ? 'ACTIVE' : 'ELIMINATED'}</td>
         <td>{player.pick}</td>
         <td>{player.weekly_diff}</td>
         <td>{player.league_diff}</td>
@@ -29,10 +32,12 @@ leagueUsers.forEach((player: any) => {
   )
 };
 
+
 const LeaderBoardRow = styled.tr`
 font-weight: bolder;
 color: black;
 backgroundColor: green;
+
 `
 
 export default PlayerLeaderBoardRow;

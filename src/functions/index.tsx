@@ -454,3 +454,12 @@ export const getCurrentWeek = async (date: string) => {
     console.log(error);
   }
 }
+
+export const getTeamDiff = async (week: number, team: string) => {
+  try {
+    const teamDiff =  await axios.get(`${process.env.REACT_APP_SERVER}/league/diffbyteam/${week}/${team}`);
+    return teamDiff;
+  } catch (error) {
+    console.log(error);
+  }
+}
