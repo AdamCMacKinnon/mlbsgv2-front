@@ -10,7 +10,7 @@ const PlayerLeaderBoard = (props: any) => {
     <PlayerLeaderBoardContainer>
       <LeaderBoardHeader>
       <h3>LeaderBoard</h3>
-      <Tooltip title="Data updates once daily.  May not reflect real time statistics." placement="right">
+      <Tooltip title="Weekly Diff updates every 7 minutes.  Overall updates once weekly." placement="right">
                 <InfoIcon style={{marginTop: '14px', marginLeft: '10px'}}/>
               </Tooltip>
       </LeaderBoardHeader>
