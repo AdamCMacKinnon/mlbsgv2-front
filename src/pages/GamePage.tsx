@@ -67,9 +67,9 @@ export default function GamePage(props: any) {
       {leagueRole === 'commish' ? <Button variant='contained' color='success' sx={{margin: '10px'}} onClick={() => setShow(!show)}>Go To {show ? 'Admin' : 'Game'} Page</Button> : null}
       {!show ? <AdminMenu  user={user} token={token} leagueUsers={leagueUsers} leagueName={leagueName} leagueid={leagueid}/> : 
       <GamePageComponents>
-       <WeeklyDates dates={dates} />
         <ActiveBanner user={user} currentWeek={currentWeek} />
         <Section>
+        <WeeklyDates dates={dates} />
           <SelectedTeam userPickList={userPickList} currentWeek={currentWeek}/>
         </Section>
         <Section>
@@ -104,6 +104,7 @@ const GamePageContainer = styled.div`
 
 const Section = styled.div`
   display: flex;
+  flex-direction: column;
   height: 266px;
   width: 224px;
   max-width: 300px;

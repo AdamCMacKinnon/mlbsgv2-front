@@ -5,6 +5,7 @@ export const SelectedTeamContainer = styled.div`
   flex-direction: column;
   position: relative;
   top: -30px;
+  margin-top: 10px;
   width: 90%;
 `
 export const SelectedTeamWeek = styled.p`

@@ -15,16 +15,17 @@ export default function WeeklyDates(props: any) {
 }
 
 const WeeklyDateContainer = styled.div`
-margin-top: 10px;
+margin-top: -20px;
 display: flex;
 align-items: center;
 justify-content: center;
 margin-left: auto;
 margin-right: auto;
 background-color: brown;
-padding: 8px;
 border-radius: 3px;
+width: 95%;
+margin-bottom: 40px;
 `
-const WeeklyDateText = styled.h4`
+const WeeklyDateText = styled.h5`
 color: white;
 `

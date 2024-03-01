@@ -2,11 +2,14 @@ import { useState, useEffect } from 'react';
 
 import { teams } from '../../data/teams';
 
-import { SelectedTeamContainer, SelectedTeamWeek, SelectedTeamImage } from './SelectedTeam.styles';
+import { SelectedTeamContainer, SelectedTeamImage } from './SelectedTeam.styles';
 
 const SelectedTeam = (props: any) => {
   const [image, setImage] = useState('');
   const { userPickList, currentWeek } = props;
+
+  // const startDate = dates.start_date.split('T')[0].replaceAll('-', '/');
+  // const endDate = dates.end_date.split('T')[0].replaceAll('-', '/');
 
   console.log(userPickList);
 
@@ -24,8 +27,6 @@ const SelectedTeam = (props: any) => {
     <SelectedTeamContainer>
       {currentSelection ? (
         <>
-        <p>Selected Team</p>
-        <SelectedTeamWeek>Week {currentWeek}</SelectedTeamWeek>
         <h2>{currentSelection}</h2>
         {currentSelection ? <SelectedTeamImage alt={currentSelection} src={`../../images/${image}`} />: ''} 
         </>
