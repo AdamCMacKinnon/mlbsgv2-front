@@ -9,10 +9,11 @@ import UserPicks from '../components/gamepage/UserPicks';
 import { teams } from '../data/teams';
 import { useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getLeagueLevelUsers } from '../functions';
+import { getDatesForWeek, getLeagueLevelUsers } from '../functions';
 import Spinner from '../components/gamepage/Spinner';
 import Button from '@mui/material/Button';
 import AdminMenu from '../components/admin/AdminMenu';
+import WeeklyDates from '../components/gamepage/WeeklyDates';
 
 
 export default function GamePage(props: any) {
@@ -21,7 +22,18 @@ export default function GamePage(props: any) {
   const { leagueid, leagueName, leagueRole } = location.state;
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(true);
+  const [dates, setDates] = useState<any[]>()
   const [leagueUsers, setLeagueUsers] = useState<{userId: string, role: string, username: string, week: any, pick: any, weekly_diff: any, league_diff: number}[]>([]);
+
+
+  useEffect(() => {
+    const getWeekDates = async (currentWeek: number) => {
+      const weekDates: any = await getDatesForWeek(currentWeek);
+      console.log(weekDates);
+      setDates(weekDates[0]);
+    }
+    getWeekDates(currentWeek);
+  }, [currentWeek]);
 
 
   useEffect(() => {
@@ -57,6 +69,7 @@ export default function GamePage(props: any) {
       <GamePageComponents>
         <ActiveBanner user={user} currentWeek={currentWeek} />
         <Section>
+        <WeeklyDates dates={dates} />
           <SelectedTeam userPickList={userPickList} currentWeek={currentWeek}/>
         </Section>
         <Section>
@@ -91,6 +104,7 @@ const GamePageContainer = styled.div`
 
 const Section = styled.div`
   display: flex;
+  flex-direction: column;
   height: 266px;
   width: 224px;
   max-width: 300px;

@@ -463,3 +463,13 @@ export const getTeamDiff = async (week: number, team: string) => {
     console.log(error);
   }
 }
+
+export const getDatesForWeek = async (week: number) => {
+  try {
+    const datesForWeek = await axios.get(`${process.env.REACT_APP_SERVER}/batch/getdates/${week}`);
+    console.log(datesForWeek.data[0]);
+    return datesForWeek.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
