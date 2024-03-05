@@ -20,6 +20,8 @@ const PickTeam = (props: any) => {
   const [modalOpen, setModalOpen] = useState(false)
   const { pickTeams, token, user, setUser, userPickList, leagueid } = props;
 
+  const subLeagueStatus = user.subsUsers.filter((l: any) => l.league_id === leagueid);
+
   const handleWeekChange = (event: SelectChangeEvent) => {
     setWeek(event.target.value as string);
   };
@@ -83,7 +85,7 @@ const PickTeam = (props: any) => {
           </Select>
         </FormControl>
       </SelectTeamContainer>
-      {user.isactive ? (<ConfirmPickModal modalOpen={modalOpen} setModalOpen={setModalOpen} handleSubmit={handleSubmit} team={team} week={week}/>) : (<p>Inactive</p>)}
+      {subLeagueStatus[0].active ? (<ConfirmPickModal modalOpen={modalOpen} setModalOpen={setModalOpen} handleSubmit={handleSubmit} team={team} week={week}/>) : (<p style={{color: "red"}}>ELIMINATED</p>)}
       {open === false ? null : <PickTeamConfirm open={open} setOpen={setOpen} response={response} />}
     </SelectTeamForm>
   )}

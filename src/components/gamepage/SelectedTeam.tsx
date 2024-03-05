@@ -8,19 +8,19 @@ const SelectedTeam = (props: any) => {
   const [image, setImage] = useState('');
   const { userPickList, currentWeek } = props;
 
-  // const startDate = dates.start_date.split('T')[0].replaceAll('-', '/');
-  // const endDate = dates.end_date.split('T')[0].replaceAll('-', '/');
-
   console.log(userPickList);
+  console.log(currentWeek);
 
   const currentSelection = userPickList[currentWeek];
+
+  console.log(currentSelection);
 
   useEffect(() => {
     if (currentSelection) {
       const currentTeamImage = teams.filter((team: any) => team.name === currentSelection)[0].image;
       setImage(currentTeamImage);
     }
-  }, [currentSelection]);
+  }, [currentWeek, currentSelection]);
 
 
   return(
