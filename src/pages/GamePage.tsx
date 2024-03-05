@@ -23,7 +23,7 @@ export default function GamePage(props: any) {
   const [loading, setLoading] = useState(true);
   const [show, setShow] = useState(true);
   const [dates, setDates] = useState<any[]>()
-  const [leagueUsers, setLeagueUsers] = useState<{userId: string, role: string, username: string, week: any, pick: any, weekly_diff: any, league_diff: number}[]>([]);
+  const [leagueUsers, setLeagueUsers] = useState<{active: any, userId: string, role: string, username: string, week: any, pick: any, weekly_diff: any, league_diff: number}[]>([]);
 
 
   useEffect(() => {
@@ -46,12 +46,10 @@ export default function GamePage(props: any) {
       setLoading(false);
     }, 800)
   },[leagueid, token]);
-
-  console.log(leagueUsers[0]);
   
   const userPickList: any = [];
 
-  const currentUser = leagueUsers.filter(p => p.userId === user.id)
+  const currentUser = leagueUsers.filter(p => p.userId === user.id);
   currentUser.forEach((pick: any) => userPickList.push(pick.pick));
   const pickTeams = teams.filter(team => !userPickList.includes(team.name))
 
@@ -67,13 +65,13 @@ export default function GamePage(props: any) {
       {leagueRole === 'commish' ? <Button variant='contained' color='success' sx={{margin: '10px'}} onClick={() => setShow(!show)}>Go To {show ? 'Admin' : 'Game'} Page</Button> : null}
       {!show ? <AdminMenu  user={user} token={token} leagueUsers={leagueUsers} leagueName={leagueName} leagueid={leagueid}/> : 
       <GamePageComponents>
-        <ActiveBanner user={user} currentWeek={currentWeek} />
+        <ActiveBanner user={user} currentUser={currentUser} currentWeek={currentWeek} leagueid={leagueid}/>
         <Section>
         <WeeklyDates dates={dates} />
           <SelectedTeam userPickList={userPickList} currentWeek={currentWeek}/>
         </Section>
         <Section>
-          <PickTeam pickTeams={pickTeams} userPickList={userPickList} token={token} user={user} setUser={setUser} leagueid={leagueid} />
+          <PickTeam pickTeams={pickTeams} userPickList={userPickList} token={token} user={user} setUser={setUser} leagueid={leagueid} currentUser={currentUser}/>
         </Section>
         <Section>
           <UserPicks userPicks={userPickList}/>

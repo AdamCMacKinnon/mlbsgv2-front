@@ -3,19 +3,19 @@ import styled from 'styled-components';
 
 export default function WeeklyDates(props: any) {
     const { dates } = props;
-    const startDate = dates.start_date.split('T')[0];
-    const endDate = dates.end_date.split('T')[0];
+    const startDate = dates.start_date.split('T')[0].slice(5).replace('-','/');
+    const endDate = dates.end_date.split('T')[0].slice(5).replace('-','/');
   return (
     <WeeklyDateContainer>
         <WeeklyDateText>
-        Week {dates.week}: {startDate} to {endDate}
+        Week {dates.week} will Run From:<br /> <i>{startDate} to {endDate}</i>
         </WeeklyDateText>
     </WeeklyDateContainer>
   )
 }
 
 const WeeklyDateContainer = styled.div`
-margin-top: -20px;
+margin-top: -10px;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -26,6 +26,6 @@ border-radius: 3px;
 width: 95%;
 margin-bottom: 40px;
 `
-const WeeklyDateText = styled.h5`
+const WeeklyDateText = styled.h3`
 color: white;
 `

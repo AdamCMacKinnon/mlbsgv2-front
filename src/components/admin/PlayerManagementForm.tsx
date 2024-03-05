@@ -19,6 +19,7 @@ export default function PlayerManagementForm(props: any) {
     e.preventDefault();
     console.log("CLICKED UPDATE");
     setUserForUpdate(user.userId);
+    console.log(userForUpdate);
     console.log(token, leagueid, userForUpdate, isactive);
     const response: any = await eliminateUsers(token, leagueid, userForUpdate, isactive);
     if (response) {
@@ -68,7 +69,7 @@ export default function PlayerManagementForm(props: any) {
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             label="Status"
-            defaultValue={user.active === 'ACTIVE' ? 20 : 10}
+            defaultValue={user.active === 'ACTIVE' ? 10 : 20}
             onChange={(e) => setIsActive(e.target.value === 10 ? true : false)}
             sx={{width: "20%", marginLeft: "10px"}}
           >
