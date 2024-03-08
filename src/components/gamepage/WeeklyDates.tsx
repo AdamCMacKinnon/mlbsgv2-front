@@ -8,7 +8,7 @@ export default function WeeklyDates(props: any) {
   return (
     <WeeklyDateContainer>
         <WeeklyDateText>
-        Week {dates.week} will Run From:<br /> <i>{startDate} to {endDate}</i>
+        The season begins:<br /> <i>{endDate}</i>
         </WeeklyDateText>
     </WeeklyDateContainer>
   )
