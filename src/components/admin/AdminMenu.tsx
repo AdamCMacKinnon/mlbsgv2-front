@@ -1,25 +1,19 @@
-/**
- * This component should list the following items:
- * - League Name (Headline at top of the page, passed in dynamically)
- * - Bottom Nav (League Management/PlayerManagement/League Data tabs)
- * - League Info div.  Should be like a general box/card stack that gives all the league information.
- */
-
 import { useEffect, useState } from "react";
 
 //Styles
 import Box from "@mui/material/Box";
-import { AdminMenuContainer } from "./AdminMenu.styles";
+import { AdminMenuContainer, AdminContent } from "./AdminMenu.styles";
 import QueryStatsIcon from "@mui/icons-material/QueryStats";
 import BottomNavigation from "@mui/material/BottomNavigation";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SportsBaseballIcon from "@mui/icons-material/SportsBaseball";
 import BottomNavigationAction from "@mui/material/BottomNavigationAction";
-import RunDifferential from "./RunDifferential";
-import { Outlet } from "react-router-dom";
-import AdminCards from "./AdminCards";
+import LeagueInfo from "./LeagueInfo";
+import ComingSoon from "../profile/ComingSoon";
+import PlayerManagement from "./PlayerManagement";
 
-const AdminMenu = () => {
+const AdminMenu = (props: any) => {
+  const { user, leagueUsers, leagueName, leagueid, token } = props;
   const [value, setValue] = useState(0);
 
   useEffect(() => {
@@ -27,7 +21,6 @@ const AdminMenu = () => {
   }, [value]);
   return (
     <>
-      <h1 style={{ color: "white" }}><i>League Name</i></h1>
       <AdminMenuContainer>
         <Box sx={{ width: "100%" }}>
           <BottomNavigation
@@ -52,11 +45,11 @@ const AdminMenu = () => {
           </BottomNavigation>
         </Box>
       </AdminMenuContainer>
-      <div>
-        {value === 0 ? <AdminCards /> : null}
-        {value === 1 ? <Outlet /> : null}
-        {value === 2 ? <RunDifferential /> : null}
-      </div>
+      <AdminContent>
+        {value === 0 ? <LeagueInfo user={user} token={token} leagueUsers={leagueUsers} leagueName={leagueName} leagueid={leagueid}/> : null}
+        {value === 1 ? <PlayerManagement leagueUsers={leagueUsers} token={token} /> : null}
+        {value === 2 ? <ComingSoon /> : null}
+      </AdminContent>
     </>
   );
 };

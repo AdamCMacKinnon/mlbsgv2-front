@@ -9,13 +9,18 @@ import ConfirmPickModal from './ConfirmPickModal';
 import { SelectTeamContainer, SelectTeamForm } from './PickTeam.styles';
 
 import { makePick, getLoggedInUser } from '../../functions';
+import PickTeamConfirm from './PickTeamConfirm';
 
 const PickTeam = (props: any) => {
   const [team, setTeam] = useState('');
   const [week, setWeek] = useState('');
+  const [response, setResponse] = useState<any>({});
+  const [open, setOpen] = useState(false);
   const [selections, setSelections] = useState([]);
   const [modalOpen, setModalOpen] = useState(false)
-  const { pickTeams, token, user, setUser } = props;
+  const { pickTeams, token, user, setUser, userPickList, leagueid } = props;
+
+  const subLeagueStatus = user.subsUsers.filter((l: any) => l.league_id === leagueid);
 
   const handleWeekChange = (event: SelectChangeEvent) => {
     setWeek(event.target.value as string);
@@ -28,7 +33,10 @@ const PickTeam = (props: any) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setTeam('')
-    await makePick(token, week, team);
+    const response: any = await makePick(token, week, team, leagueid);
+    setOpen(true);
+    console.log(response);
+    setResponse(response);
     let user = await getLoggedInUser(token)
     setUser(user);
   }
@@ -36,24 +44,15 @@ const PickTeam = (props: any) => {
   useEffect(() => {
     const weekSelections: any = () => {
       const weekNumbers:any = []
-      for (let i = 1; i <= 26; i++) {
+      for (let i = 0; i <= 26; i++) {
         weekNumbers.push(i)
       }
-      const pickedWeekNumbers: any = []
-      user.picks.forEach((pick: any) => {
-      pickedWeekNumbers.push(pick.week)
-      }
-      );
-  
-      const filteredWeekNumbers = weekNumbers.filter((week: any) => !pickedWeekNumbers.includes(week));
-  
-      return filteredWeekNumbers;
-      
-    }
-    const currentWeekSelection = weekSelections()[0];
-    setSelections(weekSelections());
-    setWeek(currentWeekSelection);
-  },[user])
+      console.log(weekNumbers);
+      setSelections(weekNumbers);
+      return weekNumbers;
+  }
+  weekSelections();
+  },[user, userPickList])
 
   return ( 
     <SelectTeamForm>
@@ -86,9 +85,8 @@ const PickTeam = (props: any) => {
           </Select>
         </FormControl>
       </SelectTeamContainer>
-      {user.isactive ? (<ConfirmPickModal modalOpen={modalOpen} setModalOpen={setModalOpen} handleSubmit={handleSubmit} team={team} week={week}/>) : (<p>Inactive</p>)}
-      
-      
+      {subLeagueStatus[0].active ? (<ConfirmPickModal modalOpen={modalOpen} setModalOpen={setModalOpen} handleSubmit={handleSubmit} team={team} week={week}/>) : (<p style={{color: "red"}}>ELIMINATED</p>)}
+      {open === false ? null : <PickTeamConfirm open={open} setOpen={setOpen} response={response} />}
     </SelectTeamForm>
   )}
 

@@ -22,7 +22,7 @@ const Schedule = () => {
   const displayScheduleGames = schedule.length > 0 ? schedule.map((game: any) => <ScheduleGameCard team={team} game={game} key={game.gamePk}/>) : (<p style={{color: 'white'}}>No games for this time period</p>);
   return (
     <ScheduleContainer>
-      <GamePageLink to="/gamepage">Go To Gamepage</GamePageLink>
+      <GamePageLink to="/">Back to Home</GamePageLink>
       <FilterContainer>
         <DatePicker label="Date From" date={dateFrom} setDate={setDateFrom}/>
         <DatePicker label="Date To" date={dateTo} setDate={setDateTo}/>

@@ -4,7 +4,6 @@ import ProfileNavBar from "../components/profile/ProfileNavBar";
 
 export default function ProfilePage(props: any) {
   const { user, token } = props;
-  console.log(props);
   return (
     <>
       <ProfileContainer>

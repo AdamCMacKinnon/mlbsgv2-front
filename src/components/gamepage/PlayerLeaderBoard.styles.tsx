@@ -16,4 +16,10 @@ export const PlayerLeaderBoardContainer = styled.div`
 export const PlayerLeaderBoardTable = styled.table`
   font-size: 12px;
   width: 80%;
+  padding-bottom: 5px;
+`
+
+export const LeaderBoardHeader = styled.div`
+display: flex;
+flex-direction: row;
 `

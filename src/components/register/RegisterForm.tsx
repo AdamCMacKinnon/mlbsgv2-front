@@ -12,13 +12,12 @@ import { login, fetchUsers, getLoggedInUser } from '../../functions';
 //Styles
 import { FormBox, ErrorMessage } from './RegisterForm.styles'
 
-
-
 const RegisterForm = (props: any) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const { setToken, setUsers, setUser } = props;
 
@@ -28,6 +27,7 @@ const RegisterForm = (props: any) => {
     e.preventDefault();
 
     try{
+      setLoading(true);
       const response = await axios.post(`${process.env.REACT_APP_SERVER}/auth/register`, {
         "username": username,
         "password": password,
@@ -37,6 +37,7 @@ const RegisterForm = (props: any) => {
         setUsername('')
         setEmail('')
         setPassword('')
+        setLoading(false);
         
         const loginResponse: any = await login(username, password);
 
@@ -54,11 +55,9 @@ const RegisterForm = (props: any) => {
         }
       }
     } catch (e : any) {
-      console.log(e.response.data.message)
       setErrorMessage(e.response.data.message)
     }
   }
-
   
   return (
     <FormBox
@@ -91,6 +90,7 @@ const RegisterForm = (props: any) => {
           onChange={e => setPassword(e.target.value)}
         />
       <Button variant="contained" type="submit">Submit</Button>
+      {loading === true ? (<p>Completing your registration request...</p>) : null}
     </FormBox>
   );
 }

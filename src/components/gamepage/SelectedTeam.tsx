@@ -2,30 +2,33 @@ import { useState, useEffect } from 'react';
 
 import { teams } from '../../data/teams';
 
-import { SelectedTeamContainer, SelectedTeamWeek, SelectedTeamImage } from './SelectedTeam.styles';
+import { SelectedTeamContainer, SelectedTeamImage } from './SelectedTeam.styles';
 
 const SelectedTeam = (props: any) => {
   const [image, setImage] = useState('');
-  const { user } = props;
+  const { userPickList, currentWeek } = props;
 
-  const currentSelection = user.picks[user.picks.length - 1];
+  console.log(userPickList);
+  console.log(currentWeek);
+
+  const currentSelection = userPickList[currentWeek];
+
+  console.log(currentSelection);
 
   useEffect(() => {
     if (currentSelection) {
-      const currentTeamImage = teams.filter((team: any) => team.name === currentSelection.pick)[0].image;
+      const currentTeamImage = teams.filter((team: any) => team.name === currentSelection)[0].image;
       setImage(currentTeamImage);
     }
-  }, [currentSelection]);
+  }, [currentWeek, currentSelection]);
 
 
   return(
     <SelectedTeamContainer>
       {currentSelection ? (
         <>
-        <p>Selected Team</p>
-        <SelectedTeamWeek>Week {currentSelection.week}</SelectedTeamWeek>
-        <h2>{currentSelection.pick}</h2>
-        {currentSelection.pick ? <SelectedTeamImage alt={currentSelection.pick} src={`./images/${image}`} />: ''} 
+        <h2>{currentSelection}</h2>
+        {currentSelection ? <SelectedTeamImage alt={currentSelection} src={`../../images/${image}`} />: ''} 
         </>
       ) : (
         <p>Make your first pick selection</p>

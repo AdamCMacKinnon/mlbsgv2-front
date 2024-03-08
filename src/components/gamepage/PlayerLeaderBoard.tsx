@@ -1,29 +1,31 @@
 import PlayerLeaderBoardRow from "./PlayerLeaderBoardRow";
+import InfoIcon from '@mui/icons-material/Info';
 
-import { PlayerLeaderBoardContainer, PlayerLeaderBoardTable } from './PlayerLeaderBoard.styles';
-
-import { topRankedUsers } from "./functions";
+import { PlayerLeaderBoardContainer, PlayerLeaderBoardTable, LeaderBoardHeader } from './PlayerLeaderBoard.styles';
+import Tooltip from "@mui/material/Tooltip";
 
 const PlayerLeaderBoard = (props: any) => {
-  const {currentUser, users} = props;
-
-  const displayUsers = topRankedUsers(users, currentUser);
-
+  const { currentUser, leagueUsers, currentWeek } = props;
   return (
     <PlayerLeaderBoardContainer>
+      <LeaderBoardHeader>
       <h3>LeaderBoard</h3>
+      <Tooltip title="Weekly Diff updates every 7 minutes.  Overall updates once weekly." placement="right">
+                <InfoIcon style={{marginTop: '14px', marginLeft: '10px'}}/>
+              </Tooltip>
+      </LeaderBoardHeader>
       <PlayerLeaderBoardTable>
         <thead>
           <tr>
-            <th>Rank</th>
-            <th>User</th>
-            <th>Diff</th>
+            <th>Username</th>
+            <th>Status</th>
+            <th>Current Pick</th>
+            <th>Week {currentWeek} Diff</th>
+            <th>Overall Diff</th>
           </tr>
-        </thead>
+        </thead> 
         <tbody>
-          {displayUsers.map((user: any) => {
-          return <PlayerLeaderBoardRow key={user.username} user={user} currentUser={currentUser} />;
-          })}
+          <PlayerLeaderBoardRow currentUser={currentUser} leagueUsers={leagueUsers} currentWeek={currentWeek}/>
        </tbody>
       </PlayerLeaderBoardTable>
     </PlayerLeaderBoardContainer>
