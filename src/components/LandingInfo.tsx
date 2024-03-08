@@ -13,8 +13,8 @@ export default function LandingInfo() {
           <li>
             For a full listing of the rules, click on the "Rules" tab above!
           </li>
+          <li style={{fontWeight: "bold"}}>It is completely free</li>
         </ul>
-        <br />
         <h3>New Features Coming in 2024 Including...</h3>
         <ul style={{ textAlign: "left" }}>
           <li>Create your own private Leagues!</li>
