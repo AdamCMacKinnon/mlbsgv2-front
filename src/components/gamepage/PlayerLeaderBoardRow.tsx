@@ -8,16 +8,11 @@ const PlayerLeaderBoardRow = (props: any) => {
 // ADD A MAP OR FILTER FUNCTION TO DETERMINE WHICH WEEK IT IS.
 // do the same for past picks, but just make it "teams selected"
 
-console.log(leagueUsers);
-
 leagueUsers.forEach((player: any) => {
   if (player.week === currentWeek || !player.week) {
     leaderBoardUsers.push(player);
   }
 })
-
-
-console.log(leaderBoardUsers);
   return (
     <>
     {leaderBoardUsers.map((player: any) => {

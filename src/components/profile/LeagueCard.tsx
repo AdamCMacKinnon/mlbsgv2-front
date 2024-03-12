@@ -8,7 +8,6 @@ import NullMessage from './NullMessage';
 
 export default function LeagueCard(props: any) {
     const { user } = props;
-    console.log(user.subsUsers);
   return (
     <LeagueCards>
         {user.subsUsers.length > 0 ? user.subsUsers.map((subs: any) => (

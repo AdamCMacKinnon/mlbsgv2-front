@@ -17,10 +17,7 @@ export default function PlayerManagementForm(props: any) {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log("CLICKED UPDATE");
     setUserForUpdate(user.userId);
-    console.log(userForUpdate);
-    console.log(token, leagueid, userForUpdate, isactive);
     const response: any = await eliminateUsers(token, leagueid, userForUpdate, isactive);
     if (response) {
         setOpen(true);
@@ -28,10 +25,8 @@ export default function PlayerManagementForm(props: any) {
   };
   const handleDelete = async (e: any) => {
     e.preventDefault();
-    console.log("CLICKED DELETE");
     setUserForDelete(user.userId);
     const response: any = await deleteUsers(userForDelete, leagueid, token);
-    console.log(response);
     if (response === 'User Deleted') {
         setOpen(true);
     }

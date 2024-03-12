@@ -22,7 +22,6 @@ const LeagueInfo = (props: any) => {
   const [regStatus, setRegStatus] = useState(false);
   const [resetCode, setResetCode] = useState(false);
   const [open, setOpen] = useState(false);
-  console.log(leagueUsers);
 
   const handleUpdateLeague = async (e: any) => {
     e.preventDefault();
@@ -37,7 +36,6 @@ const LeagueInfo = (props: any) => {
         regStatus
       );
       setOpen(true);
-      console.log(response);
       setResponse(response);
       setLoading(false);
     } catch (error) {

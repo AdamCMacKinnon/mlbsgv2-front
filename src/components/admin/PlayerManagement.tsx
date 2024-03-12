@@ -13,7 +13,6 @@ export default function PlayerManagement(props: any) {
   const uniqueUsers = leagueUsers.filter((obj: { userId: any; }, index: any) => {
     return index === leagueUsers.findIndex((u: { userId: any; }) => obj.userId === u.userId);
 });
-console.log(uniqueUsers);
   return (
     <PlayerManageContainer>
       <PlayerManageTable>

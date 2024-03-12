@@ -35,7 +35,6 @@ const PickTeam = (props: any) => {
     setTeam('')
     const response: any = await makePick(token, week, team, leagueid);
     setOpen(true);
-    console.log(response);
     setResponse(response);
     let user = await getLoggedInUser(token)
     setUser(user);
@@ -47,7 +46,6 @@ const PickTeam = (props: any) => {
       for (let i = 0; i <= 26; i++) {
         weekNumbers.push(i)
       }
-      console.log(weekNumbers);
       setSelections(weekNumbers);
       return weekNumbers;
   }

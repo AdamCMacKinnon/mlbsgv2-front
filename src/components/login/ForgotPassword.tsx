@@ -29,7 +29,6 @@ const ForgotPassword = (props: any) => {
       const response: any = await resetPassword(requestData);
       setOpen(true)
       setResponse(response);
-      console.log(response);
     } 
   }
 

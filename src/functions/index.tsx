@@ -142,8 +142,6 @@ export async function makePick(
       }
     );
     const data = await response.data;
-    console.log("MakePick data");
-    console.log(data);
     if (data.status === 409) {
       return {
         status: 409,
@@ -467,7 +465,6 @@ export const getTeamDiff = async (week: number, team: string) => {
 export const getDatesForWeek = async (week: number) => {
   try {
     const datesForWeek = await axios.get(`${process.env.REACT_APP_SERVER}/batch/getdates/${week}`);
-    console.log(datesForWeek.data[0]);
     return datesForWeek.data;
   } catch (error) {
     console.log(error);

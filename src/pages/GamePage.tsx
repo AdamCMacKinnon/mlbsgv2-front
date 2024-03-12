@@ -29,7 +29,6 @@ export default function GamePage(props: any) {
   useEffect(() => {
     const getWeekDates = async (currentWeek: number) => {
       const weekDates: any = await getDatesForWeek(currentWeek);
-      console.log(weekDates);
       setDates(weekDates[0]);
     }
     getWeekDates(currentWeek);
