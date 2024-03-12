@@ -141,10 +141,11 @@ const LeagueInfo = (props: any) => {
               <Checkbox
                 value="closeReg"
                 color="error"
+                disabled={true}
                 onChange={(e) => setRegStatus(true)}
               />
             }
-            label="Close Registration"
+            label="Close Registration (Coming Soon!)"
           />
         </Grid>
       </Grid>

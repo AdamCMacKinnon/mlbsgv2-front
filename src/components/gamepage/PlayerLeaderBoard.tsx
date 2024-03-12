@@ -6,6 +6,7 @@ import Tooltip from "@mui/material/Tooltip";
 
 const PlayerLeaderBoard = (props: any) => {
   const { currentUser, leagueUsers, currentWeek } = props;
+
   return (
     <PlayerLeaderBoardContainer>
       <LeaderBoardHeader>

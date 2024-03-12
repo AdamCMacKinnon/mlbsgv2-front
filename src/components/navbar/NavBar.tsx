@@ -13,7 +13,7 @@ import Avatar from "@mui/material/Avatar";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Logout from "./Logout";
-import LeaderBoardModal from "./LeaderBoardModal";
+// import LeaderBoardModal from "./LeaderBoardModal";
 import Rules from "./Rules";
 
 //Styles

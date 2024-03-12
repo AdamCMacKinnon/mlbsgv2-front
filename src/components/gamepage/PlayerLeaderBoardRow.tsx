@@ -11,7 +11,7 @@ const PlayerLeaderBoardRow = (props: any) => {
 console.log(leagueUsers);
 
 leagueUsers.forEach((player: any) => {
-  if (player.week === currentWeek) {
+  if (player.week === currentWeek || !player.week) {
     leaderBoardUsers.push(player);
   }
 })
@@ -24,9 +24,9 @@ console.log(leaderBoardUsers);
       return <LeaderBoardRow key={leagueUsers.username}>
         <td>{player.username}</td>
         <td>{player.active === true ? 'ACTIVE' : 'ELIMINATED'}</td>
-        <td>{player.pick}</td>
-        <td>{player.weekly_diff}</td>
-        <td>{player.league_diff}</td>
+        <td>{player.pick ? player.pick : 'N/A'}</td>
+        <td>{player.weekly_diff ? player.weekly_diff : 'N/A'}</td>
+        <td>{player.league_diff ? player.league_diff : 'N/A'}</td>
     </LeaderBoardRow>})}
     </>
   )
