@@ -40,8 +40,6 @@ export async function getLoggedInUser(token: any) {
         }
       );
       const data = await response.data;
-      console.log("getLoggedInUser data");
-      console.log(response);
       return data;
     } catch (error) {
       console.log(error);
@@ -393,7 +391,6 @@ export const getLeagueLevelUsers = async (leagueid: string, token: string) => {
       }
     );
     const data = await response.data;
-    console.log(data);
     return {
       data: data,
       status: 200,
@@ -430,7 +427,6 @@ export const updateUserLeagues = async (
       }
     );
     const data = await response.data;
-    console.log(data);
     return {
       data: data,
       status: 201
