@@ -40,14 +40,11 @@ const RunDifferential = (props: any) => {
   }
 
   const updateRunDiff = async () => {
-    console.log(week, team, diff);
     const requestData = {
       week: Number(week),
       team,
       diff: Number(diff)
     }
-
-    console.log(requestData);
       try {
         const response = await axios.patch(`${process.env.REACT_APP_SERVER}/admin/updatediffbyteam`, requestData ,{
           headers: {

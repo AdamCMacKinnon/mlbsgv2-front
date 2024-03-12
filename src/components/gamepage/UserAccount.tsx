@@ -26,8 +26,6 @@ const UserAccount = (props: any) => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    console.log("Submitted!");
-
     let requestData;
     if (password) {
       requestData = {
@@ -49,7 +47,6 @@ const UserAccount = (props: any) => {
         setUser(response.data);
         setIsUpdated(true);
         setPassword("");
-        console.log(response.data);
       } else {
         console.log(response.data.message);
       }

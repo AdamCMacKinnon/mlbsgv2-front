@@ -8,12 +8,7 @@ const SelectedTeam = (props: any) => {
   const [image, setImage] = useState('');
   const { userPickList, currentWeek } = props;
 
-  console.log(userPickList);
-  console.log(currentWeek);
-
   const currentSelection = userPickList[currentWeek];
-
-  console.log(currentSelection);
 
   useEffect(() => {
     if (currentSelection) {

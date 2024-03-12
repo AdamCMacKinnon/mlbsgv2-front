@@ -74,7 +74,6 @@ export default function App(){
   useEffect(() => {
     const handleWeek = async (date: string) => {
       const dateToWeek = await getCurrentWeek(date);
-      console.log(dateToWeek?.data);
       const thisWeek: any = dateToWeek?.data;
       setWeek(thisWeek);
     }
