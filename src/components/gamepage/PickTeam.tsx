@@ -83,7 +83,7 @@ const PickTeam = (props: any) => {
           </Select>
         </FormControl>
       </SelectTeamContainer>
-      {subLeagueStatus[0].active ? (<ConfirmPickModal modalOpen={modalOpen} setModalOpen={setModalOpen} handleSubmit={handleSubmit} team={team} week={week}/>) : (<p style={{color: "red"}}>ELIMINATED</p>)}
+      {subLeagueStatus[0].active ? (<ConfirmPickModal modalOpen={modalOpen} setModalOpen={setModalOpen} handleSubmit={handleSubmit} team={team} week={week}/>) : (<p style={{color: "red"}}>Not Open Yet</p>)}
       {open === false ? null : <PickTeamConfirm open={open} setOpen={setOpen} response={response} />}
     </SelectTeamForm>
   )}
