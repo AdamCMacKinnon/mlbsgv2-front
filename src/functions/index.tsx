@@ -466,3 +466,12 @@ export const getDatesForWeek = async (week: number) => {
     console.log(error);
   }
 }
+
+export const getAllWeeks = async () => {
+  try {
+    const getWeeks = await axios.get(`${process.env.REACT_APP_SERVER}/batch/getallweeks`);
+    return getWeeks.data;
+  } catch (error) {
+    console.log(error);
+  }
+}

@@ -8,7 +8,7 @@ import ConfirmPickModal from './ConfirmPickModal';
 
 import { SelectTeamContainer, SelectTeamForm } from './PickTeam.styles';
 
-import { makePick, getLoggedInUser } from '../../functions';
+import { makePick, getLoggedInUser, getAllWeeks } from '../../functions';
 import PickTeamConfirm from './PickTeamConfirm';
 
 const PickTeam = (props: any) => {
@@ -18,7 +18,7 @@ const PickTeam = (props: any) => {
   const [open, setOpen] = useState(false);
   const [selections, setSelections] = useState([]);
   const [modalOpen, setModalOpen] = useState(false)
-  const { pickTeams, token, user, setUser, userPickList, leagueid } = props;
+  const { pickTeams, token, user, setUser, leagueid } = props;
 
   const subLeagueStatus = user.subsUsers.filter((l: any) => l.league_id === leagueid);
 
@@ -41,16 +41,19 @@ const PickTeam = (props: any) => {
   }
 
   useEffect(() => {
-    const weekSelections: any = () => {
-      const weekNumbers:any = []
-      for (let i = 0; i <= 26; i++) {
-        weekNumbers.push(i)
-      }
-      setSelections(weekNumbers);
-      return weekNumbers;
-  }
-  weekSelections();
-  },[user, userPickList])
+    const weekSelections: any = async () => {
+      const weekNumbers: any = await getAllWeeks();
+      const weekString: any = [];
+      weekNumbers.forEach((w: any) => {
+        const startDate = w.start_date.split('T')[0].slice(5).replace('-', '/')
+        const endDate = w.end_date.split('T')[0].slice(5).replace('-', '/')
+        const string = `${w.week}: ${startDate} - ${endDate}`;
+        weekString.push(string);
+      })
+      setSelections(weekString);
+    }
+    weekSelections();
+  }, [])
 
   return ( 
     <SelectTeamForm>
