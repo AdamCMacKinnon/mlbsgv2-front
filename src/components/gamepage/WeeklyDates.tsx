@@ -3,14 +3,13 @@ import styled from 'styled-components';
 
 export default function WeeklyDates(props: any) {
     const { dates } = props;
-    // console.log("HERE IN THE DATE SETTER!!**** " + dates);
     const startDate = dates.start_date.split('T')[0].slice(5).replace('-','/');
     const endDate = dates.end_date.split('T')[0].slice(5).replace('-','/');
     
   return (
     <WeeklyDateContainer>
         <WeeklyDateText>
-        Week ({dates.week}) Will Run from <br />{startDate} - {endDate}:
+        This Week ({dates.week}) Will Run from <br />{startDate} - {endDate}:
         </WeeklyDateText>
     </WeeklyDateContainer>
   )
