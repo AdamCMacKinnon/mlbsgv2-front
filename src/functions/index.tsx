@@ -47,18 +47,6 @@ export async function getLoggedInUser(token: any) {
   }
 }
 
-export async function fetchUsers() {
-  try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_SERVER}/data/standings`
-    );
-    const data = await response.data;
-    return data;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
 export async function fetchTotalUserDiff() {
   try {
     const response = await axios.get(

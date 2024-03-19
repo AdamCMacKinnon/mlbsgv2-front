@@ -11,7 +11,7 @@ import Register from './pages/Register';
 import Schedule from './pages/Schedule';
 import ProfilePage from './pages/ProfilePage';
 import { format } from 'date-fns';
-import { checkToken, getLocalStorageToken, getLoggedInUser, fetchAdminUsers, fetchUsers, getCurrentWeek } from './functions';
+import { checkToken, getLocalStorageToken, getLoggedInUser, fetchAdminUsers, getCurrentWeek } from './functions';
 import UserAccount from './components/gamepage/UserAccount';
 
 
@@ -58,7 +58,6 @@ export default function App(){
           users = await fetchAdminUsers(token);
           navigate('/admin');
         } else {
-          users = await fetchUsers();
           navigate('/profile');
         }
         setUsers(users);
