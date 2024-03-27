@@ -18,7 +18,7 @@ leagueUsers.forEach((player: any) => {
     {leaderBoardUsers.map((player: any) => {
       return <LeaderBoardRow key={leagueUsers.username}>
         <td>{player.username}</td>
-        <td>{player.active === true ? 'ACTIVE' : 'N/A'}</td>
+        <td>{player.active === true ? 'ACTIVE' : 'INACIVE'}</td>
         <td>{player.pick ? player.pick : 'N/A'}</td>
         <td>{player.weekly_diff ? player.weekly_diff : 'N/A'}</td>
         <td>{player.league_diff ? player.league_diff : 'N/A'}</td>

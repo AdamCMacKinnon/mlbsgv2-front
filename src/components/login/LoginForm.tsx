@@ -8,7 +8,7 @@ import PasswordInputOutlined from "../PasswordInputOutlined";
 import DisplayMessage from "../DisplayMessage";
 
 //Global functions
-import { fetchUsers, fetchAdminUsers, getLoggedInUser, resetStateValues, login } from '../../functions';
+import { fetchAdminUsers, getLoggedInUser, resetStateValues, login } from '../../functions';
 
 //Styles
 import { Form } from './LoginForm.styles';
@@ -51,7 +51,6 @@ const LoginForm = (props: any) => {
           users = await fetchAdminUsers(token);
         }
         else {  
-          users = await fetchUsers();
           navigate('/profile');
         } 
         setUsers(users);

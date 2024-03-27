@@ -7,7 +7,7 @@ import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
 //Global functions
-import { login, fetchUsers, getLoggedInUser } from '../../functions';
+import { login, getLoggedInUser } from '../../functions';
 
 //Styles
 import { FormBox, ErrorMessage } from './RegisterForm.styles'
@@ -19,7 +19,7 @@ const RegisterForm = (props: any) => {
   const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { setToken, setUsers, setUser } = props;
+  const { setToken, setUser } = props;
 
   const navigate = useNavigate();
 
@@ -43,10 +43,8 @@ const RegisterForm = (props: any) => {
 
         if (loginResponse.status === 201) {
           let token = loginResponse.data.accessToken;
-          let users = await fetchUsers();
 
           setToken(token)
-          setUsers(users);
 
           let user = await getLoggedInUser(token)
 
