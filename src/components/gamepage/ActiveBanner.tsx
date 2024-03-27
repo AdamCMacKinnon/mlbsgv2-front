@@ -8,7 +8,7 @@ const ActiveBanner = (props: any) => {
   return (
     <ActiveBannerContainer active={subLeagueStatus[0].active}>
       {/* {subLeagueStatus[0].active ? <h1> STATUS: ACTIVE</h1> : <h1>STATUS:INACTIVE</h1>} */}
-      <h2 style={{color: "white"}}>Leagues will open for picks on 3/22!  Any pick smade before then will not count!</h2>
+      <h2 style={{color: "white"}}>Week 1 Upcoming!  Get your picks in!</h2>
     </ActiveBannerContainer>
   );
 };
