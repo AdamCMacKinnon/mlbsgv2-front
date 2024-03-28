@@ -14,6 +14,7 @@ import Spinner from '../components/gamepage/Spinner';
 import Button from '@mui/material/Button';
 import AdminMenu from '../components/admin/AdminMenu';
 import WeeklyDates from '../components/gamepage/WeeklyDates';
+import Schedule from './Schedule';
 
 
 export default function GamePage(props: any) {
@@ -64,7 +65,6 @@ export default function GamePage(props: any) {
       {leagueRole === 'commish' ? <Button variant='contained' color='success' sx={{margin: '10px'}} onClick={() => setShow(!show)}>Go To {show ? 'Admin' : 'Game'} Page</Button> : null}
       {!show ? <AdminMenu  user={user} token={token} leagueUsers={leagueUsers} leagueName={leagueName} leagueid={leagueid}/> : 
       <GamePageComponents>
-        <ActiveBanner user={user} currentUser={currentUser} currentWeek={currentWeek} leagueid={leagueid}/>
         <Section>
         <WeeklyDates dates={dates} />
           <SelectedTeam userPickList={userPickList} currentWeek={currentWeek}/>
@@ -75,6 +75,7 @@ export default function GamePage(props: any) {
         <Section>
           <UserPicks userPicks={userPickList}/>
         </Section>
+        <Schedule dates={dates}/>
         <LeaderBoardSection>
           <PlayerLeaderBoard currentUser={user} users={users} token={token} leagueid={leagueid} leagueUsers={leagueUsers} currentWeek={currentWeek}/>
         </LeaderBoardSection>
@@ -125,7 +126,7 @@ const GamePageComponents = styled.div`
 `
 
 const LeaderBoardSection = styled.div`
-  width: 80%;
+  width: 72%;
   margin: 20px;
   // background-color: rgba(0 , 43, 15, 0.8);
   background-color: rgba(255, 255, 255, 0.8);

@@ -145,9 +145,6 @@ const NavBar = (props: any) => {
               <Rules />
             </div>
             <div onClick={handleCloseNavMenu}>
-              <ModalButton onClick={(e: any) => handleRoute("/schedule")}>
-                Schedule
-              </ModalButton>
             </div>
 
             <div onClick={handleCloseNavMenu}>

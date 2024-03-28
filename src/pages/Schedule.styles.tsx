@@ -5,7 +5,7 @@ export const ScheduleContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px auto 0;
+  margin: 20px auto 0;
 `
 
 export const GamePageLink = styled(Link)`
@@ -31,10 +31,11 @@ export const GameListContainer = styled.div`
 export const FilterContainer = styled.div`
   width: 80%;
   padding: 10px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.8);
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
+  border-radius: 5px;
   justify-content: center;
 
   > *{

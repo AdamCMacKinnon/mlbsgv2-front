@@ -110,21 +110,7 @@ export default function App(){
             <Protected isAllowed={validToken}>
               <UserAccount user={user} token={token} setUser={setUser}/>
             </Protected>
-           }/>    
-          
-          {/* <Route 
-            path='profile/gamepage/:id/admin' 
-            element={
-              <Protected isAllowed={validToken}>
-                <Admin />
-              </Protected>
-          }> */}
-            {/* <Route index element={<Players users={users} token={token} setUsers={setUsers}/>} />
-            <Route path='players' element={<Players users={users} token={token} setUsers={setUsers}/>} />
-            <Route path='player/:username' element={<Player users={users} token={token} setUsers={setUsers}/>} />
-            <Route path='runDifferential' element={<RunDifferential token={token} setUsers={setUsers}/>} />       */}
-          {/* </Route> */}
-
+           }/>
           <Route path='schedule' element={<Schedule />} />
         
         </Routes>
